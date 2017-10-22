@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="misc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/misc/jtb132.jar!/" />
+      <root url="jar://$PROJECT_DIR$/misc/vapor.jar!/" />
+      <root url="jar://$PROJECT_DIR$/misc/javacc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/misc/mars.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
