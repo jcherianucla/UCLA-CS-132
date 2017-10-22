@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+task sourcesTar(type: Tar, dependsOn: classes) {
+    from sourceSets.main.allSource
+}
+
+task pregrade(type: Exec) {
+    dependsOn sourcesTar, test
+    executable "bash"
+    args "./grade.sh", "hw1", "testcases", "build/distributions/${rootProject.name}.tar"
+}
+
+artifacts {
+    archives sourcesTar
+}
