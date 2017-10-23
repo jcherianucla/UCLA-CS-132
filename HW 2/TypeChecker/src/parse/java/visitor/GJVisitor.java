@@ -84,7 +84,7 @@ public interface GJVisitor<R,A> {
    public R visit(ClassExtendsDeclaration n, A argu);
 
    /**
-    * f0 -> Type()
+    * f0 -> MJType()
     * f1 -> Identifier()
     * f2 -> ";"
     */
@@ -92,7 +92,7 @@ public interface GJVisitor<R,A> {
 
    /**
     * f0 -> "public"
-    * f1 -> Type()
+    * f1 -> MJType()
     * f2 -> Identifier()
     * f3 -> "("
     * f4 -> ( FormalParameterList() )?
@@ -114,7 +114,7 @@ public interface GJVisitor<R,A> {
    public R visit(FormalParameterList n, A argu);
 
    /**
-    * f0 -> Type()
+    * f0 -> MJType()
     * f1 -> Identifier()
     */
    public R visit(FormalParameter n, A argu);

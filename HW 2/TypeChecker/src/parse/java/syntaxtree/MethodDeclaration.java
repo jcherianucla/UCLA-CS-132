@@ -7,7 +7,7 @@ package syntaxtree;
 /**
  * Grammar production:
  * f0 -> "public"
- * f1 -> Type()
+ * f1 -> MJType()
  * f2 -> Identifier()
  * f3 -> "("
  * f4 -> ( FormalParameterList() )?

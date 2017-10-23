@@ -6,7 +6,7 @@ package syntaxtree;
 
 /**
  * Grammar production:
- * f0 -> Type()
+ * f0 -> MJType()
  * f1 -> Identifier()
  * f2 -> ";"
  */
