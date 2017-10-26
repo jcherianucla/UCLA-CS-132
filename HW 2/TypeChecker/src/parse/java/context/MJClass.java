@@ -84,4 +84,19 @@ public class MJClass implements Identifier {
         }
         return false;
     }
+
+    public void printMJClass() {
+       System.out.println("Class: " + className);
+       if(this.hasParent()) {
+           System.out.println("Extends: " + parent.getClassName());
+       }
+       System.out.println("FIELDS");
+       for(MJType field : fields) {
+           field.printMJType();
+       }
+        System.out.println("METHODS");
+       for(MJMethod method : methods.values()) {
+           method.printMJMethod();
+       }
+    }
 }

@@ -43,6 +43,10 @@ public class MJType {
         this.type = type;
     }
 
+    public void printMJType() {
+        System.out.println(name + ": " + type.toString());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)

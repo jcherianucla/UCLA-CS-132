@@ -21,6 +21,18 @@ public class MJMethod {
         return this.methodName;
     }
 
+    public void printMJMethod() {
+        System.out.println("Method: " + methodName);
+        System.out.println("PARAMETERS");
+        for(MJType mjType : params) {
+            mjType.printMJType();
+        }
+        System.out.println("LOCAL VARIABLES");
+        for(MJType mjType : vars) {
+            mjType.printMJType();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
