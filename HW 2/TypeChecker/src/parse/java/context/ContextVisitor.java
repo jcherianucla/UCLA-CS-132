@@ -54,7 +54,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
         MJMethod mainMethod = new MJMethod("main");
         mainMethod.params.add(mainParam);
         mainClass.addMethod(mainMethod);
-        context.classes.put(className, mainClass);
+        context.addClass(mainClass);
         for(Node node : n.f14.nodes) {
             node.accept(this, mainClass);
         }
@@ -70,7 +70,6 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(TypeDeclaration n, MJClass argu) {
         n.f0.accept(this, argu);
-
     }
 
     /**
@@ -87,12 +86,11 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(ClassDeclaration n, MJClass argu) throws MJTypeCheckException {
         String className = n.f1.f0.toString();
-        if (context.classes.get(className) != null) {
+        if (context.getClasses().get(className) != null) {
             throw new MJTypeCheckException("Duplicate class names");
         }
         MJClass newClass = new MJClass(className);
-        context.classes.put(className, newClass);
-        context.currentClass = newClass;
+        context.addClass(newClass);
         // Add fields to class
         for(Node node : n.f3.nodes) {
             node.accept(this, newClass);
@@ -118,8 +116,25 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      * @param argu
      */
     @Override
-    public void visit(ClassExtendsDeclaration n, MJClass argu) {
-
+    public void visit(ClassExtendsDeclaration n, MJClass argu) throws MJTypeCheckException {
+        String className = n.f1.f0.toString();
+        if(context.getClasses().get(className) != null) {
+            throw new MJTypeCheckException("Duplicate class names");
+        }
+        MJClass childClass = new MJClass(className);
+        String baseClassName = n.f3.f0.toString();
+        MJClass baseClass = context.getClasses().getOrDefault(baseClassName, new MJClass(baseClassName));
+        childClass.setParent(baseClass);
+        context.addClass(baseClass);
+        context.addClass(childClass);
+        // Add fields to class
+        for(Node node : n.f5.nodes) {
+            node.accept(this, childClass);
+        }
+        // Add methods to class
+        for(Node node : n.f6.nodes) {
+            node.accept(this, childClass);
+        }
     }
 
     /**
@@ -164,7 +179,21 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      * @param argu
      */
     @Override
-    public void visit(MethodDeclaration n, MJClass argu) {
+    public void visit(MethodDeclaration n, MJClass argu) throws MJTypeCheckException{
+        String methodName = n.f2.f0.toString();
+        MJMethod method = new MJMethod(methodName);
+        if(argu.getClassMethods().get(methodName) != null) {
+            throw new MJTypeCheckException("Duplicate method declaration");
+        } else {
+            argu.addMethod(method);
+            // Add parameters to method
+            n.f4.accept(this, argu);
+            // Add variables to most recently used method
+            for(Node node : n.f7.nodes) {
+                node.accept(this, argu);
+            }
+        }
+
 
     }
 
@@ -177,7 +206,10 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      */
     @Override
     public void visit(FormalParameterList n, MJClass argu) {
-
+        n.f0.accept(this, argu);
+        for(Node node : n.f1.nodes) {
+            node.accept(this, argu);
+        }
     }
 
     /**
@@ -188,8 +220,11 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      * @param argu
      */
     @Override
-    public void visit(FormalParameter n, MJClass argu) {
-
+    public void visit(FormalParameter n, MJClass argu) throws MJTypeCheckException {
+        MJType param = new MJType(n.f1.toString(), MJType.Type.fromInteger(n.f0.f0.which));
+        if(!argu.getMRUMethod().params.add(param)) {
+            throw new MJTypeCheckException("Duplicate parameter");
+        }
     }
 
     /**
@@ -201,6 +236,6 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      */
     @Override
     public void visit(FormalParameterRest n, MJClass argu) {
-
+        n.f1.accept(this, argu);
     }
 }

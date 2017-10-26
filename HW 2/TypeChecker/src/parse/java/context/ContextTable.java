@@ -3,8 +3,8 @@ package context;
 import java.util.*;
 
 public class ContextTable {
-	public Map<String, MJClass> classes;
-	public MJClass currentClass = null;
+	private Map<String, MJClass> classes;
+	private MJClass currentClass = null;
 
 	public ContextTable() {
 		classes = new HashMap<>();
@@ -14,4 +14,23 @@ public class ContextTable {
 		this.classes = classes;
 	}
 
+	public Map<String, MJClass> getClasses() {
+		return classes;
+	}
+
+	public void addClass(MJClass mjClass) {
+		classes.put(mjClass.getClassName(), mjClass);
+		currentClass = mjClass;
+	}
+
+	public MJClass getCurrentClass() {
+		return currentClass;
+	}
+
+	public void printContextTable() {
+		System.out.println("Current class: " + currentClass.getClassName());
+		for(MJClass mjClass : classes.values()) {
+			mjClass.printMJClass();
+		}
+	}
 }
