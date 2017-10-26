@@ -2,15 +2,28 @@ package context;
 
 import java.util.*;
 
-public class MJClass {
+public class MJClass implements Identifier {
     private String className;
     public Set<MJType> fields = new LinkedHashSet<>();
     public Map<String, MJMethod> methods = new HashMap<>();
-    public MJClass parent = null;
+    private MJClass parent = null;
 
     public MJClass(String name){
         this.className = name;
     }
+
+		public boolean setParent(MJClass parent) {
+			// Check for a cycle between two classes
+			if (parent.hasParent() && parent.getParent() == this) {
+				return false;
+			}
+			this.parent = parent;
+			return true;
+		}
+
+		public MJClass getParent() {
+			return parent;
+		}
 
     public boolean hasParent() {
         return parent != null;
@@ -48,4 +61,11 @@ public class MJClass {
             return null;
         }
     }
+
+    @Override
+    public boolean distinct(Object other) {
+			if ((o instanceof MJClass)) {
+				return this.className.equals(((MJClass)other).getClassName());
+			}
+		}
 }
