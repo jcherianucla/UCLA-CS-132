@@ -5,25 +5,27 @@ import java.util.*;
 public class MJClass implements Identifier {
     private String className;
     public Set<MJType> fields = new LinkedHashSet<>();
-    public Map<String, MJMethod> methods = new HashMap<>();
+    private Map<String, MJMethod> methods = new HashMap<>();
     private MJClass parent = null;
+    public boolean isMain = false;
+    private MJMethod MRUMethod = null;
 
     public MJClass(String name){
         this.className = name;
     }
 
-		public boolean setParent(MJClass parent) {
-			// Check for a cycle between two classes
-			if (parent.hasParent() && parent.getParent() == this) {
-				return false;
-			}
-			this.parent = parent;
-			return true;
-		}
+    public boolean setParent(MJClass parent) {
+        // Check for a cycle between two classes
+        if (parent.hasParent() && parent.getParent() == this) {
+            return false;
+        }
+        this.parent = parent;
+        return true;
+    }
 
-		public MJClass getParent() {
-			return parent;
-		}
+    public MJClass getParent() {
+        return parent;
+    }
 
     public boolean hasParent() {
         return parent != null;
@@ -31,6 +33,19 @@ public class MJClass implements Identifier {
 
     public String getClassName() {
         return className;
+    }
+
+    public Map<String, MJMethod> getClassMethods () {
+        return methods;
+    }
+
+    public MJMethod getMRUMethod() {
+        return MRUMethod;
+    }
+
+    public void addMethod(MJMethod method) {
+        methods.put(method.getMethodName(), method);
+        MRUMethod = method;
     }
 
     public Set<MJClass> linkSet(MJClass mjClass) {
@@ -64,8 +79,9 @@ public class MJClass implements Identifier {
 
     @Override
     public boolean distinct(Object other) {
-			if ((o instanceof MJClass)) {
-				return this.className.equals(((MJClass)other).getClassName());
-			}
-		}
+        if ((other instanceof MJClass)) {
+            return this.className.equals(((MJClass)other).getClassName());
+        }
+        return false;
+    }
 }

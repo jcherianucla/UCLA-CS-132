@@ -1,13 +1,16 @@
 package context;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Set;
 
 public class MJMethod {
-    public Set<MJType> params = new LinkedHashSet<>();
-    public Set<MJType> vars = new LinkedHashSet<>();
+    public Set<MJType> params = new HashSet<>();
+    public Set<MJType> vars = new HashSet<>();
     private String methodName;
 
+    public MJMethod(String name) {
+        this.methodName = name;
+    }
     public MJMethod(String name, Set<MJType> params, Set<MJType> vars) {
         this.methodName = name;
         this.params = params;

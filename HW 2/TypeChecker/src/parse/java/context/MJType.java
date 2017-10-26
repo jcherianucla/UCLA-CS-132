@@ -3,7 +3,22 @@ package context;
 public class MJType {
     private String name;
     enum Type {
-        INT, BOOLEAN, ARRAY, IDENT, OTHER
+        ARRAY, BOOLEAN, INT, IDENT, OTHER;
+
+        public static Type fromInteger(int x) {
+            switch (x) {
+                case 0:
+                    return ARRAY;
+                case 1:
+                    return BOOLEAN;
+                case 2:
+                    return INT;
+                case 3:
+                    return IDENT;
+                default:
+                    return OTHER;
+            }
+        }
     }
     private Type type;
 
