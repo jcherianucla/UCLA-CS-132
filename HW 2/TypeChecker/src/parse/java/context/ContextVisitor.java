@@ -1,241 +1,206 @@
 package context;
 
 import syntaxtree.*;
-import visitor.GJVisitor;
+import visitor.GJVoidDepthFirst;
 
-public class ContextVisitor implements GJVisitor<MJType, String> {
+public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
+
+    public ContextTable context = new ContextTable();
+
+
+    /**
+     * f0 -> MainClass()
+     * f1 -> ( TypeDeclaration() )*
+     * f2 -> <EOF>
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(NodeList n, String argu) {
-        return null;
+    public void visit(Goal n, MJClass argu) {
+        n.f0.accept(this, argu);
+        n.f1.accept(this, argu);
     }
 
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "{"
+     * f3 -> "public"
+     * f4 -> "static"
+     * f5 -> "void"
+     * f6 -> "main"
+     * f7 -> "("
+     * f8 -> "String"
+     * f9 -> "["
+     * f10 -> "]"
+     * f11 -> Identifier()
+     * f12 -> ")"
+     * f13 -> "{"
+     * f14 -> ( VarDeclaration() )*
+     * f15 -> ( Statement() )*
+     * f16 -> "}"
+     * f17 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(NodeListOptional n, String argu) {
-        return null;
+    public void visit(MainClass n, MJClass argu) {
+        String className = n.f1.f0.toString();
+        MJClass mainClass = new MJClass(className);
+        mainClass.isMain = true;
+        MJType mainParam = new MJType(n.f11.f0.toString(), MJType.Type.OTHER);
+        MJMethod mainMethod = new MJMethod("main");
+        mainMethod.params.add(mainParam);
+        mainClass.addMethod(mainMethod);
+        context.classes.put(className, mainClass);
+        for(Node node : n.f14.nodes) {
+            node.accept(this, mainClass);
+        }
     }
 
+    /**
+     * f0 -> ClassDeclaration()
+     * | ClassExtendsDeclaration()
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(NodeOptional n, String argu) {
-        return null;
+    public void visit(TypeDeclaration n, MJClass argu) {
+        n.f0.accept(this, argu);
+
     }
 
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "{"
+     * f3 -> ( VarDeclaration() )*
+     * f4 -> ( MethodDeclaration() )*
+     * f5 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(NodeSequence n, String argu) {
-        return null;
+    public void visit(ClassDeclaration n, MJClass argu) throws MJTypeCheckException {
+        String className = n.f1.f0.toString();
+        if (context.classes.get(className) != null) {
+            throw new MJTypeCheckException("Duplicate class names");
+        }
+        MJClass newClass = new MJClass(className);
+        context.classes.put(className, newClass);
+        context.currentClass = newClass;
+        // Add fields to class
+        for(Node node : n.f3.nodes) {
+            node.accept(this, newClass);
+        }
+        // Add methods to class
+        for(Node node : n.f4.nodes) {
+            node.accept(this, newClass);
+        }
+
     }
 
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "extends"
+     * f3 -> Identifier()
+     * f4 -> "{"
+     * f5 -> ( VarDeclaration() )*
+     * f6 -> ( MethodDeclaration() )*
+     * f7 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(NodeToken n, String argu) {
-        return null;
+    public void visit(ClassExtendsDeclaration n, MJClass argu) {
+
     }
 
+    /**
+     * f0 -> MJType()
+     * f1 -> Identifier()
+     * f2 -> ";"
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(Goal n, String argu) {
-        return null;
+    public void visit(VarDeclaration n, MJClass argu) throws MJTypeCheckException {
+        MJType variable = new MJType(n.f1.f0.toString(), MJType.Type.fromInteger(n.f0.f0.which));
+        // No methods --> Still looking through fields
+        if(argu.getClassMethods().isEmpty()) {
+            if(!argu.fields.add(variable)) {
+                throw new MJTypeCheckException("Duplicate field name");
+            }
+        } else {
+            if(!argu.getMRUMethod().vars.add(variable)) {
+                throw new MJTypeCheckException("Duplicate local variable");
+            }
+        }
     }
 
+    /**
+     * f0 -> "public"
+     * f1 -> MJType()
+     * f2 -> Identifier()
+     * f3 -> "("
+     * f4 -> ( FormalParameterList() )?
+     * f5 -> ")"
+     * f6 -> "{"
+     * f7 -> ( VarDeclaration() )*
+     * f8 -> ( Statement() )*
+     * f9 -> "return"
+     * f10 -> Expression()
+     * f11 -> ";"
+     * f12 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(MainClass n, String argu) {
-        return null;
+    public void visit(MethodDeclaration n, MJClass argu) {
+
     }
 
+    /**
+     * f0 -> FormalParameter()
+     * f1 -> ( FormalParameterRest() )*
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(TypeDeclaration n, String argu) {
-        return null;
+    public void visit(FormalParameterList n, MJClass argu) {
+
     }
 
+    /**
+     * f0 -> MJType()
+     * f1 -> Identifier()
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(ClassDeclaration n, String argu) {
-        return null;
+    public void visit(FormalParameter n, MJClass argu) {
+
     }
 
+    /**
+     * f0 -> ","
+     * f1 -> FormalParameter()
+     *
+     * @param n
+     * @param argu
+     */
     @Override
-    public MJType visit(ClassExtendsDeclaration n, String argu) {
-        return null;
-    }
+    public void visit(FormalParameterRest n, MJClass argu) {
 
-    @Override
-    public MJType visit(VarDeclaration n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(MethodDeclaration n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(FormalParameterList n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(FormalParameter n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(FormalParameterRest n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(Type n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ArrayType n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(BooleanType n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(IntegerType n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(Statement n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(Block n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(AssignmentStatement n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ArrayAssignmentStatement n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(IfStatement n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(WhileStatement n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(PrintStatement n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(Expression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(AndExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(CompareExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(PlusExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(MinusExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(TimesExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ArrayLookup n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ArrayLength n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(MessageSend n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ExpressionList n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ExpressionRest n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(PrimaryExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(IntegerLiteral n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(TrueLiteral n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(FalseLiteral n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(Identifier n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ThisExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(ArrayAllocationExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(AllocationExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(NotExpression n, String argu) {
-        return null;
-    }
-
-    @Override
-    public MJType visit(BracketExpression n, String argu) {
-        return null;
     }
 }
