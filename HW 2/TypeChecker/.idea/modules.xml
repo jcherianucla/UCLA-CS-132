@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/results/104436427/104436427.iml" filepath="$PROJECT_DIR$/results/104436427/104436427.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104436427.iml" filepath="$PROJECT_DIR$/.idea/modules/104436427.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104436427_main.iml" filepath="$PROJECT_DIR$/.idea/modules/104436427_main.iml" group="104436427" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104436427_parse.iml" filepath="$PROJECT_DIR$/.idea/modules/104436427_parse.iml" group="104436427" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104436427_test.iml" filepath="$PROJECT_DIR$/.idea/modules/104436427_test.iml" group="104436427" />
       <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/parse/parse.iml" filepath="$PROJECT_DIR$/src/parse/parse.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
