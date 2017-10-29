@@ -2,13 +2,20 @@ package context;
 
 import java.util.*;
 
+/**
+ * MJClass represents a MiniJava Class type that houses
+ * fields, methods and a parent. It can be thought of as the wrapper
+ * for all class specific scopes.
+ */
 public class MJClass {
     private String className;
+    // Store all the fields in an ordered set
     public Set<MJType> fields = new LinkedHashSet<>();
     private Map<String, MJMethod> methods = new HashMap<>();
     // When we declare a method, start a stack of all the methods we'll
     // see within this method when called on an object type
     public Stack<MJMethod> callingMethodStack = new Stack<>();
+    // Points back to parent to create a chain of inheritance
     private MJClass parent = null;
     public boolean isMain = false;
     // This is the most recently used method when visiting all method
@@ -26,6 +33,11 @@ public class MJClass {
         this.parent = parent;
     }
 
+    /**
+     * Finds the instance of a variable in the class fields if it exists
+     * @param var The variable we are looking for
+     * @return The variable we found
+     */
     public MJType findVarInFields(MJType var) {
         MJType foundVar = null;
         for (MJType variable : this.getFields()) {
@@ -50,10 +62,13 @@ public class MJClass {
         return className;
     }
 
-    public void setMRUMethod(MJMethod MRUMethod) {
-        this.MRUMethod = MRUMethod;
-    }
-
+    /**
+     * Looks through the chain of inheritance for the requested
+     * method base on name. Note that self takes priority over parents.
+     * That is the precedence is bottom up.
+     * @param methodName Name of the method we are looking for
+     * @return The corresponding method if found
+     */
     public MJMethod getClassMethod (String methodName) {
         if(methods.get(methodName) != null) {
             MJMethod method = methods.get(methodName);
@@ -86,10 +101,20 @@ public class MJClass {
         MRUMethod = method;
     }
 
+    /**
+     * Provides a pair of classes that showcases a link
+     * between the child and a parent.
+     * @return The pair of child and parent
+     */
     public Tuple2<MJClass, MJClass> linkSet() {
         return this.hasParent() ? new Tuple2<>(this, this.parent) : null;
     }
 
+    /**
+     * Returns a set of every field in the class, inclusive of
+     * its parents fields if not overriden.
+     * @return Set of field types
+     */
     public Set<MJType> getFields() {
         if(this.hasParent()) {
             Set<MJType> allFields = fields;
@@ -114,6 +139,9 @@ public class MJClass {
         return false;
     }
 
+    /**
+     * Convenience function for debugging purposes
+     */
     public void printMJClass() {
        System.out.println("Class: " + className);
        if(this.hasParent()) {
