@@ -2,12 +2,17 @@ package context;
 
 import java.util.*;
 
-public class MJClass implements Identifier {
+public class MJClass {
     private String className;
     public Set<MJType> fields = new LinkedHashSet<>();
     private Map<String, MJMethod> methods = new HashMap<>();
+    // When we declare a method, start a stack of all the methods we'll
+    // see within this method when called on an object type
+    public Stack<MJMethod> callingMethodStack = new Stack<>();
     private MJClass parent = null;
     public boolean isMain = false;
+    // This is the most recently used method when visiting all method
+    // declarations
     private MJMethod MRUMethod = null;
 
     public MJClass(String name){
@@ -21,6 +26,18 @@ public class MJClass implements Identifier {
         this.parent = parent;
     }
 
+    public MJType findVarInFields(MJType var) {
+        MJType foundVar = null;
+        for (MJType variable : this.getFields()) {
+            if (var.equals(variable)){
+                foundVar = variable;
+                break;
+            }
+        }
+        return foundVar;
+    }
+
+
     public MJClass getParent() {
         return parent;
     }
@@ -33,13 +50,31 @@ public class MJClass implements Identifier {
         return className;
     }
 
+    public void setMRUMethod(MJMethod MRUMethod) {
+        this.MRUMethod = MRUMethod;
+    }
+
     public MJMethod getClassMethod (String methodName) {
         if(methods.get(methodName) != null) {
             MJMethod method = methods.get(methodName);
             MRUMethod = method;
             return method;
+        } else if (this.hasParent()) {
+            MJMethod parentMethod = parent.getClassMethod(methodName);
+            if (parentMethod != null) {
+                MRUMethod = parentMethod;
+                return parentMethod;
+            }
         }
         return null;
+    }
+
+    public List<MJMethod> getAllMethods() {
+        return new ArrayList<>(methods.values());
+    }
+
+    public boolean hasMethods() {
+        return !methods.isEmpty();
     }
 
     public MJMethod getMRUMethod() {
@@ -69,31 +104,12 @@ public class MJClass implements Identifier {
         return this.fields;
     }
 
-    public Set<MJType> getMethodType(String methodName) {
-        MJMethod method = methods.get(methodName);
-        if (method == null && this.hasParent()) {
-            return parent.getMethodType(methodName);
-        } else if (method != null) {
-            return method.params;
-        } else {
-            return null;
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
             return true;
         if ((o instanceof MJClass)) {
             return this.className.equals(((MJClass) o).className);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean distinct(Object other) {
-        if ((other instanceof MJClass)) {
-            return this.className.equals(((MJClass)other).getClassName());
         }
         return false;
     }

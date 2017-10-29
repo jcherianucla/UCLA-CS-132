@@ -15,12 +15,12 @@ public class Typecheck{
             // Build context table
             ContextVisitor ctxVisitor = new ContextVisitor();
             goal.accept(ctxVisitor, null);
-            ctxVisitor.context.printContextTable();
+            //ctxVisitor.context.printContextTable();
             TypecheckVisitor typecheckVisitor = new TypecheckVisitor();
             goal.accept(typecheckVisitor, ctxVisitor.context);
             // Perform Type Check here
         } catch (MJTypeCheckException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
             System.out.print(ERROR);
             return;
         } catch (Exception e) {

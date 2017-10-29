@@ -3,7 +3,7 @@ package context;
 import java.util.*;
 
 public class ContextTable {
-	private Map<String, MJClass> classes;
+	public Map<String, MJClass> classes;
 	private MJClass currentClass = null;
 
 	public ContextTable() {
@@ -14,8 +14,11 @@ public class ContextTable {
 		this.classes = classes;
 	}
 
-	public Map<String, MJClass> getClasses() {
-		return classes;
+	public MJClass getClass(String className) {
+		MJClass requestedClass = classes.get(className);
+		if (requestedClass != null)
+		    currentClass = requestedClass;
+		return requestedClass;
 	}
 
 	public void addClass(MJClass mjClass) {
@@ -23,7 +26,11 @@ public class ContextTable {
 		currentClass = mjClass;
 	}
 
-	public boolean acyclic() {
+    public void setCurrentClass(MJClass currentClass) {
+        this.currentClass = currentClass;
+    }
+
+    public boolean acyclic() {
 		List<Tuple2<MJClass, MJClass>> allLinkSets = new ArrayList<>();
 		for(MJClass mjClass : classes.values()) {
 		    Tuple2<MJClass, MJClass> linkSet = mjClass.linkSet();
@@ -38,6 +45,15 @@ public class ContextTable {
 		}
 		return true;
 	}
+
+	public boolean noOverloading(MJClass childClass, MJClass parentClass, String methodName) {
+	    MJMethod childMethod = childClass.getClassMethod(methodName);
+	    MJMethod parentMethod = parentClass.getClassMethod(methodName);
+	    if (childMethod != null && parentMethod != null) {
+	        return childMethod.equals(parentMethod);
+        }
+        return true;
+    }
 
 	public MJClass getCurrentClass() {
 		return currentClass;

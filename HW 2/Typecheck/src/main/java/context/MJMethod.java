@@ -1,17 +1,17 @@
 package context;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class MJMethod {
-    public Set<MJType> params = new HashSet<>();
-    public Set<MJType> vars = new HashSet<>();
+    public Set<MJType> params = new LinkedHashSet<>();
+    public Set<MJType> vars = new LinkedHashSet<>();
     private String methodName;
-    private MJType.Type returnType;
+    private MJType returnType;
 
-    public MJMethod(String name, int returnTypeChoice) {
+    public MJMethod(String name, MJType returnType) {
         this.methodName = name;
-        this.returnType = MJType.Type.fromInteger(returnTypeChoice);
+        this.returnType = returnType;
     }
     public MJMethod(String name, Set<MJType> params, Set<context.MJType> vars) {
         this.methodName = name;
@@ -19,8 +19,26 @@ public class MJMethod {
         this.vars = vars;
     }
 
+    public MJType findInLocals(MJType var) {
+        return find(var, vars);
+    }
+    public MJType findInParams(MJType var) {
+        return find(var, params);
+    }
+
+    public MJType find(MJType var, Set<MJType> collection) {
+        MJType foundVar = null;
+        for(MJType variable : collection) {
+            if (var.equals(variable)) {
+                foundVar = variable;
+                break;
+            }
+        }
+        return foundVar;
+    }
+
     public MJType getReturnType() {
-        return new MJType(methodName, returnType);
+        return returnType;
     }
 
     public String getMethodName() {
@@ -28,7 +46,8 @@ public class MJMethod {
     }
 
     public void printMJMethod() {
-        System.out.println("Methodname: " + methodName + " returns: " + returnType.toString());
+        System.out.println("Methodname: " + methodName);
+        returnType.printMJType();
         System.out.println("PARAMETERS");
         for(MJType mjType : params) {
             mjType.printMJType();

@@ -1,395 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/testcases/hw2/BinaryTree.java" line="243" mnemonic="4" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2b6c0dab-e017-45d1-a178-c739b7ac54e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/context/Tuple2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.1/fileChanges/last-build.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/fileChanges/last-build.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/fileContent/annotation-processors.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/fileContent/fileContent.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/fileHashes/resourceHashesCache.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/taskHistory/fileSnapshots.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/taskHistory/taskHistory.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/4.2.1/taskHistory/taskHistory.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/buildOutputCleanup/cache.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/gradle.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/libraries/104436427.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/libraries/Gradle__junit_junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/libraries/gradle_wrapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/libraries/lib.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/libraries/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/modules/104436427.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/modules/104436427_main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/modules/104436427_parse.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/modules/104436427_test.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/README.mkd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/TypeChecker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/ContextTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/ContextVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/Identifier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/MJClass$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/MJClass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/MJMethod.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/MJType$Type.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/MJType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/main/context/MJTypeCheckException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/JTBToolkit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/JavaCharStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/MiniJavaParser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/MiniJavaParser$JJCalls.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/MiniJavaParser$LookaheadSuccess.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/MiniJavaParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/MiniJavaParserConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/MiniJavaParserTokenManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/ParseException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/TokenMgrError.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/AllocationExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/AndExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ArrayAllocationExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ArrayAssignmentStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ArrayLength.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ArrayLookup.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ArrayType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/AssignmentStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Block.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/BooleanType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/BracketExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ClassDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ClassExtendsDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/CompareExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Expression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ExpressionList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ExpressionRest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/FalseLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/FormalParameter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/FormalParameterList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/FormalParameterRest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Goal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Identifier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/IfStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/IntegerLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/IntegerType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/MainClass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/MessageSend.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/MethodDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/MinusExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeChoice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeListInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeListOptional.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeOptional.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeSequence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NodeToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/NotExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/PlusExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/PrimaryExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/PrintStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Statement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/ThisExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/TimesExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/TrueLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/Type.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/TypeDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/VarDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/syntaxtree/WhileStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/DepthFirstVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/GJDepthFirst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/GJNoArguDepthFirst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/GJNoArguVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/GJVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/GJVoidDepthFirst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/GJVoidVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/classes/java/parse/visitor/Visitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/distributions/104436427.tar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/libs/104436427.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/reports/tests/test/classes/MainTest.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/reports/tests/test/css/base-style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/reports/tests/test/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/reports/tests/test/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/reports/tests/test/js/report.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/reports/tests/test/packages/default-package.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/test-results/test/TEST-MainTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/test-results/test/binary/output.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/test-results/test/binary/output.bin.idx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/test-results/test/binary/results.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/build/tmp/jar/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/grade.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/gradle.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/grammars/minijava.jj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/lib/minijava-parser.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/lib/vapor-parser.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/misc/JavaSecurityPolicy.policy" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/misc/illegalfiles" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/misc/javacc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/misc/jtb132.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/misc/mars.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/misc/vapor.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/JTBToolkit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/JavaCharStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/MiniJavaParser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/MiniJavaParser$JJCalls.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/MiniJavaParser$LookaheadSuccess.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/MiniJavaParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/MiniJavaParserConstants.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/MiniJavaParserTokenManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/ParseException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/TokenMgrError.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/AllocationExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/AndExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ArrayAllocationExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ArrayAssignmentStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ArrayLength.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ArrayLookup.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ArrayType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/AssignmentStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Block.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/BooleanType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/BracketExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ClassDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ClassExtendsDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/CompareExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Expression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ExpressionList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ExpressionRest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/FalseLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/FormalParameter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/FormalParameterList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/FormalParameterRest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Goal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Identifier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/IfStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/IntegerLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/IntegerType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/MainClass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/MessageSend.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/MethodDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/MinusExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeChoice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeListInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeListOptional.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeOptional.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeSequence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NodeToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/NotExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/PlusExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/PrimaryExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/PrintStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Statement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/ThisExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/TimesExpression.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/TrueLiteral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/Type.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/TypeDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/VarDeclaration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/syntaxtree/WhileStatement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/DepthFirstVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/GJDepthFirst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/GJNoArguDepthFirst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/GJNoArguVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/GJVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/GJVoidDepthFirst.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/GJVoidVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/parse/classes/visitor/Visitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/TypeChecker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/ContextTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/ContextVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/Identifier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/MJClass$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/MJClass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/MJMethod.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/MJType$Type.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/MJType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/classes/context/MJTypeCheckException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/parse/README.mkd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/parse/jtb.out.jj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/Basic-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/Basic.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/BinaryTree-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/BinaryTree.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/BubbleSort-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/BubbleSort.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/Factorial-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/Factorial.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/LinearSearch-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/LinearSearch.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/LinkedList-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/LinkedList.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/MoreThan4-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/MoreThan4.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/QuickSort-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/QuickSort.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/TreeVisitor-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/out/production/testcases/TreeVisitor.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/compile_output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/ContextTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/ContextVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/Identifier.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/MJClass.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/MJMethod.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/MJType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/results/104436427/src/context/MJTypeCheckException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/TypeChecker.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/ContextTable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/ContextVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/Identifier.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/MJClass.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/MJMethod.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/MJType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/java/context/MJTypeCheckException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/main/main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/JavaCharStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/MiniJavaParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/MiniJavaParserConstants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/MiniJavaParserTokenManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/ParseException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/README.mkd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/Token.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/TokenMgrError.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/jtb.out.jj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/AllocationExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/AndExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ArrayAllocationExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ArrayAssignmentStatement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ArrayLength.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ArrayLookup.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ArrayType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/AssignmentStatement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Block.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/BooleanType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/BracketExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ClassDeclaration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ClassExtendsDeclaration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/CompareExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Expression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ExpressionList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ExpressionRest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/FalseLiteral.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/FormalParameter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/FormalParameterList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/FormalParameterRest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Goal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Identifier.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/IfStatement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/IntegerLiteral.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/IntegerType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/MainClass.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/MessageSend.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/MethodDeclaration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/MinusExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Node.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeChoice.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeListInterface.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeListOptional.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeOptional.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeSequence.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NodeToken.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/NotExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/PlusExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/PrimaryExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/PrintStatement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Statement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/ThisExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/TimesExpression.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/TrueLiteral.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/Type.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/TypeDeclaration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/VarDeclaration.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/syntaxtree/WhileStatement.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/DepthFirstVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/GJDepthFirst.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/GJNoArguDepthFirst.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/GJNoArguVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/GJVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/GJVoidDepthFirst.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/GJVoidVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/java/visitor/Visitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/parse/parse.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/test/java/MainTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/src/test/test.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test01" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test01.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test02" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test02.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test03" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test03.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test04" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test04.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test05" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test05.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test06" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test06.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test07f" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test07f.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test08" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test08.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test09f" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test09f.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test10f" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw1/test10f.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Basic-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Basic-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Basic.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Basic.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BinaryTree-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BinaryTree-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BinaryTree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BinaryTree.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BubbleSort-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BubbleSort-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BubbleSort.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/BubbleSort.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Factorial-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Factorial-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Factorial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/Factorial.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinearSearch-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinearSearch-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinearSearch.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinearSearch.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinkedList-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinkedList-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinkedList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/LinkedList.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/MoreThan4-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/MoreThan4-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/MoreThan4.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/MoreThan4.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/QuickSort-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/QuickSort-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/QuickSort.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/QuickSort.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/TreeVisitor-error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/TreeVisitor-error.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/TreeVisitor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/hw2/TreeVisitor.java.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../TypeChecker/testcases/testcases.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/java/main/context/Identifier.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/context/Identifier.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/ContextTable.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/ContextTable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/ContextVisitor.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/ContextVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/MJClass.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/MJClass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/MJMethod.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/MJMethod.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/MJType.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/MJType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/TypecheckVisitor.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/TypecheckVisitor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../HW 1/Parser/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../HW 1/Parser/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Typecheck.java" afterPath="$PROJECT_DIR$/src/main/java/Typecheck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextTable.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJClass.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJMethod.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJType.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -414,44 +52,115 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.478125">
+    <splitter split-orientation="horizontal" split-proportion="0.51151514">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
+          <file leaf-file-name="TypecheckVisitor.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
+                <state relative-caret-position="595">
+                  <caret line="401" column="34" lean-forward="false" selection-start-line="401" selection-start-column="34" selection-end-line="401" selection-end-column="34" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#3794#3795#0" expanded="true" />
+                    <element signature="e#3821#3822#0" expanded="true" />
+                    <element signature="e#24038#24039#0" expanded="true" />
+                    <element signature="e#24105#24106#0" expanded="true" />
+                    <element signature="e#24258#24259#0" expanded="true" />
+                    <element signature="e#24329#24330#0" expanded="true" />
+                    <element signature="e#24484#24485#0" expanded="true" />
+                    <element signature="e#24555#24556#0" expanded="true" />
+                    <element signature="e#27806#27807#0" expanded="true" />
+                    <element signature="e#27852#27853#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Factorial-error.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/Factorial-error.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="LinearSearch-error.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/LinearSearch-error.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-357">
+                  <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="LinkedList-error.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/LinkedList-error.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="442">
+                  <caret line="107" column="18" lean-forward="false" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="QuickSort-error.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/QuickSort-error.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="493">
+                  <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TreeVisitor-error.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/TreeVisitor-error.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="442">
+                  <caret line="338" column="29" lean-forward="false" selection-start-line="338" selection-start-column="29" selection-end-line="338" selection-end-column="29" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MJMethod.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/context/MJMethod.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="459">
                   <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-                  <folding />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#617#618#0" expanded="true" />
+                    <element signature="e#655#656#0" expanded="true" />
+                    <element signature="e#700#701#0" expanded="true" />
+                    <element signature="e#740#741#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Basic.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/Basic.java">
+          <file leaf-file-name="ContextTable.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
-                  <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-                  <folding />
+                <state relative-caret-position="85">
+                  <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#650#651#0" expanded="true" />
+                    <element signature="e#698#699#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MJType.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="MJType.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJType.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GJVisitor.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJVisitor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
-                  <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+                <state relative-caret-position="-476">
+                  <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
                   <folding />
                 </state>
               </provider>
@@ -464,157 +173,30 @@
           <file leaf-file-name="MJClass.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="94">
-                  <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+                <state relative-caret-position="156">
+                  <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
                   <folding>
-                    <element signature="e#1383#1384#0" expanded="true" />
-                    <element signature="e#1463#1464#0" expanded="true" />
+                    <element signature="e#1394#1395#0" expanded="true" />
+                    <element signature="e#1426#1427#0" expanded="true" />
+                    <element signature="e#1478#1479#0" expanded="true" />
+                    <element signature="e#1520#1521#0" expanded="true" />
+                    <element signature="e#2063#2064#0" expanded="true" />
+                    <element signature="e#2119#2120#0" expanded="true" />
+                    <element signature="e#2154#2155#0" expanded="true" />
+                    <element signature="e#2195#2196#0" expanded="true" />
+                    <element signature="e#2447#2448#0" expanded="true" />
+                    <element signature="e#2527#2528#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TypecheckVisitor.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="672">
-                  <caret line="552" column="19" lean-forward="false" selection-start-line="552" selection-start-column="19" selection-end-line="552" selection-end-column="19" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1490#1491#0" expanded="true" />
-                    <element signature="e#1511#1512#0" expanded="true" />
-                    <element signature="e#1777#1778#0" expanded="true" />
-                    <element signature="e#1798#1799#0" expanded="true" />
-                    <element signature="e#2116#2117#0" expanded="true" />
-                    <element signature="e#2137#2138#0" expanded="true" />
-                    <element signature="e#2318#2319#0" expanded="true" />
-                    <element signature="e#2339#2340#0" expanded="true" />
-                    <element signature="e#2749#2750#0" expanded="true" />
-                    <element signature="e#2770#2771#0" expanded="true" />
-                    <element signature="e#2964#2965#0" expanded="true" />
-                    <element signature="e#2985#2986#0" expanded="true" />
-                    <element signature="e#3152#3153#0" expanded="true" />
-                    <element signature="e#3173#3174#0" expanded="true" />
-                    <element signature="e#3344#3345#0" expanded="true" />
-                    <element signature="e#3365#3366#0" expanded="true" />
-                    <element signature="e#3562#3563#0" expanded="true" />
-                    <element signature="e#3583#3584#0" expanded="true" />
-                    <element signature="e#3747#3748#0" expanded="true" />
-                    <element signature="e#3768#3769#0" expanded="true" />
-                    <element signature="e#3908#3909#0" expanded="true" />
-                    <element signature="e#3929#3930#0" expanded="true" />
-                    <element signature="e#4065#4066#0" expanded="true" />
-                    <element signature="e#4086#4087#0" expanded="true" />
-                    <element signature="e#4354#4355#0" expanded="true" />
-                    <element signature="e#4394#4395#0" expanded="true" />
-                    <element signature="e#6523#6524#0" expanded="true" />
-                    <element signature="e#6550#6551#0" expanded="true" />
-                    <element signature="e#6831#6832#0" expanded="true" />
-                    <element signature="e#6858#6859#0" expanded="true" />
-                    <element signature="e#7100#7101#0" expanded="true" />
-                    <element signature="e#7127#7128#0" expanded="true" />
-                    <element signature="e#7374#7375#0" expanded="true" />
-                    <element signature="e#7401#7402#0" expanded="true" />
-                    <element signature="e#7769#7770#0" expanded="true" />
-                    <element signature="e#7815#7816#0" expanded="true" />
-                    <element signature="e#12811#12812#0" expanded="true" />
-                    <element signature="e#12838#12839#0" expanded="true" />
-                    <element signature="e#13225#13226#0" expanded="true" />
-                    <element signature="e#13271#13272#0" expanded="true" />
-                    <element signature="e#13438#13439#0" expanded="true" />
-                    <element signature="e#13505#13506#0" expanded="true" />
-                    <element signature="e#13658#13659#0" expanded="true" />
-                    <element signature="e#13729#13730#0" expanded="true" />
-                    <element signature="e#13884#13885#0" expanded="true" />
-                    <element signature="e#13955#13956#0" expanded="true" />
-                    <element signature="e#14113#14114#0" expanded="true" />
-                    <element signature="e#14182#14183#0" expanded="true" />
-                    <element signature="e#14674#14675#0" expanded="true" />
-                    <element signature="e#14701#14702#0" expanded="true" />
-                    <element signature="e#14922#14923#0" expanded="true" />
-                    <element signature="e#14949#14950#0" expanded="true" />
-                    <element signature="e#15127#15128#0" expanded="true" />
-                    <element signature="e#15154#15155#0" expanded="true" />
-                    <element signature="e#15353#15354#0" expanded="true" />
-                    <element signature="e#15380#15381#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Set.class" pinned="false" current-in-tab="false">
-            <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/Set.class">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GJDepthFirst.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJDepthFirst.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
-                  <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ContextTable.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
-                  <caret line="34" column="76" lean-forward="false" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Typecheck.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Typecheck.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
-                  <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+                <state relative-caret-position="238">
+                  <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MiniJavaParser.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/MiniJavaParser.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-                  <folding>
-                    <element signature="e#0#52538#0" expanded="true" />
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GJVoidDepthFirst.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJVoidDepthFirst.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MJMethod.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/context/MJMethod.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="22" column="49" lean-forward="false" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#629#630#0" expanded="true" />
-                    <element signature="e#686#687#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -622,8 +204,70 @@
           <file leaf-file-name="BinaryTree-error.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree-error.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-8">
-                  <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+                <state relative-caret-position="799">
+                  <caret line="89" column="22" lean-forward="false" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="578">
+                  <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BubbleSort-error.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort-error.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="672">
+                  <caret line="78" column="19" lean-forward="false" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Type.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Type.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="NodeChoice.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/NodeChoice.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="442">
+                  <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Identifier.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Identifier.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -973,12 +617,15 @@
         <option value="$PROJECT_DIR$/src/parse/java/typecheck/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/Tuple2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Typecheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/Identifier.java" />
+        <option value="$PROJECT_DIR$/testcases/hw2/Basic-error.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJType.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Typecheck.java" />
       </list>
     </option>
   </component>
@@ -1071,27 +718,6 @@
             <path>
               <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
               <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="parse" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="parse" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="parse" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="visitor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="testcases" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1128,6 +754,97 @@
               <item name="hw2" type="462c0819:PsiDirectoryNode" />
               <item name="BinaryTree-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="BubbleSort.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="BubbleSort-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="Factorial.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="Factorial-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="LinearSearch-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="LinkedList.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="LinkedList-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="MoreThan4.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="MoreThan4-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="QuickSort.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="QuickSort-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="TreeVisitor.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="TreeVisitor-error.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -1145,7 +862,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../HW 1/Parser" />
   </component>
   <component name="RecentsManager">
@@ -1304,12 +1021,12 @@
       <workItem from="1509000368929" duration="12000000" />
       <workItem from="1509157252683" duration="295000" />
       <workItem from="1509157614897" duration="550000" />
-      <workItem from="1509158841987" duration="12388000" />
+      <workItem from="1509158841987" duration="52602000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36468000" />
+    <option name="totallyTimeSpent" value="76682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1052" extended-state="6" />
@@ -1329,7 +1046,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.140625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1386,115 +1103,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/parse/java/MiniJavaParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34255">
-          <caret line="2021" column="6" lean-forward="false" selection-start-line="2021" selection-start-column="6" selection-end-line="2021" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#52538#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/DepthFirstVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJNoArguVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/Visitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/TokenMgrError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/Visitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Expression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/PrimaryExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/PlusExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/ThisExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Goal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/DepthFirstVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJNoArguVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1532,24 +1140,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Identifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/NodeChoice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1602,8 +1196,8 @@
         <state relative-caret-position="0">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
-            <element signature="e#0#52538#0" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#52538#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1616,26 +1210,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TypeChecker.java" />
-    <entry file="file://$PROJECT_DIR$/testcases/hw2/Basic-error.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1650,66 +1228,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/Identifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree-error.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/hw2/Basic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/Tuple2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="19" column="59" lean-forward="false" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="34" column="76" lean-forward="false" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1722,11 +1244,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJType.java">
+    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJDepthFirst.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+        <state relative-caret-position="-8">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/MoreThan4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/NodeOptional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/Basic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/Basic-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding>
+            <element signature="e#49#50#0" expanded="true" />
+            <element signature="e#89#90#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1738,100 +1303,249 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/HashSet.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        <state relative-caret-position="527">
+          <caret line="53" column="29" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
           <folding>
-            <element signature="e#1383#1384#0" expanded="true" />
-            <element signature="e#1463#1464#0" expanded="true" />
+            <element signature="e#1368#1369#0" expanded="true" />
+            <element signature="e#1417#1418#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJDepthFirst.java">
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/HashMap.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="282">
+          <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding>
+            <element signature="e#5756#5757#0" expanded="true" />
+            <element signature="e#5817#5818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/LinkedHashSet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding>
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/NodeChoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Identifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/MoreThan4-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/QuickSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/TreeVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="353" column="6" lean-forward="false" selection-start-line="353" selection-start-column="6" selection-end-line="353" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/MJMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="49" lean-forward="false" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        <state relative-caret-position="459">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#629#630#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+            <element signature="e#700#701#0" expanded="true" />
+            <element signature="e#740#741#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-476">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding>
+            <element signature="e#57#58#0" expanded="true" />
+            <element signature="e#102#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="89" column="22" lean-forward="false" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+          <folding>
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="78" column="19" lean-forward="false" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#1394#1395#0" expanded="true" />
+            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1478#1479#0" expanded="true" />
+            <element signature="e#1520#1521#0" expanded="true" />
+            <element signature="e#2063#2064#0" expanded="true" />
+            <element signature="e#2119#2120#0" expanded="true" />
+            <element signature="e#2154#2155#0" expanded="true" />
+            <element signature="e#2195#2196#0" expanded="true" />
+            <element signature="e#2447#2448#0" expanded="true" />
+            <element signature="e#2527#2528#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="552" column="19" lean-forward="false" selection-start-line="552" selection-start-column="19" selection-end-line="552" selection-end-column="19" />
+        <state relative-caret-position="595">
+          <caret line="401" column="34" lean-forward="false" selection-start-line="401" selection-start-column="34" selection-end-line="401" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1490#1491#0" expanded="true" />
-            <element signature="e#1511#1512#0" expanded="true" />
-            <element signature="e#1777#1778#0" expanded="true" />
-            <element signature="e#1798#1799#0" expanded="true" />
-            <element signature="e#2116#2117#0" expanded="true" />
-            <element signature="e#2137#2138#0" expanded="true" />
-            <element signature="e#2318#2319#0" expanded="true" />
-            <element signature="e#2339#2340#0" expanded="true" />
-            <element signature="e#2749#2750#0" expanded="true" />
-            <element signature="e#2770#2771#0" expanded="true" />
-            <element signature="e#2964#2965#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3152#3153#0" expanded="true" />
-            <element signature="e#3173#3174#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3365#3366#0" expanded="true" />
-            <element signature="e#3562#3563#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
-            <element signature="e#3747#3748#0" expanded="true" />
-            <element signature="e#3768#3769#0" expanded="true" />
-            <element signature="e#3908#3909#0" expanded="true" />
-            <element signature="e#3929#3930#0" expanded="true" />
-            <element signature="e#4065#4066#0" expanded="true" />
-            <element signature="e#4086#4087#0" expanded="true" />
-            <element signature="e#4354#4355#0" expanded="true" />
-            <element signature="e#4394#4395#0" expanded="true" />
-            <element signature="e#6523#6524#0" expanded="true" />
-            <element signature="e#6550#6551#0" expanded="true" />
-            <element signature="e#6831#6832#0" expanded="true" />
-            <element signature="e#6858#6859#0" expanded="true" />
-            <element signature="e#7100#7101#0" expanded="true" />
-            <element signature="e#7127#7128#0" expanded="true" />
-            <element signature="e#7374#7375#0" expanded="true" />
-            <element signature="e#7401#7402#0" expanded="true" />
-            <element signature="e#7769#7770#0" expanded="true" />
-            <element signature="e#7815#7816#0" expanded="true" />
-            <element signature="e#12811#12812#0" expanded="true" />
-            <element signature="e#12838#12839#0" expanded="true" />
-            <element signature="e#13225#13226#0" expanded="true" />
-            <element signature="e#13271#13272#0" expanded="true" />
-            <element signature="e#13438#13439#0" expanded="true" />
-            <element signature="e#13505#13506#0" expanded="true" />
-            <element signature="e#13658#13659#0" expanded="true" />
-            <element signature="e#13729#13730#0" expanded="true" />
-            <element signature="e#13884#13885#0" expanded="true" />
-            <element signature="e#13955#13956#0" expanded="true" />
-            <element signature="e#14113#14114#0" expanded="true" />
-            <element signature="e#14182#14183#0" expanded="true" />
-            <element signature="e#14674#14675#0" expanded="true" />
-            <element signature="e#14701#14702#0" expanded="true" />
-            <element signature="e#14922#14923#0" expanded="true" />
-            <element signature="e#14949#14950#0" expanded="true" />
-            <element signature="e#15127#15128#0" expanded="true" />
-            <element signature="e#15154#15155#0" expanded="true" />
-            <element signature="e#15353#15354#0" expanded="true" />
-            <element signature="e#15380#15381#0" expanded="true" />
+            <element signature="e#3794#3795#0" expanded="true" />
+            <element signature="e#3821#3822#0" expanded="true" />
+            <element signature="e#24038#24039#0" expanded="true" />
+            <element signature="e#24105#24106#0" expanded="true" />
+            <element signature="e#24258#24259#0" expanded="true" />
+            <element signature="e#24329#24330#0" expanded="true" />
+            <element signature="e#24484#24485#0" expanded="true" />
+            <element signature="e#24555#24556#0" expanded="true" />
+            <element signature="e#27806#27807#0" expanded="true" />
+            <element signature="e#27852#27853#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/Factorial-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/LinearSearch-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/LinkedList-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="107" column="18" lean-forward="false" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/QuickSort-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/TreeVisitor-error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="338" column="29" lean-forward="false" selection-start-line="338" selection-start-column="29" selection-end-line="338" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

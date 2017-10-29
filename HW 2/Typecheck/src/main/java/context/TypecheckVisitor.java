@@ -1,10 +1,11 @@
 package context;
 
 import syntaxtree.*;
-import syntaxtree.Identifier;
 import visitor.GJDepthFirst;
 
-import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
 
@@ -56,211 +57,315 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
    */
   @Override
   public MJType visit(MainClass n, ContextTable argu) {
-    MJType ret = null;
-    for(Node statement: n.f15.nodes)
-      ret = statement.accept(this, argu);
-    return ret;
-  }
-
-  /**
-   * f0 -> ClassDeclaration()
-   * | ClassExtendsDeclaration()
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(TypeDeclaration n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> "class"
-   * f1 -> Identifier()
-   * f2 -> "{"
-   * f3 -> ( VarDeclaration() )*
-   * f4 -> ( MethodDeclaration() )*
-   * f5 -> "}"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(ClassDeclaration n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> "class"
-   * f1 -> Identifier()
-   * f2 -> "extends"
-   * f3 -> Identifier()
-   * f4 -> "{"
-   * f5 -> ( VarDeclaration() )*
-   * f6 -> ( MethodDeclaration() )*
-   * f7 -> "}"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(ClassExtendsDeclaration n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> MJType()
-   * f1 -> Identifier()
-   * f2 -> ";"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(VarDeclaration n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> "public"
-   * f1 -> MJType()
-   * f2 -> Identifier()
-   * f3 -> "("
-   * f4 -> ( FormalParameterList() )?
-   * f5 -> ")"
-   * f6 -> "{"
-   * f7 -> ( VarDeclaration() )*
-   * f8 -> ( Statement() )*
-   * f9 -> "return"
-   * f10 -> Expression()
-   * f11 -> ";"
-   * f12 -> "}"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(MethodDeclaration n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> FormalParameter()
-   * f1 -> ( FormalParameterRest() )*
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(FormalParameterList n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> MJType()
-   * f1 -> Identifier()
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(FormalParameter n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> ","
-   * f1 -> FormalParameter()
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(FormalParameterRest n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> ArrayType()
-   * | BooleanType()
-   * | IntegerType()
-   * | Identifier()
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(Type n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> "int"
-   * f1 -> "["
-   * f2 -> "]"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(ArrayType n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> "boolean"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(BooleanType n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> "int"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(IntegerType n, ContextTable argu) {
-    return null;
-  }
-
-  /**
-   * f0 -> Block()
-   * | AssignmentStatement()
-   * | ArrayAssignmentStatement()
-   * | IfStatement()
-   * | WhileStatement()
-   * | PrintStatement()
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(Statement n, ContextTable argu) {
-    return n.f0.accept(this, argu);
-  }
-
-  /**
-   * f0 -> "{"
-   * f1 -> ( Statement() )*
-   * f2 -> "}"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(Block n, ContextTable argu) {
-      MJType ret = null;
-      for(Node statement : n.f1.nodes) {
-          ret = statement.accept(this, argu);
+      String mainClassName = n.f1.accept(this, argu).getName();
+      argu.getClass(mainClassName);
+      MJClass currentClass = argu.getCurrentClass();
+      currentClass.callingMethodStack.push(currentClass.getClassMethod("main"));
+      for (Node statement: n.f15.nodes) {
+          statement.accept(this, argu);
       }
       return null;
   }
+
+    /**
+     * f0 -> ClassDeclaration()
+     * | ClassExtendsDeclaration()
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(TypeDeclaration n, ContextTable argu) {
+        return n.f0.accept(this, argu);
+    }
+
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "{"
+     * f3 -> ( VarDeclaration() )*
+     * f4 -> ( MethodDeclaration() )*
+     * f5 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(ClassDeclaration n, ContextTable argu) throws MJTypeCheckException {
+        MJClass currClass = argu.getClass(n.f1.accept(this, argu).getName());
+        if (currClass == null) {
+            throw new MJTypeCheckException("Could not find requested class");
+        }
+        MJType ret = null;
+        // Check through methods
+        for (Node method : n.f4.nodes)
+            ret = method.accept(this, argu);
+        return ret;
+    }
+
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "extends"
+     * f3 -> Identifier()
+     * f4 -> "{"
+     * f5 -> ( VarDeclaration() )*
+     * f6 -> ( MethodDeclaration() )*
+     * f7 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(ClassExtendsDeclaration n, ContextTable argu) throws MJTypeCheckException {
+        MJClass currClass = argu.getClass(n.f1.accept(this, argu).getName());
+        MJClass parentClass = argu.getClass(n.f3.accept(this, argu).getName());
+        if (currClass == null || parentClass == null) {
+            throw new MJTypeCheckException("Could not find requested class");
+        }
+        // Ensure no overloading
+        for (MJMethod method : currClass.getAllMethods()) {
+            if (!argu.noOverloading(currClass, parentClass, method.getMethodName()))
+                throw new MJTypeCheckException("Overloading found");
+        }
+        MJType ret = null;
+        // Check through methods
+        for (Node method : n.f6.nodes) {
+            ret = method.accept(this, argu);
+        }
+        return ret;
+    }
+
+    /**
+     * f0 -> Type()
+     * f1 -> Identifier()
+     * f2 -> ";"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(VarDeclaration n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> "public"
+     * f1 -> Type()
+     * f2 -> Identifier()
+     * f3 -> "("
+     * f4 -> ( FormalParameterList() )?
+     * f5 -> ")"
+     * f6 -> "{"
+     * f7 -> ( VarDeclaration() )*
+     * f8 -> ( Statement() )*
+     * f9 -> "return"
+     * f10 -> Expression()
+     * f11 -> ";"
+     * f12 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(MethodDeclaration n, ContextTable argu) throws MJTypeCheckException {
+        // Get the name of the method
+        String currentMethodName = n.f2.accept(this, argu).getName();
+        // Find the method in the context of the current class
+        MJClass currentClass = argu.getCurrentClass();
+        MJMethod currentMethod = currentClass.getClassMethod(currentMethodName);
+        // Declaration so start call stack
+        currentClass.callingMethodStack.clear();
+        currentClass.callingMethodStack.push(currentMethod);
+        // Get the return type of the method
+        MJType returnExpression = n.f10.accept(this, argu);
+        boolean found = false;
+        if (returnExpression.getType() == MJType.Type.IDENT) {
+            // Check through class context
+            if (currentClass.findVarInFields(returnExpression) != null) {
+                found = true;
+                returnExpression = currentClass.findVarInFields(returnExpression);
+            }
+            // Check through parameters
+            if (currentMethod.findInParams(returnExpression) != null) {
+                found = true;
+                returnExpression = currentMethod.findInParams(returnExpression);
+            }
+            // Check through local variables - most recent scope
+            if (currentMethod.findInLocals(returnExpression) != null) {
+                found = true;
+                returnExpression = currentMethod.findInLocals(returnExpression);
+            }
+            if (!found) {
+                throw new MJTypeCheckException("Could not find return identifier");
+            }
+        }
+        if (returnExpression.getType() != currentMethod.getReturnType().getType()) {
+            throw new MJTypeCheckException("Invalid return type");
+        }
+        // Complete all statements in method
+        for (Node statement : n.f8.nodes) {
+            statement.accept(this, argu);
+        }
+        // We are done with the method, so clear the stack
+        currentClass.callingMethodStack.pop();
+        return null;
+    }
+
+/*
+        MJType returnExpression = n.f10.accept(this, argu);
+        MJType method = n.f2.accept(this, argu);
+        MJClass currClass = argu.getCurrentClass();
+        MJMethod currentMethod = currClass.getClassMethod(method.getName());
+        // Start of stack
+        currClass.callingMethodStack.push(currentMethod);
+        System.out.println("Method Declaration");
+        System.out.println(currentMethod.getMethodName());
+        if (returnExpression.getType() == MJType.Type.IDENT) {
+            if (currentMethod.vars.contains(returnExpression)) {
+               for (MJType variable : currentMethod.vars)
+                   if (variable.equals(returnExpression))
+                       returnExpression = variable;
+            } else if (currentMethod.params.contains(returnExpression)) {
+                for (MJType parameter : currentMethod.params)
+                    if (parameter.equals(returnExpression))
+                        returnExpression = parameter;
+            } else if (argu.getCurrentClass().getFields().contains(returnExpression)) {
+                for (MJType field : argu.getCurrentClass().getFields())
+                    if (field.equals(returnExpression))
+                        returnExpression = field;
+            } else {
+                throw new MJTypeCheckException("Could not find return identifier");
+            }
+        }
+        if (currentMethod.getReturnType().getType() != returnExpression.getType())
+            throw new MJTypeCheckException("Invalid return type");
+        for (Node statement : n.f8.nodes) {
+            statement.accept(this, argu);
+        }
+        // Should end stack here
+        currClass.callingMethodStack.pop();
+        return returnExpression;
+    }
+        */
+
+    /**
+     * f0 -> FormalParameter()
+     * f1 -> ( FormalParameterRest() )*
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(FormalParameterList n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> Type()
+     * f1 -> Identifier()
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(FormalParameter n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> ","
+     * f1 -> FormalParameter()
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(FormalParameterRest n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> ArrayType()
+     * | BooleanType()
+     * | IntegerType()
+     * | Identifier()
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(Type n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> "int"
+     * f1 -> "["
+     * f2 -> "]"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(ArrayType n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> "boolean"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(BooleanType n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> "int"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(IntegerType n, ContextTable argu) {
+        return null;
+    }
+
+    /**
+     * f0 -> Block()
+     * | AssignmentStatement()
+     * | ArrayAssignmentStatement()
+     * | IfStatement()
+     * | WhileStatement()
+     * | PrintStatement()
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(Statement n, ContextTable argu) {
+        return n.f0.accept(this, argu);
+    }
+
+    /**
+     * f0 -> "{"
+     * f1 -> ( Statement() )*
+     * f2 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(Block n, ContextTable argu) {
+        // Type check the statements in block
+        for(Node statement : n.f1.nodes) {
+            statement.accept(this, argu);
+        }
+        return null;
+    }
 
     /**
      * f0 -> Identifier()
@@ -273,35 +378,47 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(AssignmentStatement n, ContextTable argu) {
-        MJClass curr = argu.getCurrentClass();
+        MJClass currentClass = argu.getCurrentClass();
         MJType identifier = n.f0.accept(this, argu);
-        MJType matchedIdentifier = null;
-        if(curr.getMRUMethod().vars.contains(identifier)) {
-            for (MJType variable : curr.getMRUMethod().vars) {
-                if (variable.equals(identifier)) {
-                    matchedIdentifier = variable;
-                    break;
-                }
-            }
-        } else if (curr.getMRUMethod().params.contains(identifier)) {
-            for(MJType parameter : curr.getMRUMethod().params) {
-                if (parameter.equals(identifier)) {
-                    matchedIdentifier = parameter;
-                    break;
-                }
-            }
-        } else if (curr.getFields().contains(identifier)) {
-            for (MJType field : curr.getFields()) {
-                if (field.equals(identifier)) {
-                    matchedIdentifier = field;
-                    break;
-                }
+        // Identifier must exist in the top level method or in class
+        MJMethod topMethod = currentClass.callingMethodStack.get(0);
+        boolean foundRHS = false;
+        boolean foundLHS = false;
+        MJType matchedIdentifier = n.f2.accept(this, argu);
+        // Look through class fields again for reassurance
+        if (currentClass.findVarInFields(matchedIdentifier) != null) {
+            foundRHS = true;
+            matchedIdentifier = currentClass.findVarInFields(matchedIdentifier);
+        }
+        if (currentClass.findVarInFields(identifier) != null) {
+            foundLHS= true;
+            identifier = currentClass.findVarInFields(identifier);
+        }
+        // Look through method params again for reassurance
+        if (topMethod.findInParams(matchedIdentifier) != null) {
+            foundRHS = true;
+            matchedIdentifier = topMethod.findInParams(matchedIdentifier);
+        }
+        if (topMethod.findInParams(identifier) != null) {
+            foundLHS = true;
+            identifier = topMethod.findInParams(identifier);
+        }
+        // Look through method local variables again for reassurance
+        if (topMethod.findInLocals(matchedIdentifier) != null) {
+            foundRHS = true;
+            matchedIdentifier = topMethod.findInLocals(matchedIdentifier);
+        }
+        if (topMethod.findInLocals(identifier) != null) {
+            foundLHS = true;
+            identifier = topMethod.findInLocals(identifier);
+        }
+        // Couldn't find a match
+        if (foundRHS && foundLHS) {
+            if (identifier.getType() != matchedIdentifier.getType()) {
+                throw new MJTypeCheckException("Incompatible type assignment");
             }
         } else {
             throw new MJTypeCheckException("Invalid assignment: identifier not found");
-        }
-        if (!matchedIdentifier.equals(n.f2.accept(this, argu))) {
-            throw new MJTypeCheckException("Invalid assignment: invalid expression type");
         }
         return null;
     }
@@ -319,8 +436,17 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(ArrayAssignmentStatement n, ContextTable argu) {
-        return null;
+    public MJType visit(ArrayAssignmentStatement n, ContextTable argu) throws MJTypeCheckException {
+        MJType array = n.f0.accept(this, argu);
+        MJType arrayIndex = n.f2.accept(this, argu);
+        MJType arrayValue = n.f5.accept(this, argu);
+        // Has to be of type array with ints for the index and value
+        if (array.getType() == MJType.Type.ARRAY
+                && arrayIndex.getType() == MJType.Type.INT
+                && arrayValue.getType() == MJType.Type.INT) {
+            return null;
+        }
+        throw new MJTypeCheckException("Invalid array assignment");
     }
 
     /**
@@ -336,8 +462,16 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(IfStatement n, ContextTable argu) {
-        return null;
+    public MJType visit(IfStatement n, ContextTable argu) throws MJTypeCheckException {
+        MJType conditionalExpression = n.f2.accept(this, argu);
+        // Conditional has to be boolean
+        if (conditionalExpression.getType() == MJType.Type.BOOLEAN) {
+            // Type check both statements
+            n.f4.accept(this, argu);
+            n.f6.accept(this, argu);
+            return null;
+        }
+        throw new MJTypeCheckException("Need a boolean within if/else statement");
     }
 
     /**
@@ -351,8 +485,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(WhileStatement n, ContextTable argu) {
-        return null;
+    public MJType visit(WhileStatement n, ContextTable argu) throws MJTypeCheckException {
+        MJType conditionalExpression = n.f2.accept(this, argu);
+        // Conditional has to be boolean
+        if (conditionalExpression.getType() != MJType.Type.BOOLEAN)
+            throw new MJTypeCheckException("Need a boolean within while statement");
+        // Type check following statement
+        return n.f4.accept(this, argu);
     }
 
     /**
@@ -366,7 +505,11 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(PrintStatement n, ContextTable argu) {
+    public MJType visit(PrintStatement n, ContextTable argu) throws MJTypeCheckException {
+        MJType printExpression = n.f2.accept(this, argu);
+        // Print expression must be of type int for successful printing
+        if (printExpression.getType() != MJType.Type.INT)
+            throw new MJTypeCheckException("Need an integer for printing");
         return null;
     }
 
@@ -399,11 +542,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(AndExpression n, ContextTable argu) throws MJTypeCheckException {
-        if (n.f0.accept(this, argu).equals(n.f2.accept(this, argu))) {
+        MJType lvalue = n.f0.accept(this, argu);
+        MJType rvalue = n.f2.accept(this, argu);
+        // Both sides of the binary expression must be boolean
+        if (lvalue.getType() == MJType.Type.BOOLEAN && rvalue.getType() == MJType.Type.BOOLEAN) {
             return new MJType(null, MJType.Type.BOOLEAN);
-        } else {
-            throw new MJTypeCheckException("Invalid expression: both values are not boolean");
         }
+        throw new MJTypeCheckException("Invalid expression: both values are not boolean");
     }
 
     /**
@@ -416,11 +561,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(CompareExpression n, ContextTable argu) {
-        if (n.f0.accept(this, argu).equals(n.f2.accept(this, argu))) {
-            return new MJType(null, MJType.Type.INT);
-        } else {
-            throw new MJTypeCheckException("Invalid expression: both values are not integers");
+        MJType lvalue = n.f0.accept(this, argu);
+        MJType rvalue = n.f2.accept(this, argu);
+        // Both sides of the binary expression must be ints
+        if (lvalue.getType() == MJType.Type.INT && rvalue.getType() == MJType.Type.INT) {
+            return new MJType(null, MJType.Type.BOOLEAN);
         }
+        throw new MJTypeCheckException("Invalid expression: both values are not integers");
     }
 
     /**
@@ -433,11 +580,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(PlusExpression n, ContextTable argu) {
-        if (n.f0.accept(this, argu).equals(n.f2.accept(this, argu))) {
+        MJType lvalue = n.f0.accept(this, argu);
+        MJType rvalue = n.f2.accept(this, argu);
+        // Both sides of the binary expression must be ints
+        if (lvalue.getType() == MJType.Type.INT && rvalue.getType() == MJType.Type.INT) {
             return new MJType(null, MJType.Type.INT);
-        } else {
-            throw new MJTypeCheckException("Invalid expression: both values are not integers");
         }
+        throw new MJTypeCheckException("Invalid expression: both values are not integers");
     }
 
     /**
@@ -450,11 +599,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(MinusExpression n, ContextTable argu) {
-        if (n.f0.accept(this, argu).equals(n.f2.accept(this, argu))) {
+        MJType lvalue = n.f0.accept(this, argu);
+        MJType rvalue = n.f2.accept(this, argu);
+        // Both sides of the binary expression must be ints
+        if (lvalue.getType() == MJType.Type.INT && rvalue.getType() == MJType.Type.INT) {
             return new MJType(null, MJType.Type.INT);
-        } else {
-            throw new MJTypeCheckException("Invalid expression: both values are not integers");
         }
+        throw new MJTypeCheckException("Invalid expression: both values are not integers");
     }
 
     /**
@@ -467,11 +618,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(TimesExpression n, ContextTable argu) {
-        if (n.f0.accept(this, argu).equals(n.f2.accept(this, argu))) {
+        MJType lvalue = n.f0.accept(this, argu);
+        MJType rvalue = n.f2.accept(this, argu);
+        // Both sides of the binary expression must be ints
+        if (lvalue.getType() == MJType.Type.INT && rvalue.getType() == MJType.Type.INT) {
             return new MJType(null, MJType.Type.INT);
-        } else {
-            throw new MJTypeCheckException("Invalid expression: both values are not integers");
         }
+        throw new MJTypeCheckException("Invalid expression: both values are not integers");
     }
 
     /**
@@ -485,13 +638,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(ArrayLookup n, ContextTable argu) throws MJTypeCheckException {
-        // Arrays are only of type int[], thus must return an int
-        if (n.f0.accept(this, argu).getType() == MJType.Type.ARRAY &&
-                n.f2.accept(this, argu).getType() == MJType.Type.INT) {
+        MJType array = n.f0.accept(this, argu);
+        MJType arrayValue = n.f2.accept(this, argu);
+        // Array lookup must act on an array with an int based index
+        if (array.getType() == MJType.Type.ARRAY && arrayValue.getType() == MJType.Type.INT) {
             return new MJType(null, MJType.Type.INT);
-        } else {
-            throw new MJTypeCheckException("Invalid array lookup");
         }
+        throw new MJTypeCheckException("Invalid array lookup");
     }
 
     /**
@@ -504,10 +657,10 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(ArrayLength n, ContextTable argu) throws MJTypeCheckException {
-        if (n.f0.accept(this, argu).getType() == MJType.Type.ARRAY)
+        MJType array = n.f0.accept(this, argu);
+        if (array.getType() == MJType.Type.ARRAY)
             return new MJType(null, MJType.Type.INT);
-        else
-            throw new MJTypeCheckException("Invalid array length");
+        throw new MJTypeCheckException("Invalid array length");
     }
 
     /**
@@ -522,22 +675,38 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(MessageSend n, ContextTable argu) {
-        if (n.f0.accept(this, argu).getType() == MJType.Type.IDENT) {
-            MJMethod callingMethod = argu.
-                    getCurrentClass().
-                    getClassMethod(n.f2.accept(this, argu).getName());
-            if (callingMethod != null) {
-                // Check each param with its matching type - with MRU method
-                n.f4.accept(this, argu);
-                // Return method return type with method name
-                return callingMethod.getReturnType();
-            } else {
-                throw new MJTypeCheckException("Cannot find matching method name");
+    public MJType visit(MessageSend n, ContextTable argu) throws MJTypeCheckException {
+        // Can only work on defined class instances
+        MJType classInstance = n.f0.accept(this, argu);
+        if (!classInstance.hasSubtype()) {
+            System.out.println(classInstance.getSubtype());
+            throw new MJTypeCheckException("Method can only be called on a valid class instance");
+        }
+        MJClass currentClass = argu.getCurrentClass();
+        // This sets the most recent class to be the instantiated one
+        MJClass instanceClassType = argu.getClass(classInstance.getSubtype());
+        String methodName = n.f2.accept(this, argu).getName();
+        // Find the method based on this name in the instance class type
+        MJMethod calledMethod = instanceClassType.getClassMethod(methodName);
+        if (calledMethod == null) {
+            throw new MJTypeCheckException("Invalid method call on given class");
+        }
+        // We are within a method declaration so push onto call stack
+        currentClass.callingMethodStack.push(calledMethod);
+        if (n.f4 == null) {
+            // No arguments supplied only valid if original method had no parameters
+            if (calledMethod.params.size() != 0) {
+                throw new MJTypeCheckException("Incorrect number of arguments supplied");
             }
         } else {
-            throw new MJTypeCheckException("Cannot call a method on non-identifier");
+            // Check each parameter with its matching type in the called method
+            n.f4.accept(this, argu);
         }
+        // Reset the current class
+        argu.setCurrentClass(currentClass);
+        // Remove the method from the classes call stack
+        argu.getCurrentClass().callingMethodStack.pop();
+        return calledMethod.getReturnType();
     }
 
     /**
@@ -550,6 +719,30 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
     @Override
     public MJType visit(ExpressionList n, ContextTable argu) throws MJTypeCheckException {
         // Convert params to a List so as to preserve ordering and retrieve in O(1)
+        Set<MJType> params = null;
+        MJClass currentClass = argu.getCurrentClass();
+        if (!currentClass.callingMethodStack.empty()) {
+            params = currentClass.callingMethodStack.peek().params;
+        } else {
+            params = currentClass.getMRUMethod().params;
+        }
+        List<MJType> methodParams = new ArrayList<>(params);
+        if (!methodParams.isEmpty()) {
+            if (methodParams.size() != 1 + n.f1.size()) {
+                throw new MJTypeCheckException("Incorrect number of arguments supplied");
+            }
+            // Compare first argument
+            if (methodParams.get(0).equals(n.f0.accept(this, argu))) {
+                int i = 1;
+                // Compare rest if they exist
+                for(Node expression : n.f1.nodes) {
+                    if (!methodParams.get(i).equals(expression.accept(this, argu))) {
+                        throw new MJTypeCheckException("Invalid expression to parameter match");
+                    }
+                    i++;
+                }
+            }
+        }
         return null;
     }
 
@@ -562,7 +755,7 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(ExpressionRest n, ContextTable argu) {
-        return null;
+        return n.f1.accept(this, argu);
     }
 
     /**
@@ -625,7 +818,33 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(Identifier n, ContextTable argu) {
-        return new MJType(n.f0.toString(), MJType.Type.IDENT);
+        String identifierName = n.f0.toString();
+        MJClass currentClass = argu.getCurrentClass();
+        // The identifier already exists
+        // in the current class' field set
+        for(MJType field : currentClass.getFields()) {
+            if(field.getName().equals(identifierName)) {
+                return field;
+            }
+        }
+        if(!currentClass.callingMethodStack.empty()) {
+            MJMethod currMethod = currentClass.callingMethodStack.get(0);
+            // in the current called method's parameters
+            for (MJType var : currMethod.vars) {
+                if (var.getName().equals(identifierName)) {
+                    return var;
+                }
+            }
+            // or local variables
+            for (MJType param : currMethod.params) {
+                if (param.getName().equals(identifierName)) {
+                    return param;
+                }
+            }
+        }
+        // Otherwise it is a new assignment
+        MJType newIdentifier = new MJType(identifierName, MJType.Type.IDENT);
+        return newIdentifier;
     }
 
     /**
@@ -636,7 +855,8 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(ThisExpression n, ContextTable argu) {
-        return new MJType(argu.getCurrentClass().getClassName(), MJType.Type.IDENT);
+        String className = argu.getCurrentClass().getClassName();
+        return new MJType(n.f0.toString(), MJType.Type.IDENT, className);
     }
 
     /**
@@ -650,8 +870,12 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(ArrayAllocationExpression n, ContextTable argu) {
-        return null;
+    public MJType visit(ArrayAllocationExpression n, ContextTable argu) throws MJTypeCheckException {
+        MJType arrayIndex = n.f3.accept(this, argu);
+        // The array index must be of type int
+        if (arrayIndex.getType() != MJType.Type.INT)
+            throw new MJTypeCheckException("Cannot allocate a non integer amount");
+        return new MJType(null, MJType.Type.ARRAY);
     }
 
     /**
@@ -665,7 +889,10 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(AllocationExpression n, ContextTable argu) {
-        return null;
+        MJType newIdentifier = n.f1.accept(this, argu);
+        // For a new class the subtype is the same as the class name
+        newIdentifier.setSubtype(newIdentifier.getName());
+        return newIdentifier;
     }
 
     /**
@@ -676,8 +903,12 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      * @param argu
      */
     @Override
-    public MJType visit(NotExpression n, ContextTable argu) {
-        return null;
+    public MJType visit(NotExpression n, ContextTable argu) throws MJTypeCheckException {
+        MJType expression = n.f1.accept(this, argu);
+        // Logical NOT must be applied on a boolean
+        if (expression.getType() != MJType.Type.BOOLEAN)
+            throw new MJTypeCheckException("Logical NOT can only apply on booleans");
+        return expression;
     }
 
     /**
@@ -690,6 +921,6 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(BracketExpression n, ContextTable argu) {
-        return null;
+        return n.f1.accept(this, argu);
     }
 }
