@@ -28,54 +28,55 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
    */
   @Override
   public MJType visit(Goal n, ContextTable argu) {
-    // Check for cycles
-    if (!argu.acyclic()) {
-      throw new MJTypeCheckException("Inheritance cycle found");
-    }
-    // Check Main Class
-    MJType ret = n.f0.accept(this, argu);
-    // Check through all classes
-    for(Node _class: n.f1.nodes) {
-      ret = _class.accept(this, argu);
-    }
-    return ret;
+      argu.resetDummyParents();
+      // Check for cycles
+      if (!argu.acyclic()) {
+          throw new MJTypeCheckException("Inheritance cycle found");
+      }
+      // Check Main Class
+      MJType ret = n.f0.accept(this, argu);
+      // Check through all classes
+      for(Node _class: n.f1.nodes) {
+          ret = _class.accept(this, argu);
+      }
+      return ret;
   }
 
-  /**
-   * f0 -> "class"
-   * f1 -> Identifier()
-   * f2 -> "{"
-   * f3 -> "public"
-   * f4 -> "static"
-   * f5 -> "void"
-   * f6 -> "main"
-   * f7 -> "("
-   * f8 -> "String"
-   * f9 -> "["
-   * f10 -> "]"
-   * f11 -> Identifier()
-   * f12 -> ")"
-   * f13 -> "{"
-   * f14 -> ( VarDeclaration() )*
-   * f15 -> ( Statement() )*
-   * f16 -> "}"
-   * f17 -> "}"
-   *
-   * @param n
-   * @param argu
-   */
-  @Override
-  public MJType visit(MainClass n, ContextTable argu) {
-      String mainClassName = n.f1.accept(this, argu).getName();
-      argu.getClass(mainClassName);
-      MJClass currentClass = argu.getCurrentClass();
-      currentClass.isMain = true;
-      currentClass.callingMethodStack.push(currentClass.getClassMethod("main"));
-      for (Node statement: n.f15.nodes) {
-          statement.accept(this, argu);
-      }
-      return null;
-  }
+    /**
+     * f0 -> "class"
+     * f1 -> Identifier()
+     * f2 -> "{"
+     * f3 -> "public"
+     * f4 -> "static"
+     * f5 -> "void"
+     * f6 -> "main"
+     * f7 -> "("
+     * f8 -> "String"
+     * f9 -> "["
+     * f10 -> "]"
+     * f11 -> Identifier()
+     * f12 -> ")"
+     * f13 -> "{"
+     * f14 -> ( VarDeclaration() )*
+     * f15 -> ( Statement() )*
+     * f16 -> "}"
+     * f17 -> "}"
+     *
+     * @param n
+     * @param argu
+     */
+    @Override
+    public MJType visit(MainClass n, ContextTable argu) {
+        String mainClassName = n.f1.accept(this, argu).getName();
+        argu.getClass(mainClassName);
+        MJClass currentClass = argu.getCurrentClass();
+        currentClass.isMain = true;
+        currentClass.callingMethodStack.push(currentClass.getClassMethod("main"));
+        for (Node statement: n.f15.nodes) {
+            statement.accept(this, argu);
+        }
+        return null;
+    }
 
     /**
      * f0 -> ClassDeclaration()
@@ -391,8 +392,15 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
             if (identifier.getType() != matchedIdentifier.getType()) {
                 throw new MJTypeCheckException("Incompatible type assignment");
             }
+            if(identifier.hasSubtype() && matchedIdentifier.hasSubtype()) {
+                if (!identifier.getSubtype().equals(matchedIdentifier.getSubtype())) {
+                    if(!argu.linkExists(identifier.getSubtype(), matchedIdentifier.getSubtype()))
+                        throw new MJTypeCheckException("Incompatible subclass assignment");
+                }
+            }
         } else {
-            throw new MJTypeCheckException("Invalid assignment: identifier not found");
+            if (!argu.linkExists(identifier.getSubtype(), identifier.getSubtype()))
+                throw new MJTypeCheckException("Invalid assignment: identifier not found");
         }
         return null;
     }
@@ -793,11 +801,12 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
     public MJType visit(Identifier n, ContextTable argu) {
         String identifierName = n.f0.toString();
         MJClass currentClass = argu.getCurrentClass();
+        MJType newIdentifier = null;
         // The identifier already exists
         // in the current class' field set
         for(MJType field : currentClass.getFields()) {
             if(field.getName().equals(identifierName)) {
-                return field;
+                newIdentifier = field;
             }
         }
         if(!currentClass.callingMethodStack.empty()) {
@@ -805,18 +814,20 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
             // in the current called method's parameters
             for (MJType var : currMethod.vars) {
                 if (var.getName().equals(identifierName)) {
-                    return var;
+                    newIdentifier = var;
                 }
             }
             // or local variables
             for (MJType param : currMethod.params) {
                 if (param.getName().equals(identifierName)) {
-                    return param;
+                    newIdentifier = param;
                 }
             }
         }
         // Otherwise it is a new assignment
-        MJType newIdentifier = new MJType(identifierName, MJType.Type.IDENT);
+        if(newIdentifier == null) {
+            newIdentifier = new MJType(identifierName, MJType.Type.IDENT);
+        }
         return newIdentifier;
     }
 

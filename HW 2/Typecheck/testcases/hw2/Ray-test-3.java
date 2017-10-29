@@ -28,7 +28,7 @@ class A extends Foo {
             y[2] = 1;
             b = x < l;
         }
-        (new int[5])([1+2]);
+        //(new int[5])[1+2];
         return x;
     }
 

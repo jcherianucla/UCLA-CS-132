@@ -34,6 +34,23 @@ public class ContextTable {
 	}
 
     /**
+     * When building the context table, we might have some nodes set to
+     * dummy parents that at the time had yet to be initialized. Reset
+     * those dummy parents to the actual reference
+     */
+	public void resetDummyParents() {
+	    for(Map.Entry<String, MJClass> _class : classes.entrySet()) {
+	        String className = _class.getKey();
+	        MJClass actualClass = _class.getValue();
+	       if(actualClass.hasParent()
+                   && actualClass.getParent().preInitialize) {
+	           String parentName = actualClass.getParent().getClassName();
+               classes.get(className).setParent(classes.get(parentName));
+           }
+        }
+    }
+
+    /**
      * Adds the specified class to the global context, updating the
      * current class.
      * @param mjClass Class we are looking for
@@ -48,25 +65,66 @@ public class ContextTable {
     }
 
     /**
-     * Goes through all linksets to look for inheritance cycles. These
-     * occur when we find a parent being a child.
+     * Finds if a subclassing relationship exists
+     * @param className1
+     * @param className2
+     * @return
+     */
+    public boolean linkExists(String className1, String className2) {
+        List<Tuple2<MJClass, MJClass>> allLinkSets = new ArrayList<>();
+        for(MJClass mjClass : classes.values()) {
+            Tuple2<MJClass, MJClass> linkSet = mjClass.linkSet();
+            if(linkSet != null)
+                allLinkSets.add(linkSet);
+        }
+        for(Tuple2<MJClass, MJClass> linkset : allLinkSets) {
+            if((linkset.first.getClassName().equals(className1)
+            || linkset.second.getClassName().equals(className2)) &&
+                    (linkset.first.getClassName().equals(className2)
+                    || linkset.second.getClassName().equals(className1))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * For each class, perform a DFS using it as a starting node in the
+     * class directed graph. If we find a cycle (i.e. we have already visited
+     * a node) then return the existence of the cycle.
      * @return If the context is cycle free
      */
     public boolean acyclic() {
-		List<Tuple2<MJClass, MJClass>> allLinkSets = new ArrayList<>();
-		for(MJClass mjClass : classes.values()) {
-		    Tuple2<MJClass, MJClass> linkSet = mjClass.linkSet();
-		    if(linkSet != null)
-				allLinkSets.add(linkSet);
-		}
-		for(int i = 0; i < allLinkSets.size(); i++) {
-			for(int j = i+1; j < allLinkSets.size(); j++) {
-				if(allLinkSets.get(i).first.equals(allLinkSets.get(j).second))
-					return false;
-			}
-		}
-		return true;
-	}
+        // Perform dfs on every class
+        for(Map.Entry<String, MJClass> _class : classes.entrySet()) {
+            Set<String> visited = new HashSet<>();
+            visited.add(_class.getKey());
+            if (!dfs(_class.getValue(), visited)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Runs a recursive DFS on each node keeping count of visited nodes
+     * for finding a cycle.
+     * @param visiting MJClass currently being inspected
+     * @param visited All class names that have been visited
+     * @return Whether a cycle exists
+     */
+    private boolean dfs(MJClass visiting, Set<String> visited) {
+        if(visiting == null) {
+            return true;
+        }
+        if (visiting.hasParent()) {
+            if(visited.contains(visiting.getParent().getClassName())) {
+                return false;
+            }
+            visited.add(visiting.getParent().getClassName());
+        }
+        return dfs(visiting.getParent(), visited);
+    }
 
     /**
      * Ensures no overloading exists, by only permitting overriding.
@@ -75,26 +133,26 @@ public class ContextTable {
      * @param methodName
      * @return Whether the program is overloading free
      */
-	public boolean noOverloading(MJClass childClass, MJClass parentClass, String methodName) {
-	    MJMethod childMethod = childClass.getClassMethod(methodName);
-	    MJMethod parentMethod = parentClass.getClassMethod(methodName);
-	    if (childMethod != null && parentMethod != null) {
-	        return childMethod.equals(parentMethod);
+    public boolean noOverloading(MJClass childClass, MJClass parentClass, String methodName) {
+        MJMethod childMethod = childClass.getClassMethod(methodName);
+        MJMethod parentMethod = parentClass.getClassMethod(methodName);
+        if (childMethod != null && parentMethod != null) {
+            return childMethod.equals(parentMethod);
         }
         return true;
     }
 
-	public MJClass getCurrentClass() {
-		return currentClass;
-	}
+    public MJClass getCurrentClass() {
+        return currentClass;
+    }
 
     /**
      * Convenience function for debugging purposes
      */
-	public void printContextTable() {
-		System.out.println("Current class: " + currentClass.getClassName());
-		for(MJClass mjClass : classes.values()) {
-			mjClass.printMJClass();
-		}
-	}
+    public void printContextTable() {
+        System.out.println("Current class: " + currentClass.getClassName());
+        for(MJClass mjClass : classes.values()) {
+            mjClass.printMJClass();
+        }
+    }
 }

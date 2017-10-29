@@ -12,6 +12,7 @@ class A extends B {
 
 }
 class B extends C {
+	int x;
 }
 class C extends A {
 }
