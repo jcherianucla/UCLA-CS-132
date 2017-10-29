@@ -133,6 +133,7 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
         if (currClass == null || parentClass == null) {
             throw new MJTypeCheckException("Could not find requested class");
         }
+        argu.setCurrentClass(currClass);
         // Ensure no overloading
         for (MJMethod method : currClass.getAllMethods()) {
             if (!argu.noOverloading(currClass, parentClass, method.getMethodName()))

@@ -21,11 +21,14 @@ public class Typecheck{
             ContextVisitor ctxVisitor = new ContextVisitor();
             // Run context builder with DFS from Goal
             goal.accept(ctxVisitor, null);
+            //ctxVisitor.context.printContextTable();
             // Create a type checker
             TypecheckVisitor typecheckVisitor = new TypecheckVisitor();
             // Run Type checking DFS from Goal
             goal.accept(typecheckVisitor, ctxVisitor.context);
         } catch (Exception e) {
+            //e.printStackTrace();
+            //System.out.println(e.getMessage());
             System.out.println(ERROR);
             return;
         }
