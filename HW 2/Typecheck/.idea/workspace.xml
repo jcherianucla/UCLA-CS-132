@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b6c0dab-e017-45d1-a178-c739b7ac54e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Typecheck.java" afterPath="$PROJECT_DIR$/src/main/java/Typecheck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextTable.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJClass.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJMethod.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJType.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,20 +36,20 @@
           <file leaf-file-name="TypecheckVisitor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+                <state relative-caret-position="442">
+                  <caret line="470" column="14" lean-forward="false" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#4322#4323#0" expanded="true" />
                     <element signature="e#4349#4350#0" expanded="true" />
-                    <element signature="e#22817#22818#0" expanded="true" />
-                    <element signature="e#22884#22885#0" expanded="true" />
-                    <element signature="e#23037#23038#0" expanded="true" />
-                    <element signature="e#23108#23109#0" expanded="true" />
-                    <element signature="e#23263#23264#0" expanded="true" />
-                    <element signature="e#23334#23335#0" expanded="true" />
-                    <element signature="e#26792#26793#0" expanded="true" />
-                    <element signature="e#26838#26839#0" expanded="true" />
+                    <element signature="e#22757#22758#0" expanded="true" />
+                    <element signature="e#22824#22825#0" expanded="true" />
+                    <element signature="e#22977#22978#0" expanded="true" />
+                    <element signature="e#23048#23049#0" expanded="true" />
+                    <element signature="e#23203#23204#0" expanded="true" />
+                    <element signature="e#23274#23275#0" expanded="true" />
+                    <element signature="e#26732#26733#0" expanded="true" />
+                    <element signature="e#26778#26779#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -614,7 +607,6 @@
         <option value="$PROJECT_DIR$/src/main/java/context/Identifier.java" />
         <option value="$PROJECT_DIR$/testcases/hw2/Basic-error.java" />
         <option value="$PROJECT_DIR$/src/test/java/MainTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/Typecheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
@@ -622,6 +614,7 @@
         <option value="$PROJECT_DIR$/src/main/java/context/MJType.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
       </list>
     </option>
   </component>
@@ -905,12 +898,12 @@
       <workItem from="1509000368929" duration="12000000" />
       <workItem from="1509157252683" duration="295000" />
       <workItem from="1509157614897" duration="550000" />
-      <workItem from="1509158841987" duration="56594000" />
+      <workItem from="1509158841987" duration="57200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80674000" />
+    <option name="totallyTimeSpent" value="81280000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1052" extended-state="6" />
@@ -1404,32 +1397,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4322#4323#0" expanded="true" />
-            <element signature="e#4349#4350#0" expanded="true" />
-            <element signature="e#22817#22818#0" expanded="true" />
-            <element signature="e#22884#22885#0" expanded="true" />
-            <element signature="e#23037#23038#0" expanded="true" />
-            <element signature="e#23108#23109#0" expanded="true" />
-            <element signature="e#23263#23264#0" expanded="true" />
-            <element signature="e#23334#23335#0" expanded="true" />
-            <element signature="e#26792#26793#0" expanded="true" />
-            <element signature="e#26838#26839#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4403">
           <caret line="261" column="8" lean-forward="false" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="470" column="14" lean-forward="false" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4322#4323#0" expanded="true" />
+            <element signature="e#4349#4350#0" expanded="true" />
+            <element signature="e#22757#22758#0" expanded="true" />
+            <element signature="e#22824#22825#0" expanded="true" />
+            <element signature="e#22977#22978#0" expanded="true" />
+            <element signature="e#23048#23049#0" expanded="true" />
+            <element signature="e#23203#23204#0" expanded="true" />
+            <element signature="e#23274#23275#0" expanded="true" />
+            <element signature="e#26732#26733#0" expanded="true" />
+            <element signature="e#26778#26779#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -652,7 +652,6 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
         // Can only work on defined class instances
         MJType classInstance = n.f0.accept(this, argu);
         if (!classInstance.hasSubtype()) {
-            System.out.println(classInstance.getSubtype());
             throw new MJTypeCheckException("Method can only be called on a valid class instance");
         }
         MJClass currentClass = argu.getCurrentClass();
