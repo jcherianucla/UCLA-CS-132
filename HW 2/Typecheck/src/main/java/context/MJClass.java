@@ -21,6 +21,7 @@ public class MJClass {
     // This is the most recently used method when visiting all method
     // declarations
     private MJMethod MRUMethod = null;
+    public boolean preInitialize = false;
 
     public MJClass(String name){
         this.className = name;
