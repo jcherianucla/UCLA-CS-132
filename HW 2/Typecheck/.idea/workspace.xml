@@ -5,6 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b6c0dab-e017-45d1-a178-c739b7ac54e3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/resourceHashesCache.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/Typecheck.class" afterPath="$PROJECT_DIR$/build/classes/java/main/Typecheck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/ContextVisitor.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/ContextVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/MJClass.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/MJClass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/TypecheckVisitor.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/TypecheckVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/104436427.tar" afterPath="$PROJECT_DIR$/build/distributions/104436427.tar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/classes/Typecheck.class" afterPath="$PROJECT_DIR$/results/104436427/classes/Typecheck.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/classes/context/ContextVisitor.class" afterPath="$PROJECT_DIR$/results/104436427/classes/context/ContextVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/classes/context/MJClass.class" afterPath="$PROJECT_DIR$/results/104436427/classes/context/MJClass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/classes/context/TypecheckVisitor.class" afterPath="$PROJECT_DIR$/results/104436427/classes/context/TypecheckVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/TypecheckTest.html" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/TypecheckTest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/default-package.html" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/default-package.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test-results/test/TEST-TypecheckTest.xml" afterPath="$PROJECT_DIR$/build/test-results/test/TEST-TypecheckTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/failed" afterPath="$PROJECT_DIR$/results/104436427/failed" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/Typecheck.java" afterPath="$PROJECT_DIR$/results/104436427/src/Typecheck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/ContextVisitor.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/ContextVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/MJClass.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/MJClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/TypecheckVisitor.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/TypecheckVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/succeeded" afterPath="$PROJECT_DIR$/results/104436427/succeeded" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/Basic.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/Basic.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/BinaryTree.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/BinaryTree.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/BubbleSort.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/BubbleSort.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/Factorial.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/Factorial.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/Field-vs-method-overload.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/Field-vs-method-overload.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/LinearSearch.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/LinearSearch.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/LinkedList.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/LinkedList.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/MoreThan4.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/MoreThan4.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/QuickSort.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/QuickSort.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/tests/TreeVisitor.java.out" afterPath="$PROJECT_DIR$/results/104436427/tests/TreeVisitor.java.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Typecheck.java" afterPath="$PROJECT_DIR$/src/main/java/Typecheck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJClass.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -33,24 +74,34 @@
     <splitter split-orientation="horizontal" split-proportion="0.51151514">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="TypecheckVisitor.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TypecheckVisitor.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="442">
-                  <caret line="470" column="14" lean-forward="false" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
+                  <caret line="471" column="14" lean-forward="false" selection-start-line="471" selection-start-column="14" selection-end-line="471" selection-end-column="14" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#4322#4323#0" expanded="true" />
-                    <element signature="e#4349#4350#0" expanded="true" />
-                    <element signature="e#22757#22758#0" expanded="true" />
-                    <element signature="e#22824#22825#0" expanded="true" />
-                    <element signature="e#22977#22978#0" expanded="true" />
-                    <element signature="e#23048#23049#0" expanded="true" />
-                    <element signature="e#23203#23204#0" expanded="true" />
-                    <element signature="e#23274#23275#0" expanded="true" />
-                    <element signature="e#26732#26733#0" expanded="true" />
-                    <element signature="e#26778#26779#0" expanded="true" />
+                    <element signature="e#4363#4364#0" expanded="true" />
+                    <element signature="e#4390#4391#0" expanded="true" />
+                    <element signature="e#22798#22799#0" expanded="true" />
+                    <element signature="e#22865#22866#0" expanded="true" />
+                    <element signature="e#23018#23019#0" expanded="true" />
+                    <element signature="e#23089#23090#0" expanded="true" />
+                    <element signature="e#23244#23245#0" expanded="true" />
+                    <element signature="e#23315#23316#0" expanded="true" />
+                    <element signature="e#26773#26774#0" expanded="true" />
+                    <element signature="e#26819#26820#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Typecheck.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -65,51 +116,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="LinearSearch-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/LinearSearch-error.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-357">
-                  <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="LinkedList-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/LinkedList-error.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="107" column="18" lean-forward="false" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="MJTypeCheckException.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="51">
                   <caret line="3" column="79" lean-forward="false" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="QuickSort-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/QuickSort-error.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TreeVisitor-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/TreeVisitor-error.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="338" column="29" lean-forward="false" selection-start-line="338" selection-start-column="29" selection-end-line="338" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -161,78 +172,19 @@
           <file leaf-file-name="MJClass.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2091">
-                  <caret line="131" column="12" lean-forward="false" selection-start-line="131" selection-start-column="12" selection-end-line="131" selection-end-column="12" />
+                <state relative-caret-position="459">
+                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
                   <folding>
-                    <element signature="e#1845#1846#0" expanded="true" />
-                    <element signature="e#1877#1878#0" expanded="true" />
-                    <element signature="e#2728#2729#0" expanded="true" />
-                    <element signature="e#2784#2785#0" expanded="true" />
-                    <element signature="e#2819#2820#0" expanded="true" />
-                    <element signature="e#2860#2861#0" expanded="true" />
-                    <element signature="e#3267#3268#0" expanded="true" />
-                    <element signature="e#3347#3348#0" expanded="true" />
+                    <element signature="e#951#952#0" expanded="true" />
+                    <element signature="e#1887#1888#0" expanded="true" />
+                    <element signature="e#1919#1920#0" expanded="true" />
+                    <element signature="e#2770#2771#0" expanded="true" />
+                    <element signature="e#2826#2827#0" expanded="true" />
+                    <element signature="e#2861#2862#0" expanded="true" />
+                    <element signature="e#2902#2903#0" expanded="true" />
+                    <element signature="e#3309#3310#0" expanded="true" />
+                    <element signature="e#3389#3390#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Typecheck.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BinaryTree-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree-error.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="799">
-                  <caret line="89" column="22" lean-forward="false" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="578">
-                  <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BubbleSort-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort-error.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="672">
-                  <caret line="78" column="19" lean-forward="false" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Type.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Type.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="NodeChoice.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/NodeChoice.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -240,8 +192,8 @@
           <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4403">
-                  <caret line="261" column="8" lean-forward="false" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
+                <state relative-caret-position="255">
+                  <caret line="108" column="46" lean-forward="false" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -249,11 +201,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Identifier.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Identifier.java">
+          <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+                <state relative-caret-position="1241">
+                  <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Ray-test-2.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/testcases/hw2/Ray-test-2.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="272">
+                  <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -607,14 +569,14 @@
         <option value="$PROJECT_DIR$/src/main/java/context/Identifier.java" />
         <option value="$PROJECT_DIR$/testcases/hw2/Basic-error.java" />
         <option value="$PROJECT_DIR$/src/test/java/MainTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Typecheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/MJType.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Typecheck.java" />
       </list>
     </option>
   </component>
@@ -721,6 +683,26 @@
               <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
               <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="testcases" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="BubbleSort.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="Typecheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Typecheck" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="testcases" type="462c0819:PsiDirectoryNode" />
+              <item name="hw2" type="462c0819:PsiDirectoryNode" />
+              <item name="Ray-test-2.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
@@ -898,12 +880,12 @@
       <workItem from="1509000368929" duration="12000000" />
       <workItem from="1509157252683" duration="295000" />
       <workItem from="1509157614897" duration="550000" />
-      <workItem from="1509158841987" duration="57200000" />
+      <workItem from="1509158841987" duration="59671000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81280000" />
+    <option name="totallyTimeSpent" value="83751000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1052" extended-state="6" />
@@ -980,13 +962,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJNoArguVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/GJNoArguDepthFirst.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1265,14 +1240,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/hw2/Factorial-error.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1320,14 +1287,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1380,50 +1339,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/Ray-test-2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
-          <caret line="131" column="12" lean-forward="false" selection-start-line="131" selection-start-column="12" selection-end-line="131" selection-end-column="12" />
-          <folding>
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1877#1878#0" expanded="true" />
-            <element signature="e#2728#2729#0" expanded="true" />
-            <element signature="e#2784#2785#0" expanded="true" />
-            <element signature="e#2819#2820#0" expanded="true" />
-            <element signature="e#2860#2861#0" expanded="true" />
-            <element signature="e#3267#3268#0" expanded="true" />
-            <element signature="e#3347#3348#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4403">
-          <caret line="261" column="8" lean-forward="false" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
-          <caret line="470" column="14" lean-forward="false" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
+          <caret line="471" column="14" lean-forward="false" selection-start-line="471" selection-start-column="14" selection-end-line="471" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4322#4323#0" expanded="true" />
-            <element signature="e#4349#4350#0" expanded="true" />
-            <element signature="e#22757#22758#0" expanded="true" />
-            <element signature="e#22824#22825#0" expanded="true" />
-            <element signature="e#22977#22978#0" expanded="true" />
-            <element signature="e#23048#23049#0" expanded="true" />
-            <element signature="e#23203#23204#0" expanded="true" />
-            <element signature="e#23274#23275#0" expanded="true" />
-            <element signature="e#26732#26733#0" expanded="true" />
-            <element signature="e#26778#26779#0" expanded="true" />
+            <element signature="e#4363#4364#0" expanded="true" />
+            <element signature="e#4390#4391#0" expanded="true" />
+            <element signature="e#22798#22799#0" expanded="true" />
+            <element signature="e#22865#22866#0" expanded="true" />
+            <element signature="e#23018#23019#0" expanded="true" />
+            <element signature="e#23089#23090#0" expanded="true" />
+            <element signature="e#23244#23245#0" expanded="true" />
+            <element signature="e#23315#23316#0" expanded="true" />
+            <element signature="e#26773#26774#0" expanded="true" />
+            <element signature="e#26819#26820#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/hw2/BubbleSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#951#952#0" expanded="true" />
+            <element signature="e#1887#1888#0" expanded="true" />
+            <element signature="e#1919#1920#0" expanded="true" />
+            <element signature="e#2770#2771#0" expanded="true" />
+            <element signature="e#2826#2827#0" expanded="true" />
+            <element signature="e#2861#2862#0" expanded="true" />
+            <element signature="e#2902#2903#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="e#3389#3390#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="108" column="46" lean-forward="false" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
