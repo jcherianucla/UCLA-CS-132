@@ -51,10 +51,11 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
         MJClass mainClass = new MJClass(className);
         mainClass.isMain = true;
         MJType mainParam = new MJType(n.f11.f0.toString(), MJType.Type.OTHER);
-        MJMethod mainMethod = new MJMethod("main");
+        MJMethod mainMethod = new MJMethod("main", new MJType(null, MJType.Type.OTHER));
         mainMethod.params.add(mainParam);
         mainClass.addMethod(mainMethod);
         context.addClass(mainClass);
+        // Add local variables to main method for main class
         for(Node node : n.f14.nodes) {
             node.accept(this, mainClass);
         }
@@ -86,7 +87,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(ClassDeclaration n, MJClass argu) throws MJTypeCheckException {
         String className = n.f1.f0.toString();
-        if (context.getClasses().get(className) != null) {
+        if (context.getClass(className) != null) {
             throw new MJTypeCheckException("Duplicate class names");
         }
         MJClass newClass = new MJClass(className);
@@ -118,12 +119,11 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(ClassExtendsDeclaration n, MJClass argu) throws MJTypeCheckException {
         String className = n.f1.f0.toString();
-        if(context.getClasses().get(className) != null) {
-            throw new MJTypeCheckException("Duplicate class names");
-        }
         MJClass childClass = new MJClass(className);
         String baseClassName = n.f3.f0.toString();
-        MJClass baseClass = context.getClasses().getOrDefault(baseClassName, new MJClass(baseClassName));
+        MJClass baseClass = context.getClass(baseClassName);
+        if (baseClass == null)
+            baseClass = new MJClass(baseClassName);
         childClass.setParent(baseClass);
         context.addClass(baseClass);
         context.addClass(childClass);
@@ -138,7 +138,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     }
 
     /**
-     * f0 -> MJType()
+     * f0 -> Type()
      * f1 -> Identifier()
      * f2 -> ";"
      *
@@ -147,9 +147,12 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      */
     @Override
     public void visit(VarDeclaration n, MJClass argu) throws MJTypeCheckException {
-        MJType variable = new MJType(n.f1.f0.toString(), MJType.Type.fromInteger(n.f0.f0.which));
+        MJType.Type type = MJType.Type.fromInteger(n.f0.f0.which);
+        MJType variable = new MJType(n.f1.f0.toString(), type);
+        if (type == MJType.Type.IDENT)
+            variable.setSubtype(((Identifier)n.f0.f0.choice).f0.toString());
         // No methods --> Still looking through fields
-        if(argu.getClassMethods().isEmpty()) {
+        if(!argu.hasMethods()) {
             if(!argu.fields.add(variable)) {
                 throw new MJTypeCheckException("Duplicate field name");
             }
@@ -162,7 +165,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
 
     /**
      * f0 -> "public"
-     * f1 -> MJType()
+     * f1 -> Type()
      * f2 -> Identifier()
      * f3 -> "("
      * f4 -> ( FormalParameterList() )?
@@ -181,9 +184,13 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(MethodDeclaration n, MJClass argu) throws MJTypeCheckException {
         String methodName = n.f2.f0.toString();
-        MJMethod method = new MJMethod(methodName);
-        if(argu.getClassMethods().get(methodName) != null) {
-            throw new MJTypeCheckException("Duplicate method declaration");
+        MJType returnType = new MJType(null, MJType.Type.fromInteger(n.f1.f0.which));
+        if (returnType.getType() == MJType.Type.IDENT)
+            returnType.setSubtype(((Identifier)n.f1.f0.choice).f0.toString());
+        MJMethod method = new MJMethod(methodName, returnType);
+        if(argu.getClassMethod(methodName) != null &&
+                (argu.hasParent() && argu.getParent().getClassMethod(methodName) == null)) {
+            throw new MJTypeCheckException("Found overloading through duplicate method declaration");
         } else {
             argu.addMethod(method);
             // Add parameters to method
@@ -193,8 +200,6 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
                 node.accept(this, argu);
             }
         }
-
-
     }
 
     /**
@@ -213,7 +218,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     }
 
     /**
-     * f0 -> MJType()
+     * f0 -> Type()
      * f1 -> Identifier()
      *
      * @param n
@@ -221,7 +226,10 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
      */
     @Override
     public void visit(FormalParameter n, MJClass argu) throws MJTypeCheckException {
-        MJType param = new MJType(n.f1.toString(), MJType.Type.fromInteger(n.f0.f0.which));
+        MJType.Type type = MJType.Type.fromInteger(n.f0.f0.which);
+        MJType param = new MJType(n.f1.f0.toString(), type);
+        if (type == MJType.Type.IDENT)
+            param.setSubtype(((Identifier)n.f0.f0.choice).f0.toString());
         if(!argu.getMRUMethod().params.add(param)) {
             throw new MJTypeCheckException("Duplicate parameter");
         }

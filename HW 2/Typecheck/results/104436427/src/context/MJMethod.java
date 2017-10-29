@@ -1,20 +1,44 @@
 package context;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class MJMethod {
-    public Set<context.MJType> params = new HashSet<>();
-    public Set<context.MJType> vars = new HashSet<>();
+    public Set<MJType> params = new LinkedHashSet<>();
+    public Set<MJType> vars = new LinkedHashSet<>();
     private String methodName;
+    private MJType returnType;
 
-    public MJMethod(String name) {
+    public MJMethod(String name, MJType returnType) {
         this.methodName = name;
+        this.returnType = returnType;
     }
-    public MJMethod(String name, Set<context.MJType> params, Set<context.MJType> vars) {
+    public MJMethod(String name, Set<MJType> params, Set<context.MJType> vars) {
         this.methodName = name;
         this.params = params;
         this.vars = vars;
+    }
+
+    public MJType findInLocals(MJType var) {
+        return find(var, vars);
+    }
+    public MJType findInParams(MJType var) {
+        return find(var, params);
+    }
+
+    public MJType find(MJType var, Set<MJType> collection) {
+        MJType foundVar = null;
+        for(MJType variable : collection) {
+            if (var.equals(variable)) {
+                foundVar = variable;
+                break;
+            }
+        }
+        return foundVar;
+    }
+
+    public MJType getReturnType() {
+        return returnType;
     }
 
     public String getMethodName() {
@@ -22,13 +46,14 @@ public class MJMethod {
     }
 
     public void printMJMethod() {
-        System.out.println("Method: " + methodName);
+        System.out.println("Methodname: " + methodName);
+        returnType.printMJType();
         System.out.println("PARAMETERS");
-        for(context.MJType mjType : params) {
+        for(MJType mjType : params) {
             mjType.printMJType();
         }
         System.out.println("LOCAL VARIABLES");
-        for(context.MJType mjType : vars) {
+        for(MJType mjType : vars) {
             mjType.printMJType();
         }
     }

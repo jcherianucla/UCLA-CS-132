@@ -42,6 +42,12 @@ sourceSets {
             runtimeClasspath += parse.output
         }
     }
+    test {
+        java { 
+            compileClasspath += parse.output;
+            runtimeClasspath += parse.output
+        }
+    }
 }
 
 task run (type: JavaExec) { 

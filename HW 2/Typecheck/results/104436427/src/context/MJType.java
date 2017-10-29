@@ -21,10 +21,27 @@ public class MJType {
         }
     }
     private Type type;
+    private String subtype = null;
 
     public MJType(String name, Type type) {
         this.name = name;
         this.type = type;
+    }
+
+    public MJType(String name, Type type, String subtype) {
+        this.name = name;
+        this.type = type;
+        if (type == Type.IDENT)
+            this.subtype = subtype;
+    }
+
+    public boolean hasSubtype() {
+        return subtype != null;
+    }
+
+    public void setSubtype(String subtype) {
+        if (this.type == Type.IDENT)
+            this.subtype = subtype;
     }
 
     public String getName() {
@@ -33,6 +50,10 @@ public class MJType {
 
     public Type getType() {
         return type;
+    }
+
+    public String getSubtype() {
+        return subtype;
     }
 
     public void setName(String name) {
@@ -44,7 +65,8 @@ public class MJType {
     }
 
     public void printMJType() {
-        System.out.println(name + ": " + type.toString());
+        System.out.println(((name != null) ? name : "return type") + ": " + type.toString() +
+                ((subtype != null) ? " subtype: " + subtype : ""));
     }
 
     @Override
@@ -52,8 +74,14 @@ public class MJType {
         if (o == this)
             return true;
         if ((o instanceof MJType)) {
-            if (((MJType) o).type == Type.IDENT) {
-                return this.name.equals(((MJType) o).name);
+            if (this.type == Type.IDENT || ((MJType) o).type == Type.IDENT) {
+                boolean subtypeComparison = false;
+                boolean nameComparison = false;
+                if (this.subtype != null && ((MJType) o).subtype != null)
+                    subtypeComparison = this.subtype.equals(((MJType) o).subtype);
+                if (this.name != null && ((MJType) o).name != null)
+                    nameComparison = this.name.equals(((MJType) o).name);
+                return  nameComparison || subtypeComparison;
             }
             return ((MJType) o).type == this.type;
         }
@@ -64,6 +92,6 @@ public class MJType {
     public int hashCode() {
         final int prime = 31;
         int result = 17 + name.hashCode();
-        return prime * result + ((this.type == null) ? 0 : this.type.hashCode());
+        return prime * result;
     }
 }

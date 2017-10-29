@@ -2,26 +2,41 @@ package context;
 
 import java.util.*;
 
-public class MJClass implements context.Identifier {
+public class MJClass {
     private String className;
-    public Set<context.MJType> fields = new LinkedHashSet<>();
-    private Map<String, context.MJMethod> methods = new HashMap<>();
+    public Set<MJType> fields = new LinkedHashSet<>();
+    private Map<String, MJMethod> methods = new HashMap<>();
+    // When we declare a method, start a stack of all the methods we'll
+    // see within this method when called on an object type
+    public Stack<MJMethod> callingMethodStack = new Stack<>();
     private MJClass parent = null;
     public boolean isMain = false;
-    private context.MJMethod MRUMethod = null;
+    // This is the most recently used method when visiting all method
+    // declarations
+    private MJMethod MRUMethod = null;
 
     public MJClass(String name){
         this.className = name;
     }
 
-    public boolean setParent(MJClass parent) {
-        // Check for a cycle between two classes
-        if (parent.hasParent() && parent.getParent() == this) {
-            return false;
-        }
+    public void setParent(MJClass parent) throws MJTypeCheckException {
+        // Check for a self cycle between two classes
+        if (this.equals(parent))
+            throw new MJTypeCheckException("Self inheritance found");
         this.parent = parent;
-        return true;
     }
+
+    public MJType findVarInFields(MJType var) {
+        MJType foundVar = null;
+        for (MJType variable : this.getFields()) {
+            if (var.equals(variable)){
+                foundVar = variable;
+                break;
+            }
+        }
+        return foundVar;
+    }
+
 
     public MJClass getParent() {
         return parent;
@@ -35,28 +50,51 @@ public class MJClass implements context.Identifier {
         return className;
     }
 
-    public Map<String, context.MJMethod> getClassMethods () {
-        return methods;
+    public void setMRUMethod(MJMethod MRUMethod) {
+        this.MRUMethod = MRUMethod;
     }
 
-    public context.MJMethod getMRUMethod() {
+    public MJMethod getClassMethod (String methodName) {
+        if(methods.get(methodName) != null) {
+            MJMethod method = methods.get(methodName);
+            MRUMethod = method;
+            return method;
+        } else if (this.hasParent()) {
+            MJMethod parentMethod = parent.getClassMethod(methodName);
+            if (parentMethod != null) {
+                MRUMethod = parentMethod;
+                return parentMethod;
+            }
+        }
+        return null;
+    }
+
+    public List<MJMethod> getAllMethods() {
+        return new ArrayList<>(methods.values());
+    }
+
+    public boolean hasMethods() {
+        return !methods.isEmpty();
+    }
+
+    public MJMethod getMRUMethod() {
         return MRUMethod;
     }
 
-    public void addMethod(context.MJMethod method) {
+    public void addMethod(MJMethod method) {
         methods.put(method.getMethodName(), method);
         MRUMethod = method;
     }
 
-    public Set<MJClass> linkSet(MJClass mjClass) {
-        return this.hasParent() ? new HashSet<MJClass>() {{ add(mjClass); }} : null;
+    public Tuple2<MJClass, MJClass> linkSet() {
+        return this.hasParent() ? new Tuple2<>(this, this.parent) : null;
     }
 
-    public Set<context.MJType> getFields() {
+    public Set<MJType> getFields() {
         if(this.hasParent()) {
-            Set<context.MJType> allFields = fields;
+            Set<MJType> allFields = fields;
             // Add parent fields if not overridden in child
-            for (context.MJType field: this.parent.getFields()) {
+            for (MJType field: this.parent.getFields()) {
                 if(!allFields.contains(field)) {
                     allFields.add(field);
                 }
@@ -66,21 +104,12 @@ public class MJClass implements context.Identifier {
         return this.fields;
     }
 
-    public Set<context.MJType> getMethodType(String methodName) {
-        context.MJMethod method = methods.get(methodName);
-        if (method == null && this.hasParent()) {
-            return parent.getMethodType(methodName);
-        } else if (method != null) {
-            return method.params;
-        } else {
-            return null;
-        }
-    }
-
     @Override
-    public boolean distinct(Object other) {
-        if ((other instanceof MJClass)) {
-            return this.className.equals(((MJClass)other).getClassName());
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if ((o instanceof MJClass)) {
+            return this.className.equals(((MJClass) o).className);
         }
         return false;
     }
@@ -91,11 +120,11 @@ public class MJClass implements context.Identifier {
            System.out.println("Extends: " + parent.getClassName());
        }
        System.out.println("FIELDS");
-       for(context.MJType field : fields) {
+       for(MJType field : fields) {
            field.printMJType();
        }
         System.out.println("METHODS");
-       for(context.MJMethod method : methods.values()) {
+       for(MJMethod method : methods.values()) {
            method.printMJMethod();
        }
     }
