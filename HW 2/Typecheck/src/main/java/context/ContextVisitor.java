@@ -3,6 +3,8 @@ package context;
 import syntaxtree.*;
 import visitor.GJVoidDepthFirst;
 
+import java.util.Map;
+
 /**
  * ContextVisitor runs the first pass through the JTB generated Abstract
  * Syntax Tree. It builds the ContextTable from a global perspective.
@@ -98,10 +100,24 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(ClassDeclaration n, MJClass argu) throws MJTypeCheckException {
         String className = n.f1.f0.toString();
-        if (context.getClass(className) != null) {
+        if (context.getClass(className) != null
+                && !context.getClass(className).preInitialize) {
             throw new MJTypeCheckException("Duplicate class names");
         }
         MJClass newClass = new MJClass(className);
+        // If its been initialized in the past
+        if (context.getClass(className) != null &&
+                context.getClass(className).preInitialize) {
+            // Get the child
+            for(Map.Entry<String, MJClass> entry: context.classes.entrySet()) {
+                // Reset parent to new reference
+                if(entry.getValue().hasParent() &&
+                        entry.getValue().getParent().getClassName().equals(className)) {
+                    context.classes.get(entry.getKey()).setParent(newClass);
+                    break;
+                }
+            }
+        }
         context.addClass(newClass);
         // Add fields to class
         for(Node node : n.f3.nodes) {
@@ -133,8 +149,11 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
         MJClass childClass = new MJClass(className);
         String baseClassName = n.f3.f0.toString();
         MJClass baseClass = context.getClass(baseClassName);
-        if (baseClass == null)
+        // Dummy parent
+        if (baseClass == null) {
             baseClass = new MJClass(baseClassName);
+            baseClass.preInitialize = true;
+        }
         childClass.setParent(baseClass);
         // Start building inheritance link
         context.addClass(baseClass);
