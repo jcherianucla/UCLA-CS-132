@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * TypecheckVisitor runs the second pass through the JTB generated Abstract
+ * Syntax Tree. It utilizes the ContextTable built upon first pass to relate
+ * everything to scoped contexts. For speed of development, we throw
+ * runtime exceptions for type errors (alternatively could be done using Optional<MJType>)
+ *
+ * In all instances, n represents the Node we are at in the AST and argu is our
+ * global context table. We return MJType for being able to pass around expression types.
+ */
 public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
 
   /**

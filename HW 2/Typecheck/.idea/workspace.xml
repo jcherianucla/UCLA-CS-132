@@ -5,32 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b6c0dab-e017-45d1-a178-c739b7ac54e3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/104436427/src/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/results/104436427/src/context/Identifier.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/MainTest.java" afterPath="$PROJECT_DIR$/src/test/java/TypecheckTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/fileHashes/resourceHashesCache.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.2.1/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/Typecheck.class" afterPath="$PROJECT_DIR$/build/classes/java/main/Typecheck.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/java/main/context/TypecheckVisitor.class" afterPath="$PROJECT_DIR$/build/classes/java/main/context/TypecheckVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/104436427.tar" afterPath="$PROJECT_DIR$/build/distributions/104436427.tar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/compile_output" afterPath="$PROJECT_DIR$/results/104436427/compile_output" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/ContextTable.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/ContextTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/ContextVisitor.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/ContextVisitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/MJClass.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/MJClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/MJMethod.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/MJMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/results/104436427/src/context/MJType.java" afterPath="$PROJECT_DIR$/results/104436427/src/context/MJType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Typecheck.java" afterPath="$PROJECT_DIR$/src/main/java/Typecheck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextTable.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJClass.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJMethod.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJType.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" afterPath="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" afterPath="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -62,30 +43,30 @@
           <file leaf-file-name="TypecheckVisitor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
-                  <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+                <state relative-caret-position="153">
+                  <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#3828#3829#0" expanded="true" />
-                    <element signature="e#3855#3856#0" expanded="true" />
-                    <element signature="e#22323#22324#0" expanded="true" />
-                    <element signature="e#22390#22391#0" expanded="true" />
-                    <element signature="e#22543#22544#0" expanded="true" />
-                    <element signature="e#22614#22615#0" expanded="true" />
-                    <element signature="e#22769#22770#0" expanded="true" />
-                    <element signature="e#22840#22841#0" expanded="true" />
-                    <element signature="e#26298#26299#0" expanded="true" />
-                    <element signature="e#26344#26345#0" expanded="true" />
+                    <element signature="e#4322#4323#0" expanded="true" />
+                    <element signature="e#4349#4350#0" expanded="true" />
+                    <element signature="e#22817#22818#0" expanded="true" />
+                    <element signature="e#22884#22885#0" expanded="true" />
+                    <element signature="e#23037#23038#0" expanded="true" />
+                    <element signature="e#23108#23109#0" expanded="true" />
+                    <element signature="e#23263#23264#0" expanded="true" />
+                    <element signature="e#23334#23335#0" expanded="true" />
+                    <element signature="e#26792#26793#0" expanded="true" />
+                    <element signature="e#26838#26839#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Factorial-error.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/testcases/hw2/Factorial-error.java">
+          <file leaf-file-name="Tuple2.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/context/Tuple2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+                <state relative-caret-position="476">
+                  <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -106,6 +87,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="442">
                   <caret line="107" column="18" lean-forward="false" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MJTypeCheckException.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="3" column="79" lean-forward="false" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
                   <folding />
                 </state>
               </provider>
@@ -134,14 +125,14 @@
           <file leaf-file-name="MJMethod.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJMethod.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                <state relative-caret-position="485">
+                  <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#617#618#0" expanded="true" />
-                    <element signature="e#655#656#0" expanded="true" />
-                    <element signature="e#700#701#0" expanded="true" />
-                    <element signature="e#740#741#0" expanded="true" />
+                    <element signature="e#1127#1128#0" expanded="true" />
+                    <element signature="e#1165#1166#0" expanded="true" />
+                    <element signature="e#1382#1383#0" expanded="true" />
+                    <element signature="e#1422#1423#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -150,11 +141,11 @@
           <file leaf-file-name="ContextTable.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+                <state relative-caret-position="765">
+                  <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
                   <folding>
-                    <element signature="e#650#651#0" expanded="true" />
-                    <element signature="e#698#699#0" expanded="true" />
+                    <element signature="e#1280#1281#0" expanded="true" />
+                    <element signature="e#1328#1329#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -163,8 +154,8 @@
           <file leaf-file-name="MJType.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJType.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-476">
-                  <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+                <state relative-caret-position="595">
+                  <caret line="97" column="64" lean-forward="false" selection-start-line="97" selection-start-column="64" selection-end-line="97" selection-end-column="64" />
                   <folding />
                 </state>
               </provider>
@@ -177,29 +168,27 @@
           <file leaf-file-name="MJClass.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+                <state relative-caret-position="2091">
+                  <caret line="131" column="12" lean-forward="false" selection-start-line="131" selection-start-column="12" selection-end-line="131" selection-end-column="12" />
                   <folding>
-                    <element signature="e#1394#1395#0" expanded="true" />
-                    <element signature="e#1426#1427#0" expanded="true" />
-                    <element signature="e#1478#1479#0" expanded="true" />
-                    <element signature="e#1520#1521#0" expanded="true" />
-                    <element signature="e#2063#2064#0" expanded="true" />
-                    <element signature="e#2119#2120#0" expanded="true" />
-                    <element signature="e#2154#2155#0" expanded="true" />
-                    <element signature="e#2195#2196#0" expanded="true" />
-                    <element signature="e#2447#2448#0" expanded="true" />
-                    <element signature="e#2527#2528#0" expanded="true" />
+                    <element signature="e#1845#1846#0" expanded="true" />
+                    <element signature="e#1877#1878#0" expanded="true" />
+                    <element signature="e#2728#2729#0" expanded="true" />
+                    <element signature="e#2784#2785#0" expanded="true" />
+                    <element signature="e#2819#2820#0" expanded="true" />
+                    <element signature="e#2860#2861#0" expanded="true" />
+                    <element signature="e#3267#3268#0" expanded="true" />
+                    <element signature="e#3347#3348#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Typecheck.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Typecheck.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+                <state relative-caret-position="85">
+                  <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
                   <folding />
                 </state>
               </provider>
@@ -255,11 +244,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+                <state relative-caret-position="4403">
+                  <caret line="261" column="8" lean-forward="false" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -624,14 +613,15 @@
         <option value="$PROJECT_DIR$/src/main/java/context/Tuple2.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/Identifier.java" />
         <option value="$PROJECT_DIR$/testcases/hw2/Basic-error.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/MJType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
         <option value="$PROJECT_DIR$/src/test/java/MainTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/Typecheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJClass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/ContextTable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJMethod.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/context/ContextVisitor.java" />
       </list>
     </option>
   </component>
@@ -915,12 +905,12 @@
       <workItem from="1509000368929" duration="12000000" />
       <workItem from="1509157252683" duration="295000" />
       <workItem from="1509157614897" duration="550000" />
-      <workItem from="1509158841987" duration="54567000" />
+      <workItem from="1509158841987" duration="56594000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78647000" />
+    <option name="totallyTimeSpent" value="80674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1052" extended-state="6" />
@@ -1097,14 +1087,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TypeChecker.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/java/JavaCharStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1112,14 +1094,6 @@
           <folding>
             <element signature="e#0#15453#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/Tuple2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1271,38 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="190" column="27" lean-forward="false" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#617#618#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#740#741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-476">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/hw2/BinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1319,17 +1261,6 @@
         <state relative-caret-position="799">
           <caret line="89" column="22" lean-forward="false" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-          <folding>
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#698#699#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1399,50 +1330,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+        <state relative-caret-position="85">
+          <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
+          <folding>
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3828#3829#0" expanded="true" />
-            <element signature="e#3855#3856#0" expanded="true" />
-            <element signature="e#22323#22324#0" expanded="true" />
-            <element signature="e#22390#22391#0" expanded="true" />
-            <element signature="e#22543#22544#0" expanded="true" />
-            <element signature="e#22614#22615#0" expanded="true" />
-            <element signature="e#22769#22770#0" expanded="true" />
-            <element signature="e#22840#22841#0" expanded="true" />
-            <element signature="e#26298#26299#0" expanded="true" />
-            <element signature="e#26344#26345#0" expanded="true" />
+            <element signature="e#1127#1128#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1422#1423#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="97" column="64" lean-forward="false" selection-start-line="97" selection-start-column="64" selection-end-line="97" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/MJTypeCheckException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="79" lean-forward="false" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/Tuple2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/context/MJClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="2091">
+          <caret line="131" column="12" lean-forward="false" selection-start-line="131" selection-start-column="12" selection-end-line="131" selection-end-column="12" />
           <folding>
-            <element signature="e#1394#1395#0" expanded="true" />
-            <element signature="e#1426#1427#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1520#1521#0" expanded="true" />
-            <element signature="e#2063#2064#0" expanded="true" />
-            <element signature="e#2119#2120#0" expanded="true" />
-            <element signature="e#2154#2155#0" expanded="true" />
-            <element signature="e#2195#2196#0" expanded="true" />
-            <element signature="e#2447#2448#0" expanded="true" />
-            <element signature="e#2527#2528#0" expanded="true" />
+            <element signature="e#1845#1846#0" expanded="true" />
+            <element signature="e#1877#1878#0" expanded="true" />
+            <element signature="e#2728#2729#0" expanded="true" />
+            <element signature="e#2784#2785#0" expanded="true" />
+            <element signature="e#2819#2820#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#3267#3268#0" expanded="true" />
+            <element signature="e#3347#3348#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Typecheck.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/TypecheckVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4322#4323#0" expanded="true" />
+            <element signature="e#4349#4350#0" expanded="true" />
+            <element signature="e#22817#22818#0" expanded="true" />
+            <element signature="e#22884#22885#0" expanded="true" />
+            <element signature="e#23037#23038#0" expanded="true" />
+            <element signature="e#23108#23109#0" expanded="true" />
+            <element signature="e#23263#23264#0" expanded="true" />
+            <element signature="e#23334#23335#0" expanded="true" />
+            <element signature="e#26792#26793#0" expanded="true" />
+            <element signature="e#26838#26839#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/context/ContextVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4403">
+          <caret line="261" column="8" lean-forward="false" selection-start-line="261" selection-start-column="8" selection-end-line="261" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -3,6 +3,11 @@ import context.MJTypeCheckException;
 import context.TypecheckVisitor;
 import syntaxtree.*;
 
+/**
+ * Typecheck runs the overall program by first building out a
+ * context table for all the symbols and then running a type checker
+ * with MiniJava Type rules in play with the global context.
+ */
 public class Typecheck{
 
     private static final String ERROR = "Type error";

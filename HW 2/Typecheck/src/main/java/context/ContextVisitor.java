@@ -3,6 +3,15 @@ package context;
 import syntaxtree.*;
 import visitor.GJVoidDepthFirst;
 
+/**
+ * ContextVisitor runs the first pass through the JTB generated Abstract
+ * Syntax Tree. It builds the ContextTable from a global perspective.
+ * For speed of development, we throw runtime exceptions for type errors. We only
+ * need to go through nodes that are storeable as MJClasses/MJMethods/MJTypes. Thus
+ * we can ignore all statements in this visitor. Distinction is checked for here.
+ * In all instances, n represents the Node we are at in the AST and argu is our
+ * global context table. We return MJType for being able to pass around expression types.
+ */
 public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
 
     public ContextTable context = new ContextTable();
@@ -48,8 +57,10 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     @Override
     public void visit(MainClass n, MJClass argu) {
         String className = n.f1.f0.toString();
+        // Create a main class
         MJClass mainClass = new MJClass(className);
         mainClass.isMain = true;
+        // Redundant but could be used further down the line if need be
         MJType mainParam = new MJType(n.f11.f0.toString(), MJType.Type.OTHER);
         MJMethod mainMethod = new MJMethod("main", new MJType(null, MJType.Type.OTHER));
         mainMethod.params.add(mainParam);
@@ -125,6 +136,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
         if (baseClass == null)
             baseClass = new MJClass(baseClassName);
         childClass.setParent(baseClass);
+        // Start building inheritance link
         context.addClass(baseClass);
         context.addClass(childClass);
         // Add fields to class
@@ -149,6 +161,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     public void visit(VarDeclaration n, MJClass argu) throws MJTypeCheckException {
         MJType.Type type = MJType.Type.fromInteger(n.f0.f0.which);
         MJType variable = new MJType(n.f1.f0.toString(), type);
+        // Cast needed to force to identifier - this is safe as it is guaranteed
         if (type == MJType.Type.IDENT)
             variable.setSubtype(((Identifier)n.f0.f0.choice).f0.toString());
         // No methods --> Still looking through fields
@@ -185,9 +198,11 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     public void visit(MethodDeclaration n, MJClass argu) throws MJTypeCheckException {
         String methodName = n.f2.f0.toString();
         MJType returnType = new MJType(null, MJType.Type.fromInteger(n.f1.f0.which));
+        // Cast needed to force to identifier - this is safe as it is guaranteed
         if (returnType.getType() == MJType.Type.IDENT)
             returnType.setSubtype(((Identifier)n.f1.f0.choice).f0.toString());
         MJMethod method = new MJMethod(methodName, returnType);
+        // Check for overloading
         if(argu.getClassMethod(methodName) != null &&
                 (argu.hasParent() && argu.getParent().getClassMethod(methodName) == null)) {
             throw new MJTypeCheckException("Found overloading through duplicate method declaration");
@@ -228,6 +243,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
     public void visit(FormalParameter n, MJClass argu) throws MJTypeCheckException {
         MJType.Type type = MJType.Type.fromInteger(n.f0.f0.which);
         MJType param = new MJType(n.f1.f0.toString(), type);
+        // Cast needed to force to identifier - this is safe as it is guaranteed
         if (type == MJType.Type.IDENT)
             param.setSubtype(((Identifier)n.f0.f0.choice).f0.toString());
         if(!argu.getMRUMethod().params.add(param)) {
