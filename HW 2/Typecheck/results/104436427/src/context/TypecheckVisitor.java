@@ -70,6 +70,7 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
         String mainClassName = n.f1.accept(this, argu).getName();
         argu.getClass(mainClassName);
         MJClass currentClass = argu.getCurrentClass();
+        argu.classStack.push(currentClass);
         currentClass.isMain = true;
         currentClass.callingMethodStack.push(currentClass.getClassMethod("main"));
         for (Node statement: n.f15.nodes) {
@@ -107,6 +108,8 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
         if (currClass == null) {
             throw new MJTypeCheckException("Could not find requested class");
         }
+        argu.classStack.clear();
+        argu.classStack.push(currClass);
         MJType ret = null;
         // Check through methods
         for (Node method : n.f4.nodes)
@@ -135,6 +138,8 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
             throw new MJTypeCheckException("Could not find requested class");
         }
         argu.setCurrentClass(currClass);
+        argu.classStack.clear();
+        argu.classStack.push(currClass);
         // Ensure no overloading
         for (MJMethod method : currClass.getAllMethods()) {
             if (!argu.noOverloading(currClass, parentClass, method.getMethodName()))
@@ -353,7 +358,8 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
      */
     @Override
     public MJType visit(AssignmentStatement n, ContextTable argu) {
-        MJClass currentClass = argu.getCurrentClass();
+        //MJClass currentClass = argu.getCurrentClass();
+        MJClass currentClass = argu.classStack.get(0);
         MJType identifier = n.f0.accept(this, argu);
         // Identifier must exist in the top level method or in class
         MJMethod topMethod = currentClass.callingMethodStack.get(0);
@@ -399,7 +405,7 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
                 }
             }
         } else {
-            if (!argu.linkExists(identifier.getSubtype(), identifier.getSubtype()))
+            if (!argu.linkExists(identifier.getSubtype(), matchedIdentifier.getSubtype()))
                 throw new MJTypeCheckException("Invalid assignment: identifier not found");
         }
         return null;
@@ -712,12 +718,25 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
             if (methodParams.size() != 1 + n.f1.size()) {
                 throw new MJTypeCheckException("Incorrect number of arguments supplied");
             }
+            MJType firstArgument = n.f0.accept(this, argu);
+            MJType firstParameter = methodParams.get(0);
+            boolean isSubclass = (firstParameter.hasSubtype() && firstArgument.hasSubtype())
+                    && argu.linkExists(firstArgument.getSubtype(), firstParameter.getSubtype());
+            boolean isSameClassType = (firstParameter.hasSubtype() && firstArgument.hasSubtype())
+                    && firstArgument.getSubtype().equals(firstParameter.getSubtype());
             // Compare first argument
-            if (methodParams.get(0).equals(n.f0.accept(this, argu))) {
+            if (firstParameter.equals(firstArgument) || (isSubclass || isSameClassType)) {
                 int i = 1;
                 // Compare rest if they exist
                 for(Node expression : n.f1.nodes) {
-                    if (!methodParams.get(i).equals(expression.accept(this, argu))) {
+                    MJType argument = expression.accept(this, argu);
+                    MJType parameter = methodParams.get(i);
+                    isSubclass = (parameter.hasSubtype() && argument.hasSubtype())
+                            && argu.linkExists(argument.getSubtype(), parameter.getSubtype());
+                    isSameClassType = (parameter.hasSubtype() && argument.hasSubtype())
+                            && parameter.getSubtype().equals(argument.getSubtype());
+                    boolean equality = (parameter.equals(argument) || isSubclass || isSameClassType);
+                    if (!equality) {
                         throw new MJTypeCheckException("Invalid expression to parameter match");
                     }
                     i++;

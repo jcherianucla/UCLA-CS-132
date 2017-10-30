@@ -222,9 +222,13 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
             returnType.setSubtype(((Identifier)n.f1.f0.choice).f0.toString());
         MJMethod method = new MJMethod(methodName, returnType);
         // Check for overloading
-        if(argu.getClassMethod(methodName) != null &&
-                (argu.hasParent() && argu.getParent().getClassMethod(methodName) == null)) {
-            throw new MJTypeCheckException("Found overloading through duplicate method declaration");
+        if(argu.getClassMethod(methodName) != null) {
+            if (!argu.hasParent()) {
+                throw new MJTypeCheckException("Found overloading through duplicate method declaration");
+            } else {
+                if(argu.getParent().getClassMethod(methodName) == null)
+                    throw new MJTypeCheckException("Found overloading through duplicate method declaration");
+            }
         } else {
             argu.addMethod(method);
             // Add parameters to method

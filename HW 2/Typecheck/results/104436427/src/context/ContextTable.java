@@ -11,6 +11,7 @@ public class ContextTable {
     // All classes mapped
 	public Map<String, MJClass> classes;
 	// The most recently touched class - grounds the context
+    public Stack<MJClass> classStack = new Stack<>();
 	private MJClass currentClass = null;
 
 	public ContextTable() {
@@ -78,10 +79,10 @@ public class ContextTable {
                 allLinkSets.add(linkSet);
         }
         for(Tuple2<MJClass, MJClass> linkset : allLinkSets) {
-            if((linkset.first.getClassName().equals(className1)
-            || linkset.second.getClassName().equals(className2)) &&
-                    (linkset.first.getClassName().equals(className2)
-                    || linkset.second.getClassName().equals(className1))) {
+            String childName = linkset.first.getClassName();
+            String parentName = linkset.second.getClassName();
+            if((childName.equals(className1) && parentName.equals(className2))
+                    || (childName.equals(className2) && parentName.equals(className1))) {
                 return true;
             }
         }
@@ -143,6 +144,8 @@ public class ContextTable {
     }
 
     public MJClass getCurrentClass() {
+        if (!classStack.empty())
+            return classStack.peek();
         return currentClass;
     }
 
