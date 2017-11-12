@@ -1,0 +1,17 @@
+# Setting up the parse source files
+
+To set up the parse source files you have to first run JTB on the
+`minijava.jj` file, and then build the class files using JavaCC. The
+procedure is pretty simple:
+
+```
+java -jar ../../../misc/jtb132.jar ../../../grammars/minijava.jj
+java -cp ../../../misc/javacc.jar javacc jtb.out.jj
+```
+
+These files will be compiled and is available to you when using `gradle
+build` and `gradle run`.
+
+DO NOT INCLUDE THESE FILES IN YOUR TAR.
+
+
