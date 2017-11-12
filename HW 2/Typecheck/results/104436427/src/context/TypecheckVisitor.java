@@ -393,6 +393,13 @@ public class TypecheckVisitor extends GJDepthFirst<MJType, ContextTable> {
             foundLHS = true;
             identifier = topMethod.findInLocals(identifier);
         }
+        /*
+        topMethod.printMJMethod();
+        System.out.println("Current Class:" + currentClass.getClassName());
+        System.out.println("Top Method:" + topMethod.getMethodName());
+        System.out.println(identifier.getType());
+        System.out.println(matchedIdentifier.getType());
+        */
         // Couldn't find a match
         if (foundRHS && foundLHS) {
             if (identifier.getType() != matchedIdentifier.getType()) {

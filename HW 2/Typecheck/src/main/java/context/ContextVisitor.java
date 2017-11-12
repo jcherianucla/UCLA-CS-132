@@ -229,7 +229,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
                 if(argu.getParent().getClassMethod(methodName) == null)
                     throw new MJTypeCheckException("Found overloading through duplicate method declaration");
             }
-        } else {
+        }
             argu.addMethod(method);
             // Add parameters to method
             n.f4.accept(this, argu);
@@ -237,7 +237,7 @@ public class ContextVisitor extends GJVoidDepthFirst<MJClass> {
             for(Node node : n.f7.nodes) {
                 node.accept(this, argu);
             }
-        }
+        
     }
 
     /**

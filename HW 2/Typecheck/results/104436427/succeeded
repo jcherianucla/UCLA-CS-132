@@ -1,32 +1,33 @@
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/QuickSort-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Ray-test-4.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Ray-test-2.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/QuickSort.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Duplicate-class-error2.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/MoreThan4.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Field-vs-method-overload.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/BinaryTree-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/MC-Duplicate-var.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/BubbleSort-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Factorial-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Overloading-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Duplicate-class-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Ray-test-3.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Class-cycle-error2.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/LinkedList-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Expression-subclass-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Basic-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/TreeVisitor-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Ray-test-1.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Expression-subclass.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/LinearSearch-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Static-this.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/LinkedList.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Class-cycle-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/TreeVisitor.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/LinearSearch.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/BubbleSort.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Factorial.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/MoreThan4-error.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/Basic.java.out
-/home/jahan/Desktop/CS_132/HW 2/Typecheck/testcases/BinaryTree.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Basic-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Basic.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/BinaryTree-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/BinaryTree.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/BubbleSort-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/BubbleSort.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Class-cycle-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Class-cycle-error2.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Duplicate-class-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Duplicate-class-error2.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Expression-subclass-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Expression-subclass.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Factorial-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Factorial.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Field-vs-method-overload.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Jai-test.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/LinearSearch-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/LinearSearch.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/LinkedList-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/LinkedList.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/MC-Duplicate-var.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/MoreThan4-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/MoreThan4.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Overloading-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/QuickSort-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/QuickSort.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Ray-test-1.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Ray-test-2.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Ray-test-3.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Ray-test-4.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/Static-this.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/TreeVisitor-error.java.out
+/Users/jahancherian/Desktop/Work/UCLA/CS 132/Homework/HW 2/Typecheck/testcases/TreeVisitor.java.out
