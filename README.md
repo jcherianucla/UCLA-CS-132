@@ -5,3 +5,4 @@ These are my solution for the projects for CS 132 - Compiler Construction as tau
 Project | Score | Average
 ---- | ---- | ----
 1 | 100 | 96.52
+2 | 93.22| 84.00
