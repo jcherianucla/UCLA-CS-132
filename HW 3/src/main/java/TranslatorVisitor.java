@@ -25,7 +25,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     }
 
     private boolean isSingle(LinkedList<String> expr) {
-        return expr.size() == 1 && expr.getLast().length() == 1;
+        return expr.size() == 1 && (expr.getLast().length() == 1 || isLiteral(expr));
     }
 
     private String extractLastVar(LinkedList<String> expr) {
@@ -56,7 +56,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     }
 
     private String createElseLabel(boolean end) {
-        return end ? "if" + elseCounter++ + "_else:" : "if" + elseCounter + "_else";
+        return end ? "if" + --elseCounter + "_else:" : ":if" + elseCounter++ + "_else";
     }
 
     /**
@@ -373,7 +373,21 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(IfStatement n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> expression = n.f2.accept(this, argu);
+        LinkedList<String> ifelse = new LinkedList<>(expression);
+        ifelse.add(indent() + "if0 " + extractLastVar(ifelse) + " goto " + createElseLabel(false));
+        LinkedList<String> ifstmt = n.f4.accept(this, argu);
+        indentLevel++;
+        ifelse.addAll(ifstmt);
+        ifelse.add(indent() + "goto :if" + (elseCounter-1) + "_end");
+        indentLevel--;
+        ifelse.add(indent() + createElseLabel(true));
+        LinkedList<String> elsestmt = n.f6.accept(this, argu);
+        indentLevel++;
+        ifelse.addAll(elsestmt);
+        indentLevel--;
+        ifelse.add(indent() + "if" + elseCounter + "_end:");
+        return ifelse;
     }
 
     /**
@@ -405,6 +419,8 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(PrintStatement n, Map<String, VClass> argu) {
         LinkedList<String> expression = n.f2.accept(this, argu);
         LinkedList<String> print = new LinkedList<>();
+        if(!isSingle(expression))
+            print.addAll(expression);
         print.add(indent() + "PrintIntS(" + extractLastVar(expression) + ")");
         return print;
     }
@@ -466,7 +482,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(CompareExpression n, Map<String, VClass> argu) {
-        return binaryOp(n.f0, n.f1, argu, "LtS");
+        return binaryOp(n.f0, n.f2, argu, "LtS");
     }
 
 
