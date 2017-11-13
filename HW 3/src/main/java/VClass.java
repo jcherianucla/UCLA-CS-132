@@ -44,6 +44,15 @@ public class VClass {
         return this.get(methods, VMethod.class);
     }
 
+    public VMethod getMethod(String methodName) {
+        List<VMethod> allMethods = getMethods();
+        for(VMethod method : allMethods) {
+            if(method.methodName.equals(methodName))
+                return method
+        }
+        return null;
+    }
+
     /**
      * Gets member objects, which are of type String
      * @return List of members as Strings

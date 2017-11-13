@@ -61,7 +61,16 @@ public class ContextVisitor extends DepthFirstVisitor{
      */
     @Override
     public void visit(MainClass n) {
-        // Don't care about anything here
+        String className = "main";
+        VMethod mainMethod = new VMethod(className);
+        VClass main = new VClass(className);
+        main.methods.add(mainMethod);
+        classes.put(className, main);
+        currentClass = main;
+        currentMethod = mainMethod;
+        for(Node _var : n.f14.nodes) {
+            _var.accept(this);
+        }
     }
 
     /**

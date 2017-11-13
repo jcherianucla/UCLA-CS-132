@@ -15,6 +15,7 @@ public class J2V {
             System.out.println("-------------");
             contextVisitor.printVMTs();
         } catch (ParseException e) {
+            e.printStackTrace();
             System.out.println(PARSE_ERROR);
             return;
         }
