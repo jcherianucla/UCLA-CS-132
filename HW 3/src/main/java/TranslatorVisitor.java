@@ -1,40 +1,62 @@
 import syntaxtree.*;
 import visitor.GJDepthFirst;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Map;
 
-public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<String, VClass>> {
+public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<String, VClass>> {
 
     private int indentLevel = 0;
-    private int var_counter = 0;
+    private int varCounter = 0;
+    private int nullCounter = 1;
+    private int elseCounter = 1;
     private String currentClass;
     private String currentMethod;
-    private StringBuilder vapor = new StringBuilder();
+    private LinkedList<String> vapor = new LinkedList<String>();
 
-    public void printFunc(VClass _class, VMethod _method) {
-        System.out.print("func " + _class.className + "." + _method.methodName+"(this");
-        int paramSize = _method.params.size();
-        for(int i = 0; i < paramSize; i++) {
-            System.out.print(" " + _method.params.get(i));
+    private boolean isLiteral(LinkedList<String> expr) {
+        try{
+            Integer.parseInt(expr.getLast());
+        } catch (Exception e) {
+            return false;
         }
-        System.out.print(")\n");
+        return true;
     }
 
-    public void printMain() {
-        System.out.println("func Main()");
+    private boolean isSingle(LinkedList<String> expr) {
+        return expr.size() == 1 && expr.getLast().length() == 1;
     }
 
-    public void printAlloc(String label) {
-        System.out.print("HeapAllocZ("+label+")\n");
+    private String extractLastVar(LinkedList<String> expr) {
+        return expr.getLast().split("=")[0].trim();
     }
 
-    public void printError(String error) {
-        System.out.println("Error(\""+error+"\")");
+    private String extractLastExpr(LinkedList<String> expr) {
+        return expr.getLast().split("=")[1].trim();
     }
 
-    public void printPrint(String label) {
-        System.out.println("PrintIntS("+label+")");
+    private String indent() {
+        String indent = "";
+        for(int i = 0; i < indentLevel; i++)
+            indent += "\t";
+        return indent;
+    }
+
+    private void clearCounter() {
+        varCounter = 0;
+    }
+
+    private String createTemp() {
+        return "t." + varCounter++;
+    }
+
+    private String createNullLabel(boolean end) {
+        return end ? "null" + nullCounter++ + ":" : ":null" + nullCounter;
+    }
+
+    private String createElseLabel(boolean end) {
+        return end ? "if" + elseCounter++ + "_else:" : "if" + elseCounter + "_else";
     }
 
     /**
@@ -46,10 +68,10 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(Goal n, HashMap<String, VClass> argu) {
-        vapor.append(n.f0.accept(this, argu));
+    public LinkedList<String> visit(Goal n, Map<String, VClass> argu) {
+        vapor.addAll(n.f0.accept(this, argu));
         for(Node _class : n.f1.nodes){
-            vapor.append(_class.accept(this, argu));
+            vapor.addAll(_class.accept(this, argu));
         }
         return vapor;
     }
@@ -78,15 +100,16 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(MainClass n, HashMap<String, VClass> argu) {
-        StringBuilder main = new StringBuilder("func Main()\n");
+    public LinkedList<String> visit(MainClass n, Map<String, VClass> argu) {
+        LinkedList<String> main = new LinkedList<String>(Arrays.asList("func Main"));
+        indentLevel++;
         currentClass = "main";
-        for(Node _vars : n.f14.nodes) {
-            main.append(_vars.accept(this, argu));
-        }
+        currentMethod = "main";
         for(Node _stmt : n.f15.nodes) {
-            main.append(_stmt.accept(this, argu));
+            main.addAll(_stmt.accept(this, argu));
         }
+        main.add(indent() + "ret");
+        indentLevel--;
         return main;
     }
 
@@ -98,7 +121,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(TypeDeclaration n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(TypeDeclaration n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -114,7 +137,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ClassDeclaration n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ClassDeclaration n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -132,7 +155,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ClassExtendsDeclaration n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ClassExtendsDeclaration n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -145,7 +168,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(VarDeclaration n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(VarDeclaration n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -168,7 +191,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(MethodDeclaration n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(MethodDeclaration n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -180,7 +203,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(FormalParameterList n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(FormalParameterList n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -192,7 +215,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(FormalParameter n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(FormalParameter n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -204,7 +227,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(FormalParameterRest n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(FormalParameterRest n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -218,7 +241,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(Type n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(Type n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -231,7 +254,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ArrayType n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ArrayType n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -242,7 +265,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(BooleanType n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(BooleanType n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -253,7 +276,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(IntegerType n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(IntegerType n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -269,7 +292,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(Statement n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(Statement n, Map<String, VClass> argu) {
         return n.f0.accept(this, argu);
     }
 
@@ -282,11 +305,13 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(Block n, HashMap<String, VClass> argu) {
-        StringBuilder block = new StringBuilder<>();
+    public LinkedList<String> visit(Block n, Map<String, VClass> argu) {
+        LinkedList<String> block = new LinkedList<>();
+        indentLevel++;
         for(Node _stmt : n.f1.nodes) {
-            block.append(_stmt.accept(this, argu));
+            block.addAll(_stmt.accept(this, argu));
         }
+        indentLevel--;
         return block;
     }
 
@@ -300,18 +325,21 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(AssignmentStatement n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(AssignmentStatement n, Map<String, VClass> argu) {
         String id = n.f0.f0.toString();
-        StringBuilder assignment = new StringBuilder<>();
+        LinkedList<String> assignment = new LinkedList<>();
+        LinkedList<String> expression = n.f2.accept(this, argu);
+        if(!isSingle(expression))
+            assignment.addAll(expression);
         // If its not local it must be instance - guaranteed typecheck
         if(argu.get(currentClass).getMethod(currentMethod).locals.indexOf(id) == -1) {
             int idx = argu.get(currentClass).members.indexOf(id);
             int offset = 4 + 4*idx;
-            assignment.append("[this + "+offset+"] = ");
-        } else {
-            assignment.append(id + " = ");
+            assignment.add(indent() + createTemp() + " = [this + " + offset +"]");
         }
-        assignment.append(n.f2.accept(this, argu));
+        String val = assignment.isEmpty() ? expression.getLast() : extractLastVar(assignment);
+        assignment.add(indent() + id + " = " + val);
+        return assignment;
     }
 
     /**
@@ -327,7 +355,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ArrayAssignmentStatement n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ArrayAssignmentStatement n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -344,7 +372,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(IfStatement n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(IfStatement n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -359,7 +387,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(WhileStatement n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(WhileStatement n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -374,8 +402,11 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(PrintStatement n, HashMap<String, VClass> argu) {
-        return null;
+    public LinkedList<String> visit(PrintStatement n, Map<String, VClass> argu) {
+        LinkedList<String> expression = n.f2.accept(this, argu);
+        LinkedList<String> print = new LinkedList<>();
+        print.add(indent() + "PrintIntS(" + extractLastVar(expression) + ")");
+        return print;
     }
 
     /**
@@ -393,8 +424,23 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(Expression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(Expression n, Map<String, VClass> argu) {
         return n.f0.accept(this, argu);
+    }
+
+    private LinkedList<String> binaryOp(Node l, Node r, Map<String, VClass> argu, String type) {
+        LinkedList<String> current = new LinkedList<>();
+        LinkedList<String> lhs = l.accept(this, argu);
+        LinkedList<String> rhs = r.accept(this, argu);
+        if (!isSingle(lhs))
+            current.addAll(lhs);
+        String val1 = isSingle(lhs) ? lhs.getLast() : extractLastVar(current);
+        if (!isSingle(rhs))
+            current.addAll(rhs);
+        String val2 = isSingle(rhs) ? rhs.getLast() : extractLastVar(current);
+        current.add(indent() + createTemp() + " = " + type + "(" + val1 + " " + val2 + ")");
+        return current;
+
     }
 
     /**
@@ -406,7 +452,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(AndExpression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(AndExpression n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -419,9 +465,10 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(CompareExpression n, HashMap<String, VClass> argu) {
-        return null;
+    public LinkedList<String> visit(CompareExpression n, Map<String, VClass> argu) {
+        return binaryOp(n.f0, n.f1, argu, "LtS");
     }
+
 
     /**
      * f0 -> PrimaryExpression()
@@ -432,13 +479,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(PlusExpression n, HashMap<String, VClass> argu) {
-        StringBuilder add = new StringBuilder("Add(");
-        StringBuilder lhs = n.f0.accept(this, argu).append(" ")
-        StringBuilder rhs = n.f2.accept(this, argu).append(")");
-        add.append(lhs);
-        add.append(rhs);
-        return add;
+    public LinkedList<String> visit(PlusExpression n, Map<String, VClass> argu) {
+        return binaryOp(n.f0, n.f2, argu, "Add");
     }
 
     /**
@@ -450,13 +492,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(MinusExpression n, HashMap<String, VClass> argu) {
-        StringBuilder sub = new StringBuilder("Sub(");
-        StringBuilder lhs = n.f0.accept(this, argu).append(" ")
-        StringBuilder rhs = n.f2.accept(this, argu).append(")");
-        sub.append(lhs);
-        sub.append(rhs);
-        return sub;
+    public LinkedList<String> visit(MinusExpression n, Map<String, VClass> argu) {
+        return binaryOp(n.f0, n.f2, argu, "Sub");
     }
 
     /**
@@ -468,13 +505,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(TimesExpression n, HashMap<String, VClass> argu) {
-        StringBuilder mul = new StringBuilder("MulS(");
-        StringBuilder lhs = n.f0.accept(this, argu).append(" ")
-        StringBuilder rhs = n.f2.accept(this, argu).append(")");
-        mul.append(lhs);
-        mul.append(rhs);
-        return mul;
+    public LinkedList<String> visit(TimesExpression n, Map<String, VClass> argu) {
+        return binaryOp(n.f0, n.f2, argu, "MulS");
     }
 
     /**
@@ -487,7 +519,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ArrayLookup n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ArrayLookup n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -500,7 +532,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ArrayLength n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ArrayLength n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -516,7 +548,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(MessageSend n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(MessageSend n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -528,7 +560,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ExpressionList n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ExpressionList n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -540,7 +572,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ExpressionRest n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ExpressionRest n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -559,7 +591,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(PrimaryExpression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(PrimaryExpression n, Map<String, VClass> argu) {
         return n.f0.accept(this, argu);
     }
 
@@ -570,8 +602,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(IntegerLiteral n, HashMap<String, VClass> argu) {
-        return new StringBuilder(n.f0.f0.toString());
+    public LinkedList<String> visit(IntegerLiteral n, Map<String, VClass> argu) {
+        return new LinkedList<String>(Arrays.asList(n.f0.toString()));
     }
 
     /**
@@ -581,8 +613,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(TrueLiteral n, HashMap<String, VClass> argu) {
-        return null;
+    public LinkedList<String> visit(TrueLiteral n, Map<String, VClass> argu) {
+        return new LinkedList<String>(Arrays.asList("1"));
     }
 
     /**
@@ -592,8 +624,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(FalseLiteral n, HashMap<String, VClass> argu) {
-        return null;
+    public LinkedList<String> visit(FalseLiteral n, Map<String, VClass> argu) {
+        return new LinkedList<String>(Arrays.asList("0"));
     }
 
     /**
@@ -603,8 +635,9 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(Identifier n, HashMap<String, VClass> argu) {
-        return new StringBuilder(n.f0.f0.toString());
+    public LinkedList<String> visit(Identifier n, Map<String, VClass> argu) {
+        String id = n.f0.toString();
+        return new LinkedList<String>(Arrays.asList(id));
     }
 
     /**
@@ -614,8 +647,8 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ThisExpression n, HashMap<String, VClass> argu) {
-        return new StringBuilder(n.f0);
+    public LinkedList<String> visit(ThisExpression n, Map<String, VClass> argu) {
+        return null;
     }
 
     /**
@@ -629,7 +662,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(ArrayAllocationExpression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(ArrayAllocationExpression n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -643,7 +676,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(AllocationExpression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(AllocationExpression n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -655,7 +688,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(NotExpression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(NotExpression n, Map<String, VClass> argu) {
         return null;
     }
 
@@ -668,7 +701,7 @@ public class TranslatorVisitor extends GJDepthFirst<StringBuilder, HashMap<Strin
      * @param argu
      */
     @Override
-    public StringBuilder visit(BracketExpression n, HashMap<String, VClass> argu) {
+    public LinkedList<String> visit(BracketExpression n, Map<String, VClass> argu) {
         return n.f1.accept(this, argu);
     }
 }
