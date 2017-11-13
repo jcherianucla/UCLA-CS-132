@@ -48,7 +48,7 @@ public class VClass {
         List<VMethod> allMethods = getMethods();
         for(VMethod method : allMethods) {
             if(method.methodName.equals(methodName))
-                return method
+                return method;
         }
         return null;
     }
