@@ -577,7 +577,11 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ExpressionList n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> exprList = new LinkedList<>(n.f0.accept(this, argu));
+        for(Node _expr : n.f1.nodes) {
+            exprList.addAll(_expr.accept(this, argu));
+        }
+        return exprList;
     }
 
     /**
@@ -589,7 +593,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ExpressionRest n, Map<String, VClass> argu) {
-        return null;
+        return n.f1.accept(this, argu);
     }
 
     /**
@@ -619,7 +623,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(IntegerLiteral n, Map<String, VClass> argu) {
-        return new LinkedList<String>(Arrays.asList(n.f0.toString()));
+        return new LinkedList<>(Arrays.asList(n.f0.toString()));
     }
 
     /**
@@ -630,7 +634,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(TrueLiteral n, Map<String, VClass> argu) {
-        return new LinkedList<String>(Arrays.asList("1"));
+        return new LinkedList<>(Arrays.asList("1"));
     }
 
     /**
@@ -641,7 +645,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(FalseLiteral n, Map<String, VClass> argu) {
-        return new LinkedList<String>(Arrays.asList("0"));
+        return new LinkedList<>(Arrays.asList("0"));
     }
 
     /**
@@ -653,7 +657,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(Identifier n, Map<String, VClass> argu) {
         String id = n.f0.toString();
-        return new LinkedList<String>(Arrays.asList(id));
+        return new LinkedList<>(Arrays.asList(id));
     }
 
     /**
