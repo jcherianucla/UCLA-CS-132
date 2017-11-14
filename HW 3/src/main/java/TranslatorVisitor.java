@@ -11,6 +11,8 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private int varCounter = 0;
     private int nullCounter = 1;
     private int elseCounter = 1;
+    private int whileCounter = 1;
+    private boolean shouldPrintAlloc = false;
     private String currentClass;
     private String currentMethod;
     private LinkedList<String> vapor = new LinkedList<String>();
@@ -28,12 +30,29 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return expr.size() == 1 && (expr.getLast().length() == 1 || isLiteral(expr));
     }
 
+    private boolean isCall(LinkedList<String> expr) {
+        return expr.size() == 1 && (expr.getLast().split(":")[0].trim().equals("call"));
+    }
+
     private String extractLastVar(LinkedList<String> expr) {
         return expr.getLast().split("=")[0].trim();
     }
 
     private String extractLastExpr(LinkedList<String> expr) {
         return expr.getLast().split("=")[1].trim();
+    }
+
+    private LinkedList<String> arrayAlloc() {
+        LinkedList<String> allocFunc = new LinkedList<>();
+        allocFunc.add("func AllocArray(size)");
+        indentLevel++;
+        allocFunc.add(indent() + "bytes = MulS(size 4)");
+        allocFunc.add(indent() + "bytes = Add(bytes 4)");
+        allocFunc.add(indent() + "v = HeapAllocZ(bytes)");
+        allocFunc.add(indent() + "[v] = size");
+        allocFunc.add(indent() + "ret v");
+        indentLevel--;
+        return allocFunc;
     }
 
     private String indent() {
@@ -51,14 +70,6 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return "t." + varCounter++;
     }
 
-    private String createNullLabel(boolean end) {
-        return end ? "null" + nullCounter++ + ":" : ":null" + nullCounter;
-    }
-
-    private String createElseLabel(boolean end) {
-        return end ? "if" + --elseCounter + "_else:" : ":if" + elseCounter++ + "_else";
-    }
-
     /**
      * f0 -> MainClass()
      * f1 -> ( TypeDeclaration() )*
@@ -72,6 +83,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         vapor.addAll(n.f0.accept(this, argu));
         for(Node _class : n.f1.nodes){
             vapor.addAll(_class.accept(this, argu));
+        }
+        if(shouldPrintAlloc) {
+            vapor.add("\n");
+            vapor.addAll(arrayAlloc());
         }
         return vapor;
     }
@@ -101,7 +116,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(MainClass n, Map<String, VClass> argu) {
-        LinkedList<String> main = new LinkedList<String>(Arrays.asList("func Main"));
+        LinkedList<String> main = new LinkedList<>(Arrays.asList("func Main()"));
         indentLevel++;
         currentClass = "main";
         currentMethod = "main";
@@ -329,7 +344,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         String id = n.f0.f0.toString();
         LinkedList<String> assignment = new LinkedList<>();
         LinkedList<String> expression = n.f2.accept(this, argu);
-        if(!isSingle(expression))
+        if(!isSingle(expression) && !isCall(expression))
             assignment.addAll(expression);
         // If its not local it must be instance - guaranteed typecheck
         if(argu.get(currentClass).getMethod(currentMethod).locals.indexOf(id) == -1) {
@@ -373,20 +388,21 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(IfStatement n, Map<String, VClass> argu) {
+        int currentElseCount = elseCounter++;
         LinkedList<String> expression = n.f2.accept(this, argu);
         LinkedList<String> ifelse = new LinkedList<>(expression);
-        ifelse.add(indent() + "if0 " + extractLastVar(ifelse) + " goto " + createElseLabel(false));
+        ifelse.add(indent() + "if0 " + extractLastVar(ifelse) + " goto " + ":if" + currentElseCount + "_else");
         LinkedList<String> ifstmt = n.f4.accept(this, argu);
         indentLevel++;
         ifelse.addAll(ifstmt);
-        ifelse.add(indent() + "goto :if" + (elseCounter-1) + "_end");
+        ifelse.add(indent() + "goto :if" + currentElseCount + "_end");
         indentLevel--;
-        ifelse.add(indent() + createElseLabel(true));
+        ifelse.add(indent() + "if" + currentElseCount + "_else:");
         LinkedList<String> elsestmt = n.f6.accept(this, argu);
         indentLevel++;
         ifelse.addAll(elsestmt);
         indentLevel--;
-        ifelse.add(indent() + "if" + elseCounter + "_end:");
+        ifelse.add(indent() + "if" + currentElseCount + "_end:");
         return ifelse;
     }
 
@@ -402,7 +418,21 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(WhileStatement n, Map<String, VClass> argu) {
-        return null;
+        int currentWhileCount = whileCounter++;
+        LinkedList<String> _while = new LinkedList<>();
+        _while.add(indent() + "while" + currentWhileCount + "_top:");
+        LinkedList<String> expression = n.f2.accept(this, argu);
+        indentLevel++;
+        _while.addAll(expression);
+        indentLevel--;
+        _while.add(indent() + "if0 " + extractLastVar(_while) + " goto :while" + currentWhileCount + "_end");
+        LinkedList<String> _whilestmt = n.f4.accept(this, argu);
+        _while.addAll(_whilestmt);
+        indentLevel++;
+        _while.add(indent() + "goto :while" + currentWhileCount + "_top");
+        indentLevel--;
+        _while.add(indent() + "while" + currentWhileCount + "_end:");
+        return _while;
     }
 
     /**
@@ -683,7 +713,16 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ArrayAllocationExpression n, Map<String, VClass> argu) {
-        return null;
+        shouldPrintAlloc = true;
+        LinkedList<String> expression = n.f3.accept(this,argu);
+        LinkedList<String> arrAlloc = new LinkedList<>();
+        if(isSingle(expression)) {
+            arrAlloc.add("call :AllocArray(" + expression.getLast() + ")");
+        } else {
+            arrAlloc.addAll(expression);
+            arrAlloc.add("call :AllocArray(" + extractLastVar(arrAlloc) + ")");
+        }
+        return arrAlloc;
     }
 
     /**
