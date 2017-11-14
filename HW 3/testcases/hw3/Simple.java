@@ -18,5 +18,10 @@ class Main {
 		} else {
 	    	System.out.println(4);
 		}
+		if (x < 1) {
+	    	x = 9;
+		} else {
+	    	x = 10;
+		}
 	}
 }
