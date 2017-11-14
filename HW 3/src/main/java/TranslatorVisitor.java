@@ -12,6 +12,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private int nullCounter = 1;
     private int elseCounter = 1;
     private int whileCounter = 1;
+    private int boundsCounter = 1;
     private boolean shouldPrintAlloc = false;
     private String currentClass;
     private String currentMethod;
@@ -68,6 +69,11 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
 
     private String createTemp() {
         return "t." + varCounter++;
+    }
+
+    private String error(boolean oob) {
+        String base = indent() + "Error(";
+        return oob ? base + "\"array out of bounds\")" : base + "\"null pointer\")";
     }
 
     /**
@@ -357,6 +363,61 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return assignment;
     }
 
+    public LinkedList<String> arrDeref(String id, String var, Map<String, VClass> argu) {
+        LinkedList<String> arr = new LinkedList<>();
+
+        // If its not local it must be instance - guaranteed typecheck
+        if(argu.get(currentClass).getMethod(currentMethod).locals.indexOf(id) == -1) {
+            int instanceIdx = argu.get(currentClass).members.indexOf(id);
+            int offset = 4 + 4*instanceIdx;
+            arr.add(indent() + var + " = [this + " + offset +"]");
+        } else {
+            arr.add(indent() + var + " = " + id);
+        }
+        return arr;
+    }
+
+    public LinkedList<String> nullPtrCheck(String var) {
+        LinkedList<String> nullptr = new LinkedList<>();
+        int currentNullCount = nullCounter++;
+        nullptr.add(indent() + "if " + var + " goto :null" + currentNullCount);
+        indentLevel++;
+        nullptr.add(error(false));
+        indentLevel--;
+        nullptr.add(indent() + "null" + currentNullCount + ":");
+        return nullptr;
+    }
+
+    public LinkedList<String> oobCheck(String var) {
+        LinkedList<String> oob = new LinkedList<>();
+        int currentBoundsCount = boundsCounter++;
+        oob.add(indent() + "if " + var + " goto :bounds" + currentBoundsCount);
+        indentLevel++;
+        oob.add(error(true));
+        indentLevel--;
+        oob.add(indent() + "bounds" + currentBoundsCount + ":");
+        return oob;
+    }
+
+    public LinkedList<String> arrayOp(String id, String idx, Map<String, VClass> argu) {
+        LinkedList<String> arr = new LinkedList<>();
+        String temp1 = createTemp();
+        // Assign heap pointer to temp var
+        arr.addAll(arrDeref(id, temp1, argu));
+        // Null pointer check
+        arr.addAll(nullPtrCheck(temp1));
+        // Get size
+        String temp2 = createTemp();
+        arr.add(indent() + temp2 + " = [" + temp1 + "]");
+        arr.add(indent() + temp2 + " = Lt(" + idx + " " + temp2 + ")");
+        // Out of bounds check
+        arr.addAll(oobCheck(temp2));
+        // Get to index position
+        arr.add(indent() + temp2 + " = MulS(" + idx + " 4)");
+        arr.add(indent() + temp2 + " = Add(" + temp2 + " " + temp1 + ")");
+        return arr;
+    }
+
     /**
      * f0 -> Identifier()
      * f1 -> "["
@@ -371,7 +432,29 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ArrayAssignmentStatement n, Map<String, VClass> argu) {
-        return null;
+        String id = n.f0.f0.toString();
+        LinkedList<String> arrAssignment = new LinkedList<>();
+        LinkedList<String> arrIdx = n.f2.accept(this, argu);
+        if(!isSingle(arrIdx) && !isCall(arrIdx)) {
+            arrAssignment.addAll(arrIdx);
+        }
+
+        String idx = arrAssignment.isEmpty() ? arrIdx.getLast() : extractLastVar(arrAssignment);
+        // Perform null check and oob check
+        arrAssignment.addAll(arrayOp(id, idx, argu));
+        int currentVarCount = varCounter;
+        LinkedList<String> arrVal = n.f5.accept(this, argu);
+        String val;
+        if(!isSingle(arrVal) && !isCall(arrVal)) {
+            arrAssignment.addAll(arrVal);
+            val = extractLastVar(arrAssignment);
+        } else {
+            val = arrVal.getLast();
+        }
+        // Actual assignment
+        arrAssignment.add(indent() + "[t." + (currentVarCount - 1) + " + 4] = " + val);
+
+        return arrAssignment;
     }
 
     /**
@@ -566,7 +649,13 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ArrayLookup n, Map<String, VClass> argu) {
-        return null;
+        String id = n.f0.accept(this, argu).getLast();
+        String idx = n.f2.accept(this, argu).getLast();
+        LinkedList<String> arrLookup = new LinkedList<>();
+        arrLookup.addAll(arrayOp(id, idx, argu));
+        int currentVarCount = varCounter;
+        arrLookup.add(indent() + createTemp() + " = [t." + (currentVarCount-1) + " + 4]");
+        return arrLookup;
     }
 
     /**
@@ -579,7 +668,17 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ArrayLength n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> arrLength = new LinkedList<>();
+        String id = n.f0.accept(this, argu).getLast();
+        String temp = createTemp();
+        // Dereference the array
+        arrLength.addAll(arrDeref(id, temp, argu));
+        // Null pointer check
+        arrLength.addAll(nullPtrCheck(temp));
+        int currentVarCount = varCounter;
+        // Assign length value
+        arrLength.add(indent() + createTemp() + " = [t." + (currentVarCount-1) + "]");
+        return arrLength;
     }
 
     /**
