@@ -789,7 +789,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         // Nullptr check
         newClass.addAll(nullPtrCheck(currVar));
         // Set temp to deref class pointer
-        newClass.addAll(indent() + createTemp() + " = [" + currVar + "]");
+        newClass.add(indent() + createTemp() + " = [" + currVar + "]");
         return newClass;
     }
 
