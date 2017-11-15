@@ -143,7 +143,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(TypeDeclaration n, Map<String, VClass> argu) {
-        return null;
+        return n.f0.accept(this, argu);
     }
 
     /**
@@ -159,7 +159,12 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ClassDeclaration n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> _class = new LinkedList<>();
+        currentClass = n.f1.f0.toString();
+        for(Node _method : n.f4.nodes) {
+            _class.addAll(_method.accept(this, argu));
+        }
+        return _class;
     }
 
     /**
@@ -177,20 +182,12 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ClassExtendsDeclaration n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> Type()
-     * f1 -> Identifier()
-     * f2 -> ";"
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(VarDeclaration n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> _class = new LinkedList<>();
+        currentClass = n.f1.f0.toString();
+        for(Node _method : n.f6.nodes) {
+            _class.addAll(_method.accept(this, argu));
+        }
+        return _class;
     }
 
     /**
@@ -213,92 +210,35 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(MethodDeclaration n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> FormalParameter()
-     * f1 -> ( FormalParameterRest() )*
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(FormalParameterList n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> Type()
-     * f1 -> Identifier()
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(FormalParameter n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> ","
-     * f1 -> FormalParameter()
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(FormalParameterRest n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> ArrayType()
-     * | BooleanType()
-     * | IntegerType()
-     * | Identifier()
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(Type n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> "int"
-     * f1 -> "["
-     * f2 -> "]"
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(ArrayType n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> "boolean"
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(BooleanType n, Map<String, VClass> argu) {
-        return null;
-    }
-
-    /**
-     * f0 -> "int"
-     *
-     * @param n
-     * @param argu
-     */
-    @Override
-    public LinkedList<String> visit(IntegerType n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> _method = new LinkedList<>();
+        currentMethod = n.f2.f0.toString();
+        // Find the current method from current class
+        VMethod curr = argu.get(currentClass).getMethod(currentMethod);
+        String declaration = "func " + currentClass + "." + currentMethod + "(this ";
+        int paramSize = curr.params.size();
+        // Put down params
+        for(int i = 0; i < paramSize; i++) {
+            declaration += curr.params.get(i) + ((i < paramSize-1) ? " " : "");
+        }
+        declaration += ")";
+        _method.add(declaration);
+        indentLevel++;
+        // Grab all statements
+        for(Node _stmt : n.f8.nodes) {
+            _method.addAll(_stmt.accept(this, argu));
+        }
+        // Add return statement
+        LinkedList<String> retExpr = n.f10.accept(this, argu);
+        String retVal;
+        if(!isSingle(retExpr) && !isCall(retExpr)) {
+            _method.addAll(retExpr);
+            retVal = extractLastVar(_method);
+        } else {
+            retVal = retExpr.getLast();
+        }
+        _method.add(indent() + "ret " + retVal);
+        indentLevel--;
+        return _method;
     }
 
     /**
@@ -532,7 +472,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(PrintStatement n, Map<String, VClass> argu) {
         LinkedList<String> expression = n.f2.accept(this, argu);
         LinkedList<String> print = new LinkedList<>();
-        if(!isSingle(expression))
+        if(!isSingle(expression) && !isCall(expression))
             print.addAll(expression);
         print.add(indent() + "PrintIntS(" + extractLastVar(expression) + ")");
         return print;
@@ -582,7 +522,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(AndExpression n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> and = new LinkedList<>();
+        and.addAll(binaryOp(n.f0, n.f2, argu, "MulS"));
+        and.add(indent() + createTemp() + " = Eq(1 " + extractLastVar(and) + ")");
+        return and;
     }
 
     /**
@@ -597,7 +540,6 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(CompareExpression n, Map<String, VClass> argu) {
         return binaryOp(n.f0, n.f2, argu, "LtS");
     }
-
 
     /**
      * f0 -> PrimaryExpression()
@@ -847,7 +789,17 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(NotExpression n, Map<String, VClass> argu) {
-        return null;
+        LinkedList<String> not = new LinkedList<>();
+        LinkedList<String> expr = n.f1.accept(this, argu);
+        String exprVal;
+        if(!isSingle(expr) && !isCall(expr)) {
+            not.addAll(expr);
+            exprVal = extractLastVar(not);
+        } else {
+            exprVal = expr.getLast();
+        }
+        not.add(indent() + createTemp() + " = Sub(" + exprVal + " 1)");
+        return not;
     }
 
     /**
