@@ -739,7 +739,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ThisExpression n, Map<String, VClass> argu) {
-        return null;
+        return new LinkedList<>(Arrays.asList("this"));
     }
 
     /**
@@ -757,6 +757,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         shouldPrintAlloc = true;
         LinkedList<String> expression = n.f3.accept(this,argu);
         LinkedList<String> arrAlloc = new LinkedList<>();
+        // Rely on calling the array allocation function
         if(isSingle(expression)) {
             arrAlloc.add("call :AllocArray(" + expression.getLast() + ")");
         } else {
@@ -777,7 +778,19 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(AllocationExpression n, Map<String, VClass> argu) {
-        return null;
+        currentClass = n.f1.f0.toString();
+        VClass curr = argu.get(currentClass);
+        LinkedList<String> newClass = new LinkedList<>();
+        String currVar = createTemp();
+        // Allocate heap space
+        newClass.add(indent() + currVar + " = HeapAllocZ(" + curr.size() + ")");
+        // Set to class pointer
+        newClass.add(indent() + "[" + currVar + "] = :vmt_" + currentClass);
+        // Nullptr check
+        newClass.addAll(nullPtrCheck(currVar));
+        // Set temp to deref class pointer
+        newClass.addAll(indent() + createTemp() + " = [" + currVar + "]");
+        return newClass;
     }
 
     /**
@@ -798,6 +811,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         } else {
             exprVal = expr.getLast();
         }
+        // Subtraction will negate the boolean expression
         not.add(indent() + createTemp() + " = Sub(" + exprVal + " 1)");
         return not;
     }
