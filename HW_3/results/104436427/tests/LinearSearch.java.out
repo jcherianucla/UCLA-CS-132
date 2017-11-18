@@ -1,0 +1,4 @@
+--- Error (ProgramFault) ---
+call to "LS.Print": incorrect number of arguments in function call (expecting: 1, found: 2)
+  Main() line 14
+  LS.Start(<Heap.0>+0 10) line 24

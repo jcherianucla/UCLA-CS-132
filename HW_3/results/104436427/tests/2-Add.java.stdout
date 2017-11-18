@@ -1,0 +1,4 @@
+func Main()
+	t.0 = Add(12 21)
+	PrintIntS(t.0)
+	ret
