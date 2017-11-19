@@ -81,7 +81,7 @@ public class VClass {
         return baseObjs;
     }
 
-    public String getMethodsClass(VMethod method) {
+    private String getMethodsClass(VMethod method) {
         if(this.methods.indexOf(method) != -1) {
             return this.className;
         } else {
