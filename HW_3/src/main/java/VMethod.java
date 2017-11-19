@@ -6,7 +6,8 @@ public class VMethod {
     public String methodName;
     public List<String> params = new ArrayList<>();
     public List<String> locals = new ArrayList<>();
-    public HashMap<String, String> types = new HashMap<>();
+    public HashMap<String, String> localTypes = new HashMap<>();
+    public HashMap<String, String> paramTypes = new HashMap<>();
     public String returnType;
 
     public VMethod(String methodName) {
