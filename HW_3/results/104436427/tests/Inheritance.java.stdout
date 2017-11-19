@@ -1,0 +1,68 @@
+const vmt_A
+	:A.bee
+	:A.bar
+	:A.far
+	:A.boo
+const vmt_B
+	:A.bee
+	:A.bar
+	:A.far
+	:B.eek
+	:B.boo
+const vmt_C
+	:A.bee
+	:A.far
+	:B.eek
+	:B.boo
+	:C.bar
+	:C.goo
+func Main()
+	t.0 = HeapAllocZ(4)
+	[t.0] = :vmt_C
+	if t.0 goto :null1
+		Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	t.2 = [t.1+20]
+	t.3 = HeapAllocZ(4)
+	[t.3] = :vmt_B
+	t.4 = call t.2(t.0 t.3)
+	PrintIntS(t.4)
+	ret
+func C.bar(this)
+	ret 3
+func C.goo(this a)
+	PrintIntS(2)
+	t.0 = [this]
+	t.1 = [t.0+8]
+	t.2 = call t.1(this)
+	x = t.2
+	if a goto :null2
+		Error("null pointer")
+	null2:
+	t.3 = [a]
+	t.4 = [t.3+12]
+	t.5 = call t.4(a)
+	PrintIntS(t.5)
+	ret x
+func B.eek(this)
+	t.0 = [this]
+	t.1 = [t.0+0]
+	t.2 = call t.1(this)
+	ret t.2
+func B.boo(this)
+	ret 4
+func A.bee(this)
+	t.0 = [this]
+	t.1 = [t.0+8]
+	t.2 = call t.1(this)
+	ret t.2
+func A.bar(this)
+	ret 2
+func A.far(this)
+	t.0 = [this]
+	t.1 = [t.0+4]
+	t.2 = call t.1(this)
+	ret t.2
+func A.boo(this)
+	ret 2

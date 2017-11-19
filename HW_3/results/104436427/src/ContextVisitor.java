@@ -10,6 +10,21 @@ public class ContextVisitor extends DepthFirstVisitor{
     private VMethod currentMethod;
     private boolean classVar = true;
 
+    private String getType(Type type) {
+        switch (type.f0.which) {
+            case 0:
+                return "int[]";
+            case 1:
+                return "boolean";
+            case 2:
+                return "int";
+            case 3:
+                return ((Identifier)type.f0.choice).f0.toString();
+            default:
+                return null;
+        }
+    }
+
     public void printContext() {
         for(VClass _class : classes.values()) {
             _class.printClass();
@@ -163,8 +178,10 @@ public class ContextVisitor extends DepthFirstVisitor{
         String variableName = n.f1.f0.toString();
         if(classVar) {
             currentClass.members.add(variableName);
+            currentClass.types.put(variableName, getType(n.f0));
         } else {
             currentMethod.locals.add(variableName);
+            currentMethod.localTypes.put(variableName, getType(n.f0));
         }
     }
 
@@ -191,6 +208,7 @@ public class ContextVisitor extends DepthFirstVisitor{
         VMethod curr = new VMethod(methodName);
         currentClass.methods.add(curr);
         currentMethod = curr;
+        currentMethod.returnType = getType(n.f1);
         n.f4.accept(this);
         for(Node _local : n.f7.nodes) {
             _local.accept(this);
@@ -221,6 +239,7 @@ public class ContextVisitor extends DepthFirstVisitor{
     public void visit(FormalParameter n) {
         String paramName = n.f1.f0.toString();
         currentMethod.params.add(paramName);
+        currentMethod.paramTypes.put(paramName, getType(n.f0));
     }
 
     /**

@@ -12,16 +12,16 @@ func Main()
 	PrintIntS(t.3)
 	ret
 func Fac.ComputeFac(this num)
-	t.4 = LtS(num 1)
-	if0 t.4 goto :if1_else
+	t.0 = LtS(num 1)
+	if0 t.0 goto :if1_else
 	num_aux = 1
 		goto :if1_end
 	if1_else:
-	t.5 = [this]
-	t.6 = [t.5+0]
-	t.7 = Sub(num 1)
-	t.8 = call t.6(this t.7)
-	t.9 = MulS(num t.8)
-	num_aux = t.9
+	t.1 = [this]
+	t.2 = [t.1+0]
+	t.3 = Sub(num 1)
+	t.4 = call t.2(this t.3)
+	t.5 = MulS(num t.4)
+	num_aux = t.5
 	if1_end:
 	ret num_aux

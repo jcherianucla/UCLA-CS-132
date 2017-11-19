@@ -13,19 +13,19 @@ func Main()
 	PrintIntS(t.3)
 	ret
 func A.run(this)
-	t.4 = [this]
-	t.5 = [t.4+4]
-	t.6 = call t.5(this 12)
-	a = t.6
-	t.7 = [this]
-	t.8 = [t.7+4]
-	t.9 = call t.8(this 15)
-	b = t.9
-	t.10 = Add(a b)
-	ret t.10
+	t.0 = [this]
+	t.1 = [t.0+4]
+	t.2 = call t.1(this 12)
+	a = t.2
+	t.3 = [this]
+	t.4 = [t.3+4]
+	t.5 = call t.4(this 15)
+	b = t.5
+	t.6 = Add(a b)
+	ret t.6
 func A.helper(this param)
 	x = param
-	t.11 = Add(param 1)
-	param = t.11
+	t.0 = Add(param 1)
+	param = t.0
 	PrintIntS(x)
 	ret x

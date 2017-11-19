@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ public class VClass {
     private VClass parent = null;
     public String className;
     public List<String> members = new ArrayList<>();
+    public HashMap<String, String> types = new HashMap<>();
     public List<VMethod> methods = new ArrayList<>();
 
     public VClass(String className) {
@@ -69,7 +71,7 @@ public class VClass {
      */
     private <T> List<T> get(List<T> baseObjs, Class<T> type) {
         if (hasParent()) {
-            List<T> parentObjs = parent.get(baseObjs, type);
+            List<T> parentObjs = type.equals(String.class) ? ((List<T>)parent.getMembers()) : ((List<T>)parent.getMethods());
             Set<T> currObjs = new HashSet<>(baseObjs);
             // Remove the same objects from parent - overriding
             parentObjs = parentObjs.stream().filter(obj -> !currObjs.contains(obj)).collect(Collectors.toList());
@@ -79,9 +81,21 @@ public class VClass {
         return baseObjs;
     }
 
+    public String getMethodsClass(VMethod method) {
+        if(this.methods.indexOf(method) != -1) {
+            return this.className;
+        } else {
+            return parent.getMethodsClass(method);
+        }
+    }
+
     public void printVMT() {
         System.out.println("const vmt_" + className);
         for(VMethod method : getMethods()) {
+            String className = this.className;
+            if(hasParent()) {
+                className = this.getMethodsClass(method);
+            }
             System.out.println("\t:"+className+"."+method.methodName);
         }
     }

@@ -19,10 +19,10 @@ func MT4.Start(this p1 p2 p3 p4 p5 p6)
 	PrintIntS(p4)
 	PrintIntS(p5)
 	PrintIntS(p6)
-	t.4 = [this]
-	t.5 = [t.4+4]
-	t.6 = call t.5(this p6 p5 p4 p3 p2 p1)
-	aux = t.6
+	t.0 = [this]
+	t.1 = [t.0+4]
+	t.2 = call t.1(this p6 p5 p4 p3 p2 p1)
+	aux = t.2
 	ret aux
 func MT4.Change(this p1 p2 p3 p4 p5 p6)
 	PrintIntS(p1)
