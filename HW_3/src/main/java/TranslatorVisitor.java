@@ -4,6 +4,7 @@ import visitor.GJDepthFirst;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Stack;
 
 public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<String, VClass>> {
 
@@ -14,7 +15,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private int whileCounter = 1;
     private int boundsCounter = 1;
     private boolean shouldPrintAlloc = false;
-    private String currentClass;
+    private Stack<String> classStack = new Stack<String>();
     private String currentMethod;
     private LinkedList<String> vapor = new LinkedList<String>();
     private LinkedList<String> arguments = new LinkedList<String>();
@@ -37,7 +38,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     }
 
     private boolean isCall(LinkedList<String> expr) {
-        return expr.size() == 1 && (expr.getLast().split(":")[0].trim().equals("call"));
+        return expr.size() == 1 && (expr.getLast().contains("call"));
     }
 
     private String extractLastVar(LinkedList<String> expr) {
@@ -47,6 +48,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private String extractLastExpr(LinkedList<String> expr) {
         return expr.getLast().split("=")[1].trim();
     }
+
 
     private LinkedList<String> arrayAlloc() {
         LinkedList<String> allocFunc = new LinkedList<>();
@@ -129,7 +131,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(MainClass n, Map<String, VClass> argu) {
         LinkedList<String> main = new LinkedList<>(Arrays.asList("func Main()"));
         indentLevel++;
-        currentClass = "main";
+        //classStack.push("main");
         currentMethod = "main";
         for(Node _stmt : n.f15.nodes) {
             main.addAll(_stmt.accept(this, argu));
@@ -165,7 +167,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(ClassDeclaration n, Map<String, VClass> argu) {
         LinkedList<String> _class = new LinkedList<>();
-        currentClass = n.f1.f0.toString();
+        String className = n.f1.f0.toString();
+        classStack.clear();
+        classStack.push(className);
         for(Node _method : n.f4.nodes) {
             _class.addAll(_method.accept(this, argu));
         }
@@ -188,7 +192,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(ClassExtendsDeclaration n, Map<String, VClass> argu) {
         LinkedList<String> _class = new LinkedList<>();
-        currentClass = n.f1.f0.toString();
+        String className = n.f1.f0.toString();
+        classStack.clear();
+        classStack.push(className);
         for(Node _method : n.f6.nodes) {
             _class.addAll(_method.accept(this, argu));
         }
@@ -215,11 +221,13 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(MethodDeclaration n, Map<String, VClass> argu) {
+        clearCounter();
         LinkedList<String> _method = new LinkedList<>();
         currentMethod = n.f2.f0.toString();
+        String callingClass = classStack.get(0);
         // Find the current method from current class
-        VMethod curr = argu.get(currentClass).getMethod(currentMethod);
-        String declaration = "func " + currentClass + "." + currentMethod + "(this";
+        VMethod curr = argu.get(callingClass).getMethod(currentMethod);
+        String declaration = "func " + callingClass + "." + currentMethod + "(this";
         int paramSize = curr.params.size();
         // Put down params
         for(int i = 0; i < paramSize; i++) {
@@ -286,6 +294,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     }
 
     public boolean isLocal(String id, Map<String, VClass> argu) {
+        String currentClass = classStack.get(0);
         VMethod _method = argu.get(currentClass).getMethod(currentMethod);
         return (_method.locals.indexOf(id) != -1) || (_method.params.indexOf(id) != -1);
     }
@@ -307,6 +316,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         LinkedList<String> expression = n.f2.accept(this, argu);
         if(!isSingle(expression) && !isCall(expression))
             assignment.addAll(expression);
+        String currentClass = classStack.get(0);
         // If its not local it must be instance - guaranteed typecheck
         if(!local) {
             int idx = argu.get(currentClass).members.indexOf(id);
@@ -314,13 +324,21 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
             assignment.add(indent() + createTemp() + " = [this + " + offset +"]");
         }
         String val = assignment.isEmpty() ? expression.getLast() : extractLastVar(assignment);
+        if (assignment.isEmpty()) {
+            val = expression.getLast();
+        } else {
+            boolean exprExists = !(isSingle(expression) || expression.getLast().contains("call"));
+            val = (exprExists && extractLastExpr(expression).contains("[")) ? 
+            extractLastExpr(expression).replaceAll("[\\[\\]]","") : 
+            extractLastVar(expression);
+        }
         assignment.add(indent() + id + " = " + val);
         return assignment;
     }
 
     public LinkedList<String> arrDeref(String id, String var, Map<String, VClass> argu) {
         LinkedList<String> arr = new LinkedList<>();
-
+        String currentClass = classStack.get(0);
         // If its not local it must be instance - guaranteed typecheck
         if(!isLocal(id, argu)) {
             int instanceIdx = argu.get(currentClass).members.indexOf(id);
@@ -428,8 +446,15 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(IfStatement n, Map<String, VClass> argu) {
         int currentElseCount = elseCounter++;
         LinkedList<String> expression = n.f2.accept(this, argu);
-        LinkedList<String> ifelse = new LinkedList<>(expression);
-        ifelse.add(indent() + "if0 " + extractLastVar(ifelse) + " goto " + ":if" + currentElseCount + "_else");
+        LinkedList<String> ifelse = new LinkedList<>();
+        String cond;
+        if (!isSingle(expression)) {
+            ifelse.addAll(expression);
+            cond = extractLastVar(ifelse);
+        } else {
+            cond = expression.getLast();
+        }
+        ifelse.add(indent() + "if0 " + cond + " goto " + ":if" + currentElseCount + "_else");
         LinkedList<String> ifstmt = n.f4.accept(this, argu);
         indentLevel++;
         ifelse.addAll(ifstmt);
@@ -461,9 +486,15 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         _while.add(indent() + "while" + currentWhileCount + "_top:");
         LinkedList<String> expression = n.f2.accept(this, argu);
         indentLevel++;
-        _while.addAll(expression);
+        String cond;
+        if (!isSingle(expression)){
+            _while.addAll(expression);
+            cond = extractLastVar(_while);
+        } else {
+            cond = expression.getLast();
+        }
         indentLevel--;
-        _while.add(indent() + "if0 " + extractLastVar(_while) + " goto :while" + currentWhileCount + "_end");
+        _while.add(indent() + "if0 " + cond + " goto :while" + currentWhileCount + "_end");
         LinkedList<String> _whilestmt = n.f4.accept(this, argu);
         _while.addAll(_whilestmt);
         indentLevel++;
@@ -654,15 +685,19 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         LinkedList<String> msgSend = new LinkedList<>();
         LinkedList<String> _class = n.f0.accept(this, argu);
         String methodName = n.f2.f0.toString();
+        String currentClass = classStack.peek();
         VMethod currentMethod = argu.get(currentClass).getMethod(methodName);
         int methodIdx = 4 * argu.get(currentClass).methods.indexOf(currentMethod);
         String ptr = extractLastVar(_class);
-        String classPtr = extractLastExpr(_class).replaceAll("[\\[\\]]","");
-        msgSend.addAll(_class);
+        String classPtr = (isSingle(_class) || _class.getLast().contains("call")) ? ptr : extractLastExpr(_class).replaceAll("[\\[\\]]","");
+        if (!isSingle(_class))
+            msgSend.addAll(_class);
         int currentVarCount = varCounter;
-        msgSend.add(indent() + createTemp() + " = [" + ptr + "+" + methodIdx + "]");
-        String methodPtr = "t." + currentVarCount;
+        msgSend.add(indent() + createTemp() + " = [" + classPtr + "]");
+        msgSend.add(indent() + createTemp() + " = [t." + currentVarCount + "+" + methodIdx + "]");
+        String methodPtr = "t." + ++currentVarCount;
         String methodCall = "call " + methodPtr + "(" + classPtr;
+        arguments.clear();
         LinkedList<String> exprList = n.f4.accept(this, argu);
         if (exprList != null)
             msgSend.addAll(exprList);
@@ -684,7 +719,6 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ExpressionList n, Map<String, VClass> argu) {
-        arguments.clear();
         LinkedList<String> firstExpr = n.f0.accept(this, argu);
         LinkedList<String> exprList = new LinkedList<>();
         String firstArgu = isSingle(firstExpr) ? firstExpr.getLast() : extractLastVar(firstExpr);
@@ -785,9 +819,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ThisExpression n, Map<String, VClass> argu) {
-        LinkedList<String> _this = new LinkedList<>();
-        _this.add(indent() + createTemp() + " = [this]");
-        return _this;
+        // LinkedList<String> _this = new LinkedList<>();
+        // _this.add(indent() + createTemp() + " = [this]");
+        // return _this;
+        return new LinkedList<String>(Arrays.asList("this"));
     }
 
     /**
@@ -826,7 +861,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(AllocationExpression n, Map<String, VClass> argu) {
-        currentClass = n.f1.f0.toString();
+        String className = n.f1.f0.toString();
+        classStack.push(className);
+        String currentClass = classStack.peek();
         VClass curr = argu.get(currentClass);
         LinkedList<String> newClass = new LinkedList<>();
         String currVar = createTemp();

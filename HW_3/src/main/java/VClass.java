@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ public class VClass {
     private VClass parent = null;
     public String className;
     public List<String> members = new ArrayList<>();
+    public HashMap<String, String> types = new HashMap<>();
     public List<VMethod> methods = new ArrayList<>();
 
     public VClass(String className) {
