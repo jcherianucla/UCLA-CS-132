@@ -52,8 +52,8 @@ public class ContextVisitor extends DepthFirstVisitor{
      */
     public void printVMTs() {
         for(VClass _class : classes.values()) {
-            if (!_class.className.equals("main"))
-                _class.printVMT();
+            //if (!_class.className.equals("main"))
+            _class.printVMT();
         }
     }
 
@@ -96,8 +96,8 @@ public class ContextVisitor extends DepthFirstVisitor{
      */
     @Override
     public void visit(MainClass n) {
-        String className = "main";
-        VMethod mainMethod = new VMethod(className);
+        String className = n.f1.f0.toString();
+        VMethod mainMethod = new VMethod("main");
         VClass main = new VClass(className);
         main.methods.add(mainMethod);
         classes.put(className, main);
