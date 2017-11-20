@@ -4,12 +4,25 @@ import visitor.DepthFirstVisitor;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * ContextVisitor is a DFS based visitor running through the MiniJava Parsed
+ * AST to assign scoping of classes and methods with their variable types.
+ */
 public class ContextVisitor extends DepthFirstVisitor{
+    // Actual context
     public Map<String, VClass> classes = new HashMap<>();
+    // State for current class to look through
     private VClass currentClass;
+    // State for current method to look through
     private VMethod currentMethod;
+    // Add to member variables or method variables
     private boolean classVar = true;
 
+    /**
+     * Gets the string representation of the type for a Node
+     * @param type Type Node
+     * @return string representation
+     */
     private String getType(Type type) {
         switch (type.f0.which) {
             case 0:
@@ -25,12 +38,18 @@ public class ContextVisitor extends DepthFirstVisitor{
         }
     }
 
+    /**
+     * Debugging function to view the context
+     */
     public void printContext() {
         for(VClass _class : classes.values()) {
             _class.printClass();
         }
     }
 
+    /**
+     * Prints out the Virtual Method Table
+     */
     public void printVMTs() {
         for(VClass _class : classes.values()) {
             if (!_class.className.equals("main"))

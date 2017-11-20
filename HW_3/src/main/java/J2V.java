@@ -6,6 +6,10 @@ public class J2V {
 
     private static final String PARSE_ERROR = "Parse error";
 
+    /**
+     * Pretty prints the vapor AST
+     * @param vapor The vapor AST built as a linked list of vapor code strings
+     */
     public static void printVapor(LinkedList<String> vapor) {
         for(String line : vapor) {
             System.out.println(line);
