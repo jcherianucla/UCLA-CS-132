@@ -15,11 +15,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private int whileCounter = 1;
     private int boundsCounter = 1;
     private boolean shouldPrintAlloc = false;
-    private Stack<String> classStack = new Stack<String>();
-    private String callingClass;
+    private Stack<String> classStack = new Stack<>();
     private String currentMethod;
-    private LinkedList<String> vapor = new LinkedList<String>();
-    private LinkedList<String> arguments = new LinkedList<String>();
+    private LinkedList<String> vapor = new LinkedList<>();
+    private LinkedList<String> arguments = new LinkedList<>();
 
     private boolean isLiteral(LinkedList<String> expr) {
         try{
@@ -716,14 +715,12 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         }
         String methodName = n.f2.accept(this, argu).getLast();
         String currentClass = classStack.peek();
-        callingClass = currentClass;
         // Find the method for the calling class
         VMethod currentMethod = argu.get(currentClass).getMethod(methodName);
         // Push on class return type for methods
         if(isClassType(currentMethod.returnType)) {
             classStack.push(currentMethod.returnType);
         }
-        msgSend.add("class: " + currentClass);
         int methodIdx = 4 * argu.get(currentClass).getMethods().indexOf(currentMethod);
         int currentVarCount = varCounter;
         // Dereference class pointer
@@ -745,7 +742,6 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         methodCall += ")";
         // Set result of method call
         msgSend.add(indent() + createTemp() + " = " + methodCall);
-        //callingClass = null;
         return msgSend;
     }
 
@@ -891,7 +887,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ThisExpression n, Map<String, VClass> argu) {
-        classStack.push(callingClass != null ? callingClass : classStack.get(0));
+        classStack.push(classStack.get(0));
         return new LinkedList<>(Arrays.asList("this"));
     }
 
