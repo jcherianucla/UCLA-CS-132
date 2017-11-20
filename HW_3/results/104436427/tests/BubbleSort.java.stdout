@@ -3,6 +3,7 @@ const vmt_BBS
 	:BBS.Sort
 	:BBS.Print
 	:BBS.Init
+const vmt_BubbleSort
 func Main()
 	t.0 = HeapAllocZ(12)
 	[t.0] = :vmt_BBS
@@ -50,6 +51,7 @@ func BBS.Sort(this)
 			t.6 = Sub(j 1)
 			aux07 = t.6
 			t.7 = [this+4]
+			t.7 = t.7
 			if t.7 goto :null2
 				Error("null pointer")
 			null2:
@@ -63,6 +65,7 @@ func BBS.Sort(this)
 			t.9 = [t.8 + 4]
 			aux04 = t.9
 			t.10 = [this+4]
+			t.10 = t.10
 			if t.10 goto :null3
 				Error("null pointer")
 			null3:
@@ -80,6 +83,7 @@ func BBS.Sort(this)
 				t.14 = Sub(j 1)
 				aux06 = t.14
 				t.15 = [this+4]
+				t.15 = t.15
 				if t.15 goto :null4
 					Error("null pointer")
 				null4:
@@ -104,6 +108,7 @@ func BBS.Sort(this)
 				t.20 = MulS(aux06 4)
 				t.20 = Add(t.20 t.19)
 				t.21 = [this+4]
+				t.21 = t.21
 				if t.21 goto :null6
 					Error("null pointer")
 				null6:
@@ -148,6 +153,7 @@ func BBS.Print(this)
 	t.1 = LtS(j t.0)
 	if0 t.1 goto :while3_end
 		t.2 = [this+4]
+		t.2 = t.2
 		if t.2 goto :null8
 			Error("null pointer")
 		null8:

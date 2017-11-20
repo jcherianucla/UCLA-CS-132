@@ -1,6 +1,7 @@
 const vmt_A
 	:A.run
 	:A.helper
+const vmt_Main
 func Main()
 	t.0 = HeapAllocZ(4)
 	[t.0] = :vmt_A

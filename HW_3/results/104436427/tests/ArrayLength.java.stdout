@@ -1,3 +1,4 @@
+const vmt_NullPointerMember
 func Main()
 	t.0 = call :AllocArray(5)
 	x = t.0

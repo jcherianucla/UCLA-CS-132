@@ -2,6 +2,7 @@ const vmt_A
 	:A.constructor
 	:A.increment
 const vmt_B
+const vmt_Increment
 func Main()
 	t.0 = HeapAllocZ(8)
 	[t.0] = :vmt_A
@@ -279,6 +280,7 @@ func A.increment(this)
 	t.0 = LtS(i 10)
 	if0 t.0 goto :while1_end
 		t.1 = [this+4]
+		t.1 = t.1
 		if t.1 goto :null24
 			Error("null pointer")
 		null24:

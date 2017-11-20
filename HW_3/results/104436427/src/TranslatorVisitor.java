@@ -1,10 +1,7 @@
 import syntaxtree.*;
 import visitor.GJDepthFirst;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * TranslatorVisitor is a DFS based visitor that runs through the MiniJava Parsed
@@ -109,7 +106,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      * @param expr The vapor code block to sanitize
      */
     private void sanitize(LinkedList<String> expr) {
-        if(expr.getFirst().split(" ").length == 1 &&
+        if(expr.size() > 0 && expr.getFirst().split(" ").length == 1 &&
                 !expr.getFirst().contains("while") &&
                 !expr.getFirst().contains("Print")) {
             expr.removeFirst();
@@ -234,8 +231,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(MainClass n, Map<String, VClass> argu) {
         LinkedList<String> main = new LinkedList<>(Arrays.asList("func Main()"));
+        String className = n.f1.f0.toString();
         indentLevel++;
-        classStack.push("main");
+        classStack.push(className);
         currentMethod = "main";
         // Grab all statements for main function
         for(Node _stmt : n.f15.nodes) {
@@ -452,6 +450,8 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
                 int instanceIdx = argu.get(currentClass).getMembers().indexOf(id);
                 int offset = 4 + 4 * instanceIdx;
                 arr.add(indent() + var + " = [this+" + offset + "]");
+            } else {
+                arr.add(indent() + var + " = " + id);
             }
         } else {
             arr.add(indent() + var + " = " + id);
@@ -671,24 +671,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private LinkedList<String> binaryOp(Node l, Node r, Map<String, VClass> argu, String type) {
         LinkedList<String> current = new LinkedList<>();
         LinkedList<String> lhs = l.accept(this, argu);
-        // Get left hand side block
-        if (!isSingle(lhs)) {
-            sanitize(lhs);
-            current.addAll(lhs);
-        }
-        String val1 = isSingle(lhs) ? lhs.getLast() : extractLastVar(current);
-        String val2;
-        // Handle short-circuiting
-        if (!lhs.equals("0")) {
-            LinkedList<String> rhs = r.accept(this, argu);
-            if (!isSingle(rhs)) {
-                sanitize(rhs);
-                current.addAll(rhs);
-            }
-            val2 = isSingle(rhs) ? rhs.getLast() : extractLastVar(current);
-        } else {
-            val2 = "0";
-        }
+        String val1 = getVal(lhs, current);
+        LinkedList<String> rhs = r.accept(this, argu);
+        String val2 = getVal(rhs, current);
         current.add(indent() + createTemp() + " = " + type + "(" + val1 + " " + val2 + ")");
         return current;
 
@@ -705,10 +690,25 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(AndExpression n, Map<String, VClass> argu) {
         LinkedList<String> and = new LinkedList<>();
+        LinkedList<String> lhs = n.f0.accept(this, argu);
+        String val1 = getVal(lhs, and);
+        int currentElseCount = elseCounter++;
+        and.add(indent() + "if0 " + val1 + " goto :if" + currentElseCount + "_else");
+        indentLevel++;
+        LinkedList<String> rhs = n.f2.accept(this, argu);
+        String val2 = getVal(rhs, and);
+        int currVarCount = varCounter;
         // Just multiply to get the result of an AND
-        and.addAll(binaryOp(n.f0, n.f2, argu, "MulS"));
+        and.add(indent() + createTemp() + " = MulS(" + val1 + " " + val2 + ")");
+        and.add(indent() + "goto :if" + currentElseCount + "_end");
+        indentLevel--;
+        and.add(indent() + "if" + currentElseCount + "_else:");
+        indentLevel++;
+        and.add(indent() + "t." + currVarCount + " = 0");
+        indentLevel--;
+        and.add(indent() + "if" + currentElseCount + "_end:");
         // If its 1 then its true
-        and.add(indent() + createTemp() + " = Eq(1 " + extractLastVar(and) + ")");
+        and.add(indent() + createTemp() + " = Eq(1 t." + currVarCount + ")");
         return and;
     }
 
@@ -843,7 +843,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         if (!classPtr.equals("this")) {
             msgSend.addAll(nullPtrCheck(classPtr));
         }
-        String methodName = n.f2.accept(this, argu).getLast();
+        String methodName = idToString(n.f2.accept(this, argu));
         String currentClass = classStack.peek();
         // Find the method for the calling class
         VMethod currentMethod = argu.get(currentClass).getMethod(methodName);
@@ -886,22 +886,15 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(ExpressionList n, Map<String, VClass> argu) {
         LinkedList<String> firstExpr = n.f0.accept(this, argu);
         LinkedList<String> exprList = new LinkedList<>();
-        String firstArgu = isSingle(firstExpr) ? firstExpr.getLast() : extractLastVar(firstExpr);
-        arguments.add(firstArgu);
-        if (!isSingle(firstExpr)) {
-            sanitize(firstExpr);
-            exprList.addAll(firstExpr);
-        }
+        String firstArgu = getVal(firstExpr, exprList);
+        LinkedList<String> currArguments = new LinkedList<>(arguments);
+        currArguments.add(firstArgu);
         for(Node _expr : n.f1.nodes) {
             LinkedList<String> currExpr = _expr.accept(this, argu);
-            if(!isSingle(currExpr)) {
-                sanitize(currExpr);
-            }
-            String currArgu = isSingle(currExpr) ? currExpr.getLast() : extractLastVar(currExpr);
-            arguments.add(currArgu);
-            if (!isSingle(currExpr))
-                exprList.addAll(currExpr);
+            String currArgu = getVal(currExpr, exprList);
+            currArguments.add(currArgu);
         }
+        arguments = currArguments;
         return exprList;
     }
 
@@ -1079,7 +1072,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         LinkedList<String> expr = n.f1.accept(this, argu);
         String exprVal = getVal(expr, not);
         // Subtraction will negate the boolean expression
-        not.add(indent() + createTemp() + " = Sub(" + exprVal + " 1)");
+        not.add(indent() + createTemp() + " = Sub(1 " + exprVal + ")");
         return not;
     }
 

@@ -1,3 +1,4 @@
+const vmt_MoreThan4
 const vmt_MT4
 	:MT4.Start
 	:MT4.Change

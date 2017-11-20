@@ -18,6 +18,7 @@ const vmt_List
 	:List.GetElem
 	:List.GetNext
 	:List.Print
+const vmt_LinkedList
 func Main()
 	t.0 = HeapAllocZ(4)
 	[t.0] = :vmt_LL
@@ -56,7 +57,7 @@ func Element.Equal(this other)
 	t.4 = [t.3+20]
 	t.5 = [this+4]
 	t.6 = call t.4(this aux01 t.5)
-	t.7 = Sub(t.6 1)
+	t.7 = Sub(1 t.6)
 	if0 t.7 goto :if1_else
 	ret_val = 0
 		goto :if1_end
@@ -72,7 +73,7 @@ func Element.Equal(this other)
 		t.12 = [t.11+20]
 		t.13 = [this+8]
 		t.14 = call t.12(this aux02 t.13)
-		t.15 = Sub(t.14 1)
+		t.15 = Sub(1 t.14)
 		if0 t.15 goto :if2_else
 		ret_val = 0
 			goto :if2_end
@@ -85,7 +86,7 @@ func Element.Equal(this other)
 		t.17 = [other]
 		t.18 = [t.17+12]
 		t.19 = call t.18(other)
-		t.20 = Sub(t.19 1)
+		t.20 = Sub(1 t.19)
 		if0 t.20 goto :if4_else
 		ret_val = 0
 			goto :if4_end
@@ -120,7 +121,7 @@ func Element.Compare(this num1 num2)
 		goto :if6_end
 	if6_else:
 	t.2 = LtS(num1 aux02)
-	t.3 = Sub(t.2 1)
+	t.3 = Sub(1 t.2)
 	if0 t.3 goto :if7_else
 	retval = 0
 		goto :if7_end
@@ -165,9 +166,14 @@ func List.Delete(this e)
 	t.2 = [this+4]
 	var_elem = t.2
 	while1_top:
-	t.3 = Sub(var_end 1)
-	t.4 = Sub(ret_val 1)
-	t.5 = MulS(t.3 t.4)
+	t.3 = Sub(1 var_end)
+	if0 t.3 goto :if8_else
+		t.4 = Sub(1 ret_val)
+		t.5 = MulS(t.3 t.4)
+		goto :if8_end
+	if8_else:
+		t.5 = 0
+	if8_end:
 	t.6 = Eq(1 t.5)
 	if0 t.6 goto :while1_end
 		if e goto :null7
@@ -176,10 +182,10 @@ func List.Delete(this e)
 		t.7 = [e]
 		t.8 = [t.7+16]
 		t.9 = call t.8(e var_elem)
-		if0 t.9 goto :if8_else
+		if0 t.9 goto :if9_else
 			ret_val = 1
 			t.10 = LtS(aux04 0)
-			if0 t.10 goto :if9_else
+			if0 t.10 goto :if10_else
 				if aux01 goto :null8
 					Error("null pointer")
 				null8:
@@ -187,8 +193,8 @@ func List.Delete(this e)
 				t.12 = [t.11+32]
 				t.13 = call t.12(aux01)
 				my_head = t.13
-				goto :if9_end
-			if9_else:
+				goto :if10_end
+			if10_else:
 				t.14 = Sub(0 555)
 				PrintIntS(t.14)
 				if prev goto :null9
@@ -206,13 +212,13 @@ func List.Delete(this e)
 				aux05 = t.20
 				t.21 = Sub(0 555)
 				PrintIntS(t.21)
-			if9_end:
-			goto :if8_end
-		if8_else:
+			if10_end:
+			goto :if9_end
+		if9_else:
 		nt = 0
-		if8_end:
-		t.22 = Sub(ret_val 1)
-		if0 t.22 goto :if10_else
+		if9_end:
+		t.22 = Sub(1 ret_val)
+		if0 t.22 goto :if11_else
 			prev = aux01
 			if aux01 goto :null11
 				Error("null pointer")
@@ -236,10 +242,10 @@ func List.Delete(this e)
 			t.31 = call t.30(aux01)
 			var_elem = t.31
 			aux04 = 1
-			goto :if10_end
-		if10_else:
+			goto :if11_end
+		if11_else:
 		nt = 0
-		if10_end:
+		if11_end:
 		goto :while1_top
 	while1_end:
 	ret my_head
@@ -251,7 +257,7 @@ func List.Search(this e)
 	t.1 = [this+4]
 	var_elem = t.1
 	while2_top:
-	t.2 = Sub(var_end 1)
+	t.2 = Sub(1 var_end)
 	if0 t.2 goto :while2_end
 		if e goto :null14
 			Error("null pointer")
@@ -259,12 +265,12 @@ func List.Search(this e)
 		t.3 = [e]
 		t.4 = [t.3+16]
 		t.5 = call t.4(e var_elem)
-		if0 t.5 goto :if11_else
+		if0 t.5 goto :if12_else
 			int_ret_val = 1
-			goto :if11_end
-		if11_else:
+			goto :if12_end
+		if12_else:
 		nt = 0
-		if11_end:
+		if12_end:
 		if aux01 goto :null15
 			Error("null pointer")
 		null15:
@@ -305,7 +311,7 @@ func List.Print(this)
 	t.1 = [this+4]
 	var_elem = t.1
 	while3_top:
-	t.2 = Sub(var_end 1)
+	t.2 = Sub(1 var_end)
 	if0 t.2 goto :while3_end
 		if var_elem goto :null18
 			Error("null pointer")

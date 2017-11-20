@@ -6,6 +6,7 @@ const vmt_B
 	:B.foo
 	:A.bar
 	:A.bee
+const vmt_Inheritance
 func Main()
 	t.0 = HeapAllocZ(16)
 	[t.0] = :vmt_B
@@ -36,6 +37,7 @@ func B.foo(this sz)
 	[t.6 + 4] = 10
 	t.7 = [this+4]
 	t.8 = [this+12]
+	t.8 = t.8
 	if t.8 goto :null3
 		Error("null pointer")
 	null3:
@@ -51,6 +53,7 @@ func B.foo(this sz)
 	t.12 = [this+4]
 	t.13 = [this+4]
 	t.14 = [this+12]
+	t.14 = t.14
 	if t.14 goto :null4
 		Error("null pointer")
 	null4:
@@ -68,6 +71,7 @@ func B.foo(this sz)
 	t.19 = LtS(t.18 5)
 	if0 t.19 goto :if1_else
 		t.20 = [this+12]
+		t.21 = t.20
 		if t.21 goto :null5
 			Error("null pointer")
 		null5:
@@ -78,6 +82,7 @@ func B.foo(this sz)
 		t.23 = [this+4]
 		t.24 = Sub(t.23 9)
 		t.25 = [this+12]
+		t.25 = t.25
 		if t.25 goto :null6
 			Error("null pointer")
 		null6:
@@ -96,6 +101,7 @@ func B.foo(this sz)
 	t.30 = call t.29(this)
 	PrintIntS(t.30)
 	t.31 = [this+12]
+	t.31 = t.31
 	if t.31 goto :null7
 		Error("null pointer")
 	null7:

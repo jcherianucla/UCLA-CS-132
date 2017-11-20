@@ -109,11 +109,13 @@ public class VClass {
     public void printVMT() {
         System.out.println("const vmt_" + className);
         for(VMethod method : this.getMethods()) {
-            String className = this.className;
-            if(hasParent()) {
-                className = this.getMethodsClass(method);
+            if(!method.methodName.equals("main")) {
+                String className = this.className;
+                if (hasParent()) {
+                    className = this.getMethodsClass(method);
+                }
+                System.out.println("\t:" + className + "." + method.methodName);
             }
-            System.out.println("\t:"+className+"."+method.methodName);
         }
     }
 

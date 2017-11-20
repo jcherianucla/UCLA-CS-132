@@ -1,3 +1,4 @@
+const vmt_Main
 func Main()
 	PrintIntS(12)
 	ret

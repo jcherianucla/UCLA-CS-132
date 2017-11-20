@@ -1,3 +1,4 @@
+const vmt_GotoConstructs
 func Main()
 	i = 0
 	MAX = 10

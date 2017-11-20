@@ -3,6 +3,7 @@ const vmt_LS
 	:LS.Print
 	:LS.Search
 	:LS.Init
+const vmt_LinearSearch
 func Main()
 	t.0 = HeapAllocZ(12)
 	[t.0] = :vmt_LS
@@ -48,6 +49,7 @@ func LS.Print(this)
 	t.1 = LtS(j t.0)
 	if0 t.1 goto :while1_end
 		t.2 = [this+4]
+		t.2 = t.2
 		if t.2 goto :null2
 			Error("null pointer")
 		null2:
@@ -74,6 +76,7 @@ func LS.Search(this num)
 	t.1 = LtS(j t.0)
 	if0 t.1 goto :while2_end
 		t.2 = [this+4]
+		t.2 = t.2
 		if t.2 goto :null3
 			Error("null pointer")
 		null3:
@@ -94,7 +97,7 @@ func LS.Search(this num)
 			goto :if1_end
 		if1_else:
 		t.7 = LtS(aux01 aux02)
-		t.8 = Sub(t.7 1)
+		t.8 = Sub(1 t.7)
 		if0 t.8 goto :if2_else
 		nt = 0
 			goto :if2_end

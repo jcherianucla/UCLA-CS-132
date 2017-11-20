@@ -1,3 +1,4 @@
+const vmt_Factorial
 const vmt_Fac
 	:Fac.ComputeFac
 func Main()
