@@ -1,8 +1,3 @@
 2
-Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 128
-	at cs132.vapor.interpreter.VaporInterpreter.run$1087ce91(VaporInterpreter.java:406)
-	at cs132.vapor.interpreter.VaporInterpreter.run(VaporInterpreter.java:117)
-	at cs132.vapor.main.Interpreter.run(Interpreter.java:255)
-	at cs132.vapor.main.Interpreter.run$10238c6d(Interpreter.java:181)
-	at cs132.util.CommandLineLauncher.run(VaporInterpreter.java:90)
-	at cs132.vapor.main.Interpreter.main(Interpreter.java:22)
+4
+3

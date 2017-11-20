@@ -1,9 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import java.util.*;
 
 public class VClass {
     private VClass parent = null;
@@ -70,12 +66,18 @@ public class VClass {
      * @return List of all objects
      */
     private <T> List<T> get(List<T> baseObjs, Class<T> type) {
-        if (hasParent()) {
+        if (this.hasParent()) {
             List<T> parentObjs = type.equals(String.class) ? ((List<T>)parent.getMembers()) : ((List<T>)parent.getMethods());
             Set<T> currObjs = new HashSet<>(baseObjs);
+            List<T> copy = new LinkedList<>(baseObjs);
             // Remove the same objects from parent - overriding
-            parentObjs = parentObjs.stream().filter(obj -> !currObjs.contains(obj)).collect(Collectors.toList());
-            parentObjs.addAll(baseObjs);
+            for(int i = 0; i < parentObjs.size(); i++) {
+                T curr = parentObjs.get(i);
+                if(currObjs.contains(curr)) {
+                    copy.remove(curr);
+                }
+            }
+            parentObjs.addAll(copy);
             return parentObjs;
         }
         return baseObjs;
@@ -91,7 +93,7 @@ public class VClass {
 
     public void printVMT() {
         System.out.println("const vmt_" + className);
-        for(VMethod method : getMethods()) {
+        for(VMethod method : this.getMethods()) {
             String className = this.className;
             if(hasParent()) {
                 className = this.getMethodsClass(method);

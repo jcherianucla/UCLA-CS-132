@@ -20,10 +20,26 @@
             <file leaf-file-name="TranslatorVisitor.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/main/java/TranslatorVisitor.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1683">
+                  <state relative-caret-position="1938">
                     <caret line="742" column="35" lean-forward="false" selection-start-line="742" selection-start-column="35" selection-end-line="742" selection-end-column="35" />
                     <folding>
                       <element signature="imports" expanded="true" />
+                      <element signature="e#1437#1438#0" expanded="true" />
+                      <element signature="e#1513#1514#0" expanded="true" />
+                      <element signature="e#3021#3022#0" expanded="true" />
+                      <element signature="e#3051#3052#0" expanded="true" />
+                      <element signature="e#3086#3087#0" expanded="true" />
+                      <element signature="e#3128#3129#0" expanded="true" />
+                      <element signature="e#4941#4942#0" expanded="true" />
+                      <element signature="e#4987#4988#0" expanded="true" />
+                      <element signature="e#8182#8183#0" expanded="true" />
+                      <element signature="e#8228#8229#0" expanded="true" />
+                      <element signature="e#16609#16610#0" expanded="true" />
+                      <element signature="e#16655#16656#0" expanded="true" />
+                      <element signature="e#24377#24378#0" expanded="true" />
+                      <element signature="e#24423#24424#0" expanded="true" />
+                      <element signature="e#24829#24830#0" expanded="true" />
+                      <element signature="e#24875#24876#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -44,8 +60,8 @@
       <file leaf-file-name="J2V.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/J2V.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="442">
+              <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,13 +69,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TranslatorVisitor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TranslatorVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/TranslatorVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
+            <state relative-caret-position="340">
+              <caret line="20" column="58" lean-forward="false" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1437#1438#0" expanded="true" />
+                <element signature="e#1513#1514#0" expanded="true" />
+                <element signature="e#3021#3022#0" expanded="true" />
+                <element signature="e#3051#3052#0" expanded="true" />
+                <element signature="e#3086#3087#0" expanded="true" />
+                <element signature="e#3128#3129#0" expanded="true" />
+                <element signature="e#4941#4942#0" expanded="true" />
+                <element signature="e#4987#4988#0" expanded="true" />
+                <element signature="e#8182#8183#0" expanded="true" />
+                <element signature="e#8228#8229#0" expanded="true" />
+                <element signature="e#16609#16610#0" expanded="true" />
+                <element signature="e#16655#16656#0" expanded="true" />
+                <element signature="e#24377#24378#0" expanded="true" />
+                <element signature="e#24423#24424#0" expanded="true" />
+                <element signature="e#24829#24830#0" expanded="true" />
+                <element signature="e#24875#24876#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,80 +107,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TreeVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/TreeVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="330" column="14" lean-forward="false" selection-start-line="330" selection-start-column="14" selection-end-line="330" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#7136#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuickSort.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/QuickSort.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-721">
-              <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinkedList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/LinkedList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="212" column="3" lean-forward="false" selection-start-line="212" selection-start-column="3" selection-end-line="212" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="VClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/VClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="83" column="11" lean-forward="false" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1110#1111#0" expanded="true" />
+                <element signature="e#1165#1166#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
+                <element signature="e#1634#1635#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VMethod.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/VMethod.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ContextVisitor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ContextVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="183" column="35" lean-forward="false" selection-start-line="183" selection-start-column="35" selection-end-line="183" selection-end-column="35" />
+            <state relative-caret-position="578">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DepthFirstVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/DepthFirstVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -478,8 +459,8 @@
         <option value="$PROJECT_DIR$/src/main/java/VMethod.java" />
         <option value="$PROJECT_DIR$/src/main/java/ContextVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/J2V.java" />
-        <option value="$PROJECT_DIR$/src/main/java/VClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/TranslatorVisitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/VClass.java" />
       </list>
     </option>
   </component>
@@ -682,12 +663,12 @@
       <option name="presentableId" value="Default" />
       <updated>1510440567451</updated>
       <workItem from="1510440571476" duration="22687000" />
-      <workItem from="1511053892073" duration="28086000" />
+      <workItem from="1511053892073" duration="30611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50773000" />
+    <option name="totallyTimeSpent" value="53298000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1052" extended-state="6" />
@@ -776,7 +757,10 @@
         <state relative-caret-position="1088">
           <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1110#1111#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1634#1635#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -815,19 +799,27 @@
           <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#3021#3022#0" expanded="true" />
+            <element signature="e#3051#3052#0" expanded="true" />
+            <element signature="e#3086#3087#0" expanded="true" />
+            <element signature="e#3128#3129#0" expanded="true" />
+            <element signature="e#4941#4942#0" expanded="true" />
+            <element signature="e#4987#4988#0" expanded="true" />
+            <element signature="e#8182#8183#0" expanded="true" />
+            <element signature="e#8228#8229#0" expanded="true" />
+            <element signature="e#16609#16610#0" expanded="true" />
+            <element signature="e#16655#16656#0" expanded="true" />
+            <element signature="e#24377#24378#0" expanded="true" />
+            <element signature="e#24423#24424#0" expanded="true" />
+            <element signature="e#24829#24830#0" expanded="true" />
+            <element signature="e#24875#24876#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ContextTable.java" />
-    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/DepthFirstVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/java/syntaxtree/Goal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -906,28 +898,16 @@
         <state relative-caret-position="170">
           <caret line="330" column="14" lean-forward="false" selection-start-line="330" selection-start-column="14" selection-end-line="330" selection-end-column="14" />
           <folding>
-            <element signature="e#0#7136#0" expanded="true" />
+            <element signature="e#0#7136#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/J2V.java">
+    <entry file="file://$PROJECT_DIR$/src/parse/java/visitor/DepthFirstVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/VClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="83" column="11" lean-forward="false" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -939,10 +919,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ContextVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/J2V.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="183" column="35" lean-forward="false" selection-start-line="183" selection-start-column="35" selection-end-line="183" selection-end-column="35" />
+        <state relative-caret-position="442">
+          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -951,8 +931,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TranslatorVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="61" column="11" lean-forward="false" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
+        <state relative-caret-position="340">
+          <caret line="20" column="58" lean-forward="false" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1437#1438#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#3021#3022#0" expanded="true" />
+            <element signature="e#3051#3052#0" expanded="true" />
+            <element signature="e#3086#3087#0" expanded="true" />
+            <element signature="e#3128#3129#0" expanded="true" />
+            <element signature="e#4941#4942#0" expanded="true" />
+            <element signature="e#4987#4988#0" expanded="true" />
+            <element signature="e#8182#8183#0" expanded="true" />
+            <element signature="e#8228#8229#0" expanded="true" />
+            <element signature="e#16609#16610#0" expanded="true" />
+            <element signature="e#16655#16656#0" expanded="true" />
+            <element signature="e#24377#24378#0" expanded="true" />
+            <element signature="e#24423#24424#0" expanded="true" />
+            <element signature="e#24829#24830#0" expanded="true" />
+            <element signature="e#24875#24876#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/VClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#1110#1111#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1634#1635#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ContextVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

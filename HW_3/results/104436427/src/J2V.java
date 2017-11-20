@@ -6,8 +6,7 @@ public class J2V {
 
     private static final String PARSE_ERROR = "Parse error";
 
-    public static void printVapor(LinkedList<String> vapor, ContextVisitor ctx) {
-        ctx.printVMTs();
+    public static void printVapor(LinkedList<String> vapor) {
         for(String line : vapor) {
             System.out.println(line);
         }
@@ -20,12 +19,13 @@ public class J2V {
             ContextVisitor contextVisitor = new ContextVisitor();
             // Build Context Table
             goal.accept(contextVisitor);
-            // Test
-            //contextVisitor.printContext();
-            //System.out.println("-------------");
+            // Print out the VMT
+            contextVisitor.printVMTs();
             TranslatorVisitor translatorVisitor = new TranslatorVisitor();
+            // Generate Vapor AST
             LinkedList<String> vaporCode = goal.accept(translatorVisitor, contextVisitor.classes);
-            printVapor(vaporCode, contextVisitor);
+            // Print out vapor
+            printVapor(vaporCode);
         } catch (ParseException e) {
             e.printStackTrace();
             System.out.println(PARSE_ERROR);

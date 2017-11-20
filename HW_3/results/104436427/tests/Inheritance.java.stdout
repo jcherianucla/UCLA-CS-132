@@ -7,14 +7,14 @@ const vmt_B
 	:A.bee
 	:A.bar
 	:A.far
-	:B.eek
 	:B.boo
+	:B.eek
 const vmt_C
 	:A.bee
-	:A.far
-	:B.eek
-	:B.boo
 	:C.bar
+	:A.far
+	:B.boo
+	:B.eek
 	:C.goo
 func Main()
 	t.0 = HeapAllocZ(4)
@@ -34,7 +34,7 @@ func C.bar(this)
 func C.goo(this a)
 	PrintIntS(2)
 	t.0 = [this]
-	t.1 = [t.0+8]
+	t.1 = [t.0+16]
 	t.2 = call t.1(this)
 	x = t.2
 	if a goto :null2

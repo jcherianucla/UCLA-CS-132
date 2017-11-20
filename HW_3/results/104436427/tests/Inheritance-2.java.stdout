@@ -1,0 +1,137 @@
+const vmt_A
+	:A.foo
+	:A.bar
+	:A.bee
+const vmt_B
+	:B.foo
+	:A.bar
+	:A.bee
+func Main()
+	t.0 = HeapAllocZ(16)
+	[t.0] = :vmt_B
+	if t.0 goto :null1
+		Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	t.2 = [t.1+0]
+	t.3 = call t.2(t.0 5)
+	PrintIntS(t.3)
+	ret
+func B.foo(this sz)
+	[this+4] = 1
+	t.2 = call :AllocArray(sz)
+	[this+12] = t.2
+	t.4 = [this+4]
+	t.5 = [this + 12]
+	if t.5 goto :null2
+		Error("null pointer")
+	null2:
+	t.6 = [t.5]
+	t.6 = Lt(t.4 t.6)
+	if t.6 goto :bounds1
+		Error("array index out of bounds")
+	bounds1:
+	t.6 = MulS(t.4 4)
+	t.6 = Add(t.6 t.5)
+	[t.6 + 4] = 10
+	t.7 = [this+4]
+	t.8 = [this+12]
+	if t.8 goto :null3
+		Error("null pointer")
+	null3:
+	t.9 = [t.8]
+	t.9 = Lt(t.7 t.9)
+	if t.9 goto :bounds2
+		Error("array index out of bounds")
+	bounds2:
+	t.9 = MulS(t.7 4)
+	t.9 = Add(t.9 t.8)
+	t.10 = [t.9 + 4]
+	PrintIntS(t.10)
+	t.12 = [this+4]
+	t.13 = [this+4]
+	t.14 = [this+12]
+	if t.14 goto :null4
+		Error("null pointer")
+	null4:
+	t.15 = [t.14]
+	t.15 = Lt(t.13 t.15)
+	if t.15 goto :bounds3
+		Error("array index out of bounds")
+	bounds3:
+	t.15 = MulS(t.13 4)
+	t.15 = Add(t.15 t.14)
+	t.16 = [t.15 + 4]
+	t.17 = MulS(t.12 t.16)
+	[this+4] = t.17
+	t.18 = [this+4]
+	t.19 = LtS(t.18 5)
+	if0 t.19 goto :if1_else
+		t.20 = [this+12]
+		if t.21 goto :null5
+			Error("null pointer")
+		null5:
+		t.22 = [t.21]
+		PrintIntS(t.22)
+		goto :if1_end
+	if1_else:
+		t.23 = [this+4]
+		t.24 = Sub(t.23 9)
+		t.25 = [this+12]
+		if t.25 goto :null6
+			Error("null pointer")
+		null6:
+		t.26 = [t.25]
+		t.26 = Lt(t.24 t.26)
+		if t.26 goto :bounds4
+			Error("array index out of bounds")
+		bounds4:
+		t.26 = MulS(t.24 4)
+		t.26 = Add(t.26 t.25)
+		t.27 = [t.26 + 4]
+		PrintIntS(t.27)
+	if1_end:
+	t.28 = [this]
+	t.29 = [t.28+4]
+	t.30 = call t.29(this)
+	PrintIntS(t.30)
+	t.31 = [this+12]
+	if t.31 goto :null7
+		Error("null pointer")
+	null7:
+	t.32 = [t.31]
+	t.32 = Lt(0 t.32)
+	if t.32 goto :bounds5
+		Error("array index out of bounds")
+	bounds5:
+	t.32 = MulS(0 4)
+	t.32 = Add(t.32 t.31)
+	t.33 = [t.32 + 4]
+	ret t.33
+func A.foo(this sz)
+	[this+4] = 10
+	[this+8] = 12
+	t.3 = [this+4]
+	t.4 = [this+8]
+	t.5 = MulS(t.3 t.4)
+	t.6 = MulS(t.5 sz)
+	[this+4] = t.6
+	t.7 = [this+4]
+	ret t.7
+func A.bar(this)
+	PrintIntS(2)
+	t.0 = [this]
+	t.1 = [t.0+8]
+	t.2 = call t.1(this)
+	PrintIntS(t.2)
+	ret 99
+func A.bee(this)
+	ret 1000000
+
+
+func AllocArray(size)
+	bytes = MulS(size 4)
+	bytes = Add(bytes 4)
+	v = HeapAllocZ(bytes)
+	[v] = size
+	ret v
