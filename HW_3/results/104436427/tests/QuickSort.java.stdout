@@ -128,7 +128,7 @@ func QS.Sort(this left right)
 			t.18 = Add(t.18 t.17)
 			t.19 = [t.18 + 4]
 			t = t.19
-			t.21 = [this + 4]
+			t.21 = [this+4]
 			if t.21 goto :null6
 				Error("null pointer")
 			null6:
@@ -152,7 +152,7 @@ func QS.Sort(this left right)
 			t.24 = Add(t.24 t.23)
 			t.25 = [t.24 + 4]
 			[t.22 + 4] = t.25
-			t.27 = [this + 4]
+			t.27 = [this+4]
 			if t.27 goto :null8
 				Error("null pointer")
 			null8:
@@ -174,7 +174,7 @@ func QS.Sort(this left right)
 			if4_end:
 			goto :while1_top
 		while1_end:
-		t.32 = [this + 4]
+		t.32 = [this+4]
 		if t.32 goto :null9
 			Error("null pointer")
 		null9:
@@ -198,7 +198,7 @@ func QS.Sort(this left right)
 		t.35 = Add(t.35 t.34)
 		t.36 = [t.35 + 4]
 		[t.33 + 4] = t.36
-		t.38 = [this + 4]
+		t.38 = [this+4]
 		if t.38 goto :null11
 			Error("null pointer")
 		null11:
@@ -222,7 +222,7 @@ func QS.Sort(this left right)
 		t.41 = Add(t.41 t.40)
 		t.42 = [t.41 + 4]
 		[t.39 + 4] = t.42
-		t.44 = [this + 4]
+		t.44 = [this+4]
 		if t.44 goto :null13
 			Error("null pointer")
 		null13:
@@ -277,7 +277,7 @@ func QS.Init(this sz)
 	[this+8] = sz
 	t.2 = call :AllocArray(sz)
 	[this+4] = t.2
-	t.4 = [this + 4]
+	t.4 = [this+4]
 	if t.4 goto :null15
 		Error("null pointer")
 	null15:
@@ -289,7 +289,7 @@ func QS.Init(this sz)
 	t.5 = MulS(0 4)
 	t.5 = Add(t.5 t.4)
 	[t.5 + 4] = 20
-	t.7 = [this + 4]
+	t.7 = [this+4]
 	if t.7 goto :null16
 		Error("null pointer")
 	null16:
@@ -301,7 +301,7 @@ func QS.Init(this sz)
 	t.8 = MulS(1 4)
 	t.8 = Add(t.8 t.7)
 	[t.8 + 4] = 7
-	t.10 = [this + 4]
+	t.10 = [this+4]
 	if t.10 goto :null17
 		Error("null pointer")
 	null17:
@@ -313,7 +313,7 @@ func QS.Init(this sz)
 	t.11 = MulS(2 4)
 	t.11 = Add(t.11 t.10)
 	[t.11 + 4] = 12
-	t.13 = [this + 4]
+	t.13 = [this+4]
 	if t.13 goto :null18
 		Error("null pointer")
 	null18:
@@ -325,7 +325,7 @@ func QS.Init(this sz)
 	t.14 = MulS(3 4)
 	t.14 = Add(t.14 t.13)
 	[t.14 + 4] = 18
-	t.16 = [this + 4]
+	t.16 = [this+4]
 	if t.16 goto :null19
 		Error("null pointer")
 	null19:
@@ -337,7 +337,7 @@ func QS.Init(this sz)
 	t.17 = MulS(4 4)
 	t.17 = Add(t.17 t.16)
 	[t.17 + 4] = 2
-	t.19 = [this + 4]
+	t.19 = [this+4]
 	if t.19 goto :null20
 		Error("null pointer")
 	null20:
@@ -349,7 +349,7 @@ func QS.Init(this sz)
 	t.20 = MulS(5 4)
 	t.20 = Add(t.20 t.19)
 	[t.20 + 4] = 11
-	t.22 = [this + 4]
+	t.22 = [this+4]
 	if t.22 goto :null21
 		Error("null pointer")
 	null21:
@@ -361,7 +361,7 @@ func QS.Init(this sz)
 	t.23 = MulS(6 4)
 	t.23 = Add(t.23 t.22)
 	[t.23 + 4] = 6
-	t.25 = [this + 4]
+	t.25 = [this+4]
 	if t.25 goto :null22
 		Error("null pointer")
 	null22:
@@ -373,7 +373,7 @@ func QS.Init(this sz)
 	t.26 = MulS(7 4)
 	t.26 = Add(t.26 t.25)
 	[t.26 + 4] = 9
-	t.28 = [this + 4]
+	t.28 = [this+4]
 	if t.28 goto :null23
 		Error("null pointer")
 	null23:
@@ -385,7 +385,7 @@ func QS.Init(this sz)
 	t.29 = MulS(8 4)
 	t.29 = Add(t.29 t.28)
 	[t.29 + 4] = 19
-	t.31 = [this + 4]
+	t.31 = [this+4]
 	if t.31 goto :null24
 		Error("null pointer")
 	null24:

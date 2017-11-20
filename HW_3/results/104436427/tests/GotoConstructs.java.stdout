@@ -1,0 +1,27 @@
+func Main()
+	i = 0
+	MAX = 10
+	while1_top:
+	t.0 = LtS(i MAX)
+	if0 t.0 goto :while1_end
+		j = 0
+		t.1 = LtS(i 5)
+		if0 t.1 goto :if1_else
+			while2_top:
+			t.2 = LtS(j 3)
+			if0 t.2 goto :while2_end
+				PrintIntS(i)
+				t.3 = Add(j 1)
+				j = t.3
+				goto :while2_top
+			while2_end:
+			goto :if1_end
+		if1_else:
+			t.4 = MulS(i i)
+			PrintIntS(t.4)
+		if1_end:
+		t.5 = Add(i 1)
+		i = t.5
+		goto :while1_top
+	while1_end:
+	ret

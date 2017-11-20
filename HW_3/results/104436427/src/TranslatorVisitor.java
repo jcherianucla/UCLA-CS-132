@@ -6,20 +6,38 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+ * TranslatorVisitor is a DFS based visitor that runs through the MiniJava Parsed
+ * AST, assuming typechecking is already taken care of. It takes in the context
+ * as a map of class names to classes, using it to find relevant methods and members,
+ * while returning a list of strings, where each element in the list represents a
+ * single line of vapor code.
+ */
 public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<String, VClass>> {
 
+    // Counters for vapor label generation
     private int indentLevel = 0;
     private int varCounter = 0;
     private int nullCounter = 1;
     private int elseCounter = 1;
     private int whileCounter = 1;
     private int boundsCounter = 1;
+    // If an array assignment is made, it should be allocated
     private boolean shouldPrintAlloc = false;
+    // Maintains the most recently seen class
     private Stack<String> classStack = new Stack<>();
+    // Maintains the most recently used method
     private String currentMethod;
+    // Final Vapor AST
     private LinkedList<String> vapor = new LinkedList<>();
+    // Reset for each function
     private LinkedList<String> arguments = new LinkedList<>();
 
+    /**
+     * Checks to ensure that the expression in question is a valid integer literal
+     * @param expr The set of vapor code in question
+     * @return boolean representing the check
+     */
     private boolean isLiteral(LinkedList<String> expr) {
         try{
             Integer.parseInt(expr.getLast());
@@ -29,28 +47,54 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return true;
     }
 
+    /**
+     * Determines if a variable is a class type
+     * @param type The type of the variable
+     * @return boolean representing the check
+     */
     private boolean isClassType(String type) {
         return type != null && !(type.equals("int") || type.equals("int[]") || type.equals("boolean"));
     }
 
+    /**
+     * Determines if the expression is a single variable, which should not be
+     * put in the vapor AST
+     * @param expr The set of vapor code in question
+     * @return boolean representing the check
+     */
     private boolean isSingleVar(LinkedList<String> expr) {
-        return expr.size() == 1 && expr.getLast().split("=").length == 1;
+        return expr.size() == 1 &&
+                expr.getLast().split("=").length == 1 &&
+                !expr.getLast().contains("while") &&
+                !expr.getLast().contains("Print");
     }
 
+    /**
+     * If the expression is a single word, then don't put it into the AST (unless while or Print)
+     * @param expr The set of vapor code in question
+     * @return boolean representing the check
+     */
     private boolean isSingle(LinkedList<String> expr) {
         return expr.size() == 1 && (expr.getLast().length() == 1 || isLiteral(expr) || isSingleVar(expr));
     }
 
-    private boolean isCall(LinkedList<String> expr) {
-        return expr.size() == 1 && (expr.getLast().contains("call"));
-    }
-
+    /**
+     * Given vapor code, retrieve the last used variable from that block of code
+     * @param expr The set of vapor code we wish to extract from
+     * @return String representing the last variable
+     */
     private String extractLastVar(LinkedList<String> expr) {
         String lhs = expr.getLast().split("=")[0].trim();
         lhs = lhs.replaceAll("[\\[\\]]", "");
         return lhs;
     }
 
+    /**
+     * Because identifier code blocks can contain member variable assignments as well,
+     * this method ensures correct retrieval of the identifier name
+     * @param identifier The identifier code block
+     * @return name of the identifier as a String
+     */
     private String idToString(LinkedList<String> identifier) {
         if(isSingle(identifier)) {
             return identifier.getLast();
@@ -59,12 +103,25 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         }
     }
 
+    /**
+     * Removes the first line of code from the vapor code. Used primarily for removing
+     * the identifier name
+     * @param expr The vapor code block to sanitize
+     */
     private void sanitize(LinkedList<String> expr) {
-        if(expr.getFirst().split(" ").length == 1) {
+        if(expr.getFirst().split(" ").length == 1 &&
+                !expr.getFirst().contains("while") &&
+                !expr.getFirst().contains("Print")) {
             expr.removeFirst();
         }
     }
 
+    /**
+     * Respectively extract the value name from block of vapor code into curr
+     * @param expr Vapor code to extract from
+     * @param curr Vapor code to add expression into if need be
+     * @return The value extracted
+     */
     private String getVal(LinkedList<String> expr, LinkedList<String> curr) {
         if(!isSingle(expr)) {
             sanitize(expr);
@@ -74,7 +131,12 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return expr.getLast();
     }
 
+    /**
+     * Static function for array allocation put at the bottom of the vapor code
+     * @return Vapor block representing the allocation
+     */
     private LinkedList<String> arrayAlloc() {
+        clearCounter();
         LinkedList<String> allocFunc = new LinkedList<>();
         allocFunc.add("func AllocArray(size)");
         indentLevel++;
@@ -87,6 +149,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return allocFunc;
     }
 
+    /**
+     * Adds the respective amount of indentation for pretty printing
+     * @return indentation string using tabs
+     */
     private String indent() {
         String indent = "";
         for(int i = 0; i < indentLevel; i++)
@@ -94,14 +160,26 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return indent;
     }
 
+    /**
+     * Clears the temp variable counter. Used at the start of every new function
+     */
     private void clearCounter() {
         varCounter = 0;
     }
 
+    /**
+     * Creates a new temp variable, and auto increments the counter
+     * @return the temp variable string
+     */
     private String createTemp() {
         return "t." + varCounter++;
     }
 
+    /**
+     * Determines the type of error to put out
+     * @param oob Out of bounds or null pointer
+     * @return error string
+     */
     private String error(boolean oob) {
         String base = indent() + "Error(";
         return oob ? base + "\"array index out of bounds\")" : base + "\"null pointer\")";
@@ -118,9 +196,11 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(Goal n, Map<String, VClass> argu) {
         vapor.addAll(n.f0.accept(this, argu));
+        // Add all classes
         for(Node _class : n.f1.nodes){
             vapor.addAll(_class.accept(this, argu));
         }
+        // Add allocation if needed
         if(shouldPrintAlloc) {
             vapor.add("\n");
             vapor.addAll(arrayAlloc());
@@ -155,11 +235,13 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(MainClass n, Map<String, VClass> argu) {
         LinkedList<String> main = new LinkedList<>(Arrays.asList("func Main()"));
         indentLevel++;
-        //classStack.push("main");
+        classStack.push("main");
         currentMethod = "main";
+        // Grab all statements for main function
         for(Node _stmt : n.f15.nodes) {
             main.addAll(_stmt.accept(this, argu));
         }
+        // Naked return
         main.add(indent() + "ret");
         indentLevel--;
         return main;
@@ -192,8 +274,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(ClassDeclaration n, Map<String, VClass> argu) {
         LinkedList<String> _class = new LinkedList<>();
         String className = idToString(n.f1.accept(this, argu));
+        // Reset class stack on every new class
         classStack.clear();
         classStack.push(className);
+        // Go through class' methods
         for(Node _method : n.f4.nodes) {
             _class.addAll(_method.accept(this, argu));
         }
@@ -217,8 +301,10 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(ClassExtendsDeclaration n, Map<String, VClass> argu) {
         LinkedList<String> _class = new LinkedList<>();
         String className = idToString(n.f1.accept(this, argu));
+        // Reset class stack on every new class
         classStack.clear();
         classStack.push(className);
+        // Go through class' methods
         for(Node _method : n.f6.nodes) {
             _class.addAll(_method.accept(this, argu));
         }
@@ -301,15 +387,22 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(Block n, Map<String, VClass> argu) {
         LinkedList<String> block = new LinkedList<>();
         indentLevel++;
+        // Add all statements in the block
         for(Node _stmt : n.f1.nodes) {
             LinkedList<String> currStmt = _stmt.accept(this, argu);
-            if (!isSingle(currStmt) && !isCall(currStmt))
+            if (!isSingle(currStmt))
                 block.addAll(currStmt);
         }
         indentLevel--;
         return block;
     }
 
+    /**
+     * Determines whether a variable is member scoped or not
+     * @param id Name of variable in question
+     * @param argu Context
+     * @return boolean representing the check
+     */
     private boolean isLocal(String id, Map<String, VClass> argu) {
         String currentClass = classStack.get(0);
         VMethod _method = argu.get(currentClass).getMethod(currentMethod);
@@ -331,10 +424,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         String id = idToString(n.f0.accept(this, argu));
         LinkedList<String> expression = n.f2.accept(this, argu);
         String val = getVal(expression, assignment);
-        boolean local = isLocal(id, argu);
         String currentClass = classStack.get(0);
         // If its not local it must be instance - guaranteed typecheck
-        if(!local) {
+        if(!isLocal(id, argu)) {
             int idx = argu.get(currentClass).getMembers().indexOf(id);
             int offset = 4 + 4*idx;
             id = "[this+" + offset + "]";
@@ -344,15 +436,22 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     }
 
 
+    /**
+     * Generates vapor code for array dereferencing
+     * @param id Name of variable to get scope of
+     * @param var Name of variable to assign to
+     * @param argu Context
+     * @return The vapor code representing dereferencing
+     */
     private LinkedList<String> arrDeref(String id, String var, Map<String, VClass> argu) {
         LinkedList<String> arr = new LinkedList<>();
         String currentClass = classStack.get(0);
-        // If its not local it must be instance - guaranteed typecheck
-        if(!isLocal(id, argu)) {
-            if(argu.get(currentClass).getMembers().indexOf(id) != -1) {
+        if (!isLocal(id, argu)) {
+            // Ensure the variable is a member variable
+            if (argu.get(currentClass).getMembers().indexOf(id) != -1) {
                 int instanceIdx = argu.get(currentClass).getMembers().indexOf(id);
                 int offset = 4 + 4 * instanceIdx;
-                arr.add(indent() + var + " = [this + " + offset + "]");
+                arr.add(indent() + var + " = [this+" + offset + "]");
             }
         } else {
             arr.add(indent() + var + " = " + id);
@@ -360,6 +459,11 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return arr;
     }
 
+    /**
+     * Generates vapor code for null pointer checks
+     * @param var Name of variable to check
+     * @return The vapor code representing the check
+     */
     private LinkedList<String> nullPtrCheck(String var) {
         LinkedList<String> nullptr = new LinkedList<>();
         int currentNullCount = nullCounter++;
@@ -371,6 +475,11 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return nullptr;
     }
 
+    /**
+     * Generates vapor code for array out of bounds checks
+     * @param var Name of variable to check
+     * @return The vapor code representing the check
+     */
     private LinkedList<String> oobCheck(String var) {
         LinkedList<String> oob = new LinkedList<>();
         int currentBoundsCount = boundsCounter++;
@@ -382,6 +491,13 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return oob;
     }
 
+    /**
+     * Generates the vapor code for any array operation, lookup or assignment
+     * @param id Name of variable that needs to be checked for scope
+     * @param idx The index of the array operation
+     * @param argu Context
+     * @return The vapor code representing the operation
+     */
     private LinkedList<String> arrayOp(String id, String idx, Map<String, VClass> argu) {
         LinkedList<String> arr = new LinkedList<>();
         String temp1 = createTemp();
@@ -447,10 +563,12 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         int currentElseCount = elseCounter++;
         LinkedList<String> expression = n.f2.accept(this, argu);
         LinkedList<String> ifelse = new LinkedList<>();
+        // Get the condition variable
         String cond = getVal(expression, ifelse);
         ifelse.add(indent() + "if0 " + cond + " goto " + ":if" + currentElseCount + "_else");
         LinkedList<String> ifstmt = n.f4.accept(this, argu);
         indentLevel++;
+        // Add the if statement block
         if(!isSingle(ifstmt)) {
             sanitize(ifstmt);
             ifelse.addAll(ifstmt);
@@ -460,6 +578,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         ifelse.add(indent() + "if" + currentElseCount + "_else:");
         LinkedList<String> elsestmt = n.f6.accept(this, argu);
         indentLevel++;
+        // Else statement block
         if(!isSingle(elsestmt)) {
             sanitize(elsestmt);
             ifelse.addAll(elsestmt);
@@ -486,10 +605,12 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         _while.add(indent() + "while" + currentWhileCount + "_top:");
         LinkedList<String> expression = n.f2.accept(this, argu);
         indentLevel++;
+        // Get the condition variable
         String cond = getVal(expression, _while);
         indentLevel--;
         _while.add(indent() + "if0 " + cond + " goto :while" + currentWhileCount + "_end");
         LinkedList<String> _whilestmt = n.f4.accept(this, argu);
+        // While statement block
         if(!isSingle(_whilestmt)) {
             sanitize(_whilestmt);
             _while.addAll(_whilestmt);
@@ -515,11 +636,8 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     public LinkedList<String> visit(PrintStatement n, Map<String, VClass> argu) {
         LinkedList<String> expression = n.f2.accept(this, argu);
         LinkedList<String> print = new LinkedList<>();
-        if(!isSingle(expression)) {
-            sanitize(expression);
-            print.addAll(expression);
-        }
-        print.add(indent() + "PrintIntS(" + extractLastVar(expression) + ")");
+        String toPrint = getVal(expression, print);
+        print.add(indent() + "PrintIntS(" + toPrint + ")");
         return print;
     }
 
@@ -542,15 +660,25 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         return n.f0.accept(this, argu);
     }
 
+    /**
+     * Generates the vapor code for any binary arithmetic or logical operation
+     * @param l The left hand side expression node
+     * @param r The right hand side expression node
+     * @param argu Context
+     * @param type The type of binary operation
+     * @return The vapor code representing the binary operation
+     */
     private LinkedList<String> binaryOp(Node l, Node r, Map<String, VClass> argu, String type) {
         LinkedList<String> current = new LinkedList<>();
         LinkedList<String> lhs = l.accept(this, argu);
+        // Get left hand side block
         if (!isSingle(lhs)) {
             sanitize(lhs);
             current.addAll(lhs);
         }
         String val1 = isSingle(lhs) ? lhs.getLast() : extractLastVar(current);
         String val2;
+        // Handle short-circuiting
         if (!lhs.equals("0")) {
             LinkedList<String> rhs = r.accept(this, argu);
             if (!isSingle(rhs)) {
@@ -577,7 +705,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(AndExpression n, Map<String, VClass> argu) {
         LinkedList<String> and = new LinkedList<>();
+        // Just multiply to get the result of an AND
         and.addAll(binaryOp(n.f0, n.f2, argu, "MulS"));
+        // If its 1 then its true
         and.add(indent() + createTemp() + " = Eq(1 " + extractLastVar(and) + ")");
         return and;
     }
@@ -769,7 +899,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
             }
             String currArgu = isSingle(currExpr) ? currExpr.getLast() : extractLastVar(currExpr);
             arguments.add(currArgu);
-            if (!isSingle(currExpr) && !isCall(currExpr))
+            if (!isSingle(currExpr))
                 exprList.addAll(currExpr);
         }
         return exprList;
@@ -906,13 +1036,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         shouldPrintAlloc = true;
         LinkedList<String> expression = n.f3.accept(this,argu);
         LinkedList<String> arrAlloc = new LinkedList<>();
+        String allocAmt = getVal(expression, arrAlloc);
         // Rely on calling the array allocation function
-        if(isSingle(expression)) {
-            arrAlloc.add(indent() + createTemp() + " = call :AllocArray(" + expression.getLast() + ")");
-        } else {
-            arrAlloc.addAll(expression);
-            arrAlloc.add(indent() + createTemp() + " = call :AllocArray(" + extractLastVar(arrAlloc) + ")");
-        }
+        arrAlloc.add(indent() + createTemp() + " = call :AllocArray(" + allocAmt + ")");
         return arrAlloc;
     }
 

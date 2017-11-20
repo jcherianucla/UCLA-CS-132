@@ -1,0 +1,19 @@
+func Main()
+	t.0 = call :AllocArray(5)
+	x = t.0
+	t.1 = x
+	if t.1 goto :null1
+		Error("null pointer")
+	null1:
+	t.2 = [t.1]
+	y = t.2
+	PrintIntS(y)
+	ret
+
+
+func AllocArray(size)
+	bytes = MulS(size 4)
+	bytes = Add(bytes 4)
+	v = HeapAllocZ(bytes)
+	[v] = size
+	ret v

@@ -1,0 +1,76 @@
+const vmt_A
+	:A.print
+	:A.foo
+const vmt_B
+	:B.print
+	:A.foo
+const vmt_C
+	:C.print
+	:A.foo
+const vmt_D
+	:C.print
+	:A.foo
+const vmt_E
+	:E.print
+	:A.foo
+func Main()
+	t.0 = HeapAllocZ(4)
+	[t.0] = :vmt_A
+	if t.0 goto :null1
+		Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	t.2 = [t.1+4]
+	t.3 = HeapAllocZ(4)
+	[t.3] = :vmt_B
+	t.4 = HeapAllocZ(4)
+	[t.4] = :vmt_C
+	t.5 = HeapAllocZ(4)
+	[t.5] = :vmt_D
+	t.6 = HeapAllocZ(4)
+	[t.6] = :vmt_E
+	t.7 = call t.2(t.0 t.3 t.4 t.5 t.6)
+	PrintIntS(t.7)
+	ret
+func A.print(this)
+	PrintIntS(1)
+	ret 1
+func A.foo(this a1 a2 a3 a4)
+	if a1 goto :null2
+		Error("null pointer")
+	null2:
+	t.0 = [a1]
+	t.1 = [t.0+0]
+	t.2 = call t.1(a1)
+	PrintIntS(t.2)
+	if a2 goto :null3
+		Error("null pointer")
+	null3:
+	t.3 = [a2]
+	t.4 = [t.3+0]
+	t.5 = call t.4(a2)
+	PrintIntS(t.5)
+	if a3 goto :null4
+		Error("null pointer")
+	null4:
+	t.6 = [a3]
+	t.7 = [t.6+0]
+	t.8 = call t.7(a3)
+	PrintIntS(t.8)
+	if a4 goto :null5
+		Error("null pointer")
+	null5:
+	t.9 = [a4]
+	t.10 = [t.9+0]
+	t.11 = call t.10(a4)
+	PrintIntS(t.11)
+	ret 0
+func B.print(this)
+	PrintIntS(1)
+	ret 1
+func C.print(this)
+	PrintIntS(2)
+	ret 2
+func E.print(this)
+	PrintIntS(4)
+	ret 4

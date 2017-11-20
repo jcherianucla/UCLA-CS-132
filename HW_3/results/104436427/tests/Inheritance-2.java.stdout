@@ -22,7 +22,7 @@ func B.foo(this sz)
 	t.2 = call :AllocArray(sz)
 	[this+12] = t.2
 	t.4 = [this+4]
-	t.5 = [this + 12]
+	t.5 = [this+12]
 	if t.5 goto :null2
 		Error("null pointer")
 	null2:

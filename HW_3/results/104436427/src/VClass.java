@@ -1,6 +1,12 @@
 
 import java.util.*;
 
+/**
+ * VClass represents the idea of a class as in MiniJava, holding all
+ * its member variables, type associations and methods. It can also
+ * be thought of as a node in a dependency graph as generated for
+ * inheritance.
+ */
 public class VClass {
     private VClass parent = null;
     public String className;
@@ -10,11 +16,6 @@ public class VClass {
 
     public VClass(String className) {
         this.className = className;
-    }
-    public VClass(String className, List<VMethod> methods, List<String> members) {
-        this.className = className;
-        this.members = members;
-        this.methods = methods;
     }
 
     /**
@@ -42,6 +43,11 @@ public class VClass {
         return this.get(methods, VMethod.class);
     }
 
+    /**
+     * Gets the specific method if it exists, based on its name
+     * @param methodName Name of method in question
+     * @return The actual method itself
+     */
     public VMethod getMethod(String methodName) {
         List<VMethod> allMethods = getMethods();
         for(VMethod method : allMethods) {
@@ -61,8 +67,8 @@ public class VClass {
 
     /**
      * Gets all the objects of type T for the current class including it's
-     * parent's objects in order. The filter should ensure that
-     * overridden objects remain as per the current class' implementation.
+     * parent's objects in order for dynamic lookup through the Virtual Method Table.
+     * Overridden objects remain as per the current class' implementation.
      * @return List of all objects
      */
     private <T> List<T> get(List<T> baseObjs, Class<T> type) {
@@ -80,9 +86,15 @@ public class VClass {
             parentObjs.addAll(copy);
             return parentObjs;
         }
-        return baseObjs;
+        return new LinkedList<>(baseObjs);
     }
 
+    /**
+     * Gets the respective class associated with the method, while
+     * traversing the dependency graph
+     * @param method The method we are looking for
+     * @return Name of the class it was most recently found in
+     */
     private String getMethodsClass(VMethod method) {
         if(this.methods.indexOf(method) != -1) {
             return this.className;
@@ -91,6 +103,9 @@ public class VClass {
         }
     }
 
+    /**
+     * Outputs the class' virtual method table
+     */
     public void printVMT() {
         System.out.println("const vmt_" + className);
         for(VMethod method : this.getMethods()) {
@@ -102,6 +117,9 @@ public class VClass {
         }
     }
 
+    /**
+     * Debugging function for pretty printing the class
+     */
     public void printClass() {
         System.out.println("CLASS NAME: " + className);
         if(hasParent()) {

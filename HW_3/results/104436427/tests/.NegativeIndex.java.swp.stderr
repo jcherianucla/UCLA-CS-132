@@ -1,0 +1,9 @@
+ParseException: Encountered " <IDENTIFIER> "b0VIM "" at line 1, column 1.
+Was expecting:
+    "class" ...
+    
+	at MiniJavaParser.generateParseException(MiniJavaParser.java:1890)
+	at MiniJavaParser.jj_consume_token(MiniJavaParser.java:1772)
+	at MiniJavaParser.MainClass(MiniJavaParser.java:71)
+	at MiniJavaParser.Goal(MiniJavaParser.java:14)
+	at J2V.main(J2V.java:22)

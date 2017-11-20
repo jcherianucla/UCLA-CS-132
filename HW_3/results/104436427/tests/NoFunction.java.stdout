@@ -1,0 +1,16 @@
+const vmt_A
+	:A.foo
+func Main()
+	t.0 = HeapAllocZ(4)
+	[t.0] = :vmt_A
+	a = t.0
+	if a goto :null1
+		Error("null pointer")
+	null1:
+	t.1 = [a]
+	t.2 = [t.1+0]
+	t.3 = call t.2(a)
+	PrintIntS(t.3)
+	ret
+func A.foo(this)
+	ret 1

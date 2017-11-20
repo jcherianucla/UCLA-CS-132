@@ -1,0 +1,7 @@
+1,3c1,2
+< --- Error (ProgramFault) ---
+< use of uinitialized value
+<   Main() line 4
+---
+> --- Error (Explicit) ---
+> null pointer

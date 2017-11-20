@@ -126,7 +126,7 @@ func LS.Init(this sz)
 		aux01 = t.7
 		t.8 = Sub(k 3)
 		aux02 = t.8
-		t.10 = [this + 4]
+		t.10 = [this+4]
 		if t.10 goto :null4
 			Error("null pointer")
 		null4:

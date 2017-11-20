@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * VMethod represents the idea of a method as in MiniJava, holding all
+ * its local variables, parameters and type associations. It is
+ * used for ease of scoping.
+ */
 public class VMethod {
     public String methodName;
     public List<String> params = new ArrayList<>();
@@ -14,12 +19,9 @@ public class VMethod {
         this.methodName = methodName;
     }
 
-    public VMethod(String methodName, List<String> params, List<String> locals) {
-        this.methodName = methodName;
-        this.params = params;
-        this.locals = locals;
-    }
-
+    /**
+     * Debugging function for pretty printing the method
+     */
     public void printMethod() {
         System.out.println("METHOD NAME: " + methodName);
         for(int i = 0; i < params.size(); i++) {
@@ -30,6 +32,7 @@ public class VMethod {
         }
     }
 
+    // Equality for a method is based on its name in this project
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -40,6 +43,7 @@ public class VMethod {
         return false;
     }
 
+    // Hashing for a method is based on its name in this project
     @Override
     public int hashCode() {
         return 31 * this.methodName.hashCode();

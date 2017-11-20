@@ -1,0 +1,8 @@
+func Main()
+	t.0 = x
+	if t.0 goto :null1
+		Error("null pointer")
+	null1:
+	t.1 = [t.0]
+	PrintIntS(t.1)
+	ret

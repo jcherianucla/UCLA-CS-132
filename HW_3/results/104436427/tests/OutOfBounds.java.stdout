@@ -1,0 +1,37 @@
+func Main()
+	t.0 = call :AllocArray(5)
+	x = t.0
+	t.1 = x
+	if t.1 goto :null1
+		Error("null pointer")
+	null1:
+	t.2 = [t.1]
+	t.2 = Lt(5 t.2)
+	if t.2 goto :bounds1
+		Error("array index out of bounds")
+	bounds1:
+	t.2 = MulS(5 4)
+	t.2 = Add(t.2 t.1)
+	[t.2 + 4] = 100
+	t.3 = x
+	if t.3 goto :null2
+		Error("null pointer")
+	null2:
+	t.4 = [t.3]
+	t.4 = Lt(3 t.4)
+	if t.4 goto :bounds2
+		Error("array index out of bounds")
+	bounds2:
+	t.4 = MulS(3 4)
+	t.4 = Add(t.4 t.3)
+	t.5 = [t.4 + 4]
+	PrintIntS(t.5)
+	ret
+
+
+func AllocArray(size)
+	bytes = MulS(size 4)
+	bytes = Add(bytes 4)
+	v = HeapAllocZ(bytes)
+	[v] = size
+	ret v

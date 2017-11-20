@@ -1,0 +1,13 @@
+const vmt_A
+	:A.foo
+func Main()
+	if a goto :null1
+		Error("null pointer")
+	null1:
+	t.0 = [a]
+	t.1 = [t.0+0]
+	t.2 = call t.1(a)
+	PrintIntS(t.2)
+	ret
+func A.foo(this)
+	ret 1
