@@ -16,6 +16,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     private int boundsCounter = 1;
     private boolean shouldPrintAlloc = false;
     private Stack<String> classStack = new Stack<String>();
+    private String callingClass;
     private String currentMethod;
     private LinkedList<String> vapor = new LinkedList<String>();
     private LinkedList<String> arguments = new LinkedList<String>();
@@ -646,8 +647,9 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
     @Override
     public LinkedList<String> visit(ArrayLookup n, Map<String, VClass> argu) {
         LinkedList<String> arrLookup = new LinkedList<>();
-        LinkedList<String> identifier = n.f0.accept(this, argu);
         LinkedList<String> arrIdx = n.f2.accept(this, argu);
+        LinkedList<String> identifier = n.f0.accept(this, argu);
+        String idx = getVal(arrIdx, arrLookup);
         String id;
         if(!isSingle(identifier)) {
             if(identifier.getFirst().split(" ").length == 1) {
@@ -659,7 +661,6 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         } else {
             id = identifier.getLast();
         }
-        String idx = getVal(arrIdx, arrLookup);
         arrLookup.addAll(arrayOp(id, idx, argu));
         int currentVarCount = varCounter;
         arrLookup.add(indent() + createTemp() + " = [t." + (currentVarCount-1) + " + 4]");
@@ -715,12 +716,14 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         }
         String methodName = n.f2.accept(this, argu).getLast();
         String currentClass = classStack.peek();
+        callingClass = currentClass;
         // Find the method for the calling class
         VMethod currentMethod = argu.get(currentClass).getMethod(methodName);
         // Push on class return type for methods
         if(isClassType(currentMethod.returnType)) {
             classStack.push(currentMethod.returnType);
         }
+        msgSend.add("class: " + currentClass);
         int methodIdx = 4 * argu.get(currentClass).getMethods().indexOf(currentMethod);
         int currentVarCount = varCounter;
         // Dereference class pointer
@@ -742,6 +745,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
         methodCall += ")";
         // Set result of method call
         msgSend.add(indent() + createTemp() + " = " + methodCall);
+        //callingClass = null;
         return msgSend;
     }
 
@@ -887,6 +891,7 @@ public class TranslatorVisitor extends GJDepthFirst<LinkedList<String>, Map<Stri
      */
     @Override
     public LinkedList<String> visit(ThisExpression n, Map<String, VClass> argu) {
+        classStack.push(callingClass != null ? callingClass : classStack.get(0));
         return new LinkedList<>(Arrays.asList("this"));
     }
 
