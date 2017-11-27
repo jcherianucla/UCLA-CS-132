@@ -255,8 +255,6 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         }
         if(isVariable(lhs)) {
             readVariable(((VMemRef.Global)lhs).base.toString(), line);
-        } else {
-            throw new Throwable();
         }
     }
 
