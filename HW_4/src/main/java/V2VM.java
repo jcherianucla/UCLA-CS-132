@@ -1,15 +1,22 @@
+import cs132.util.ProblemException;
 import cs132.vapor.ast.VBuiltIn.Op;
 import cs132.vapor.ast.VaporProgram;
 import cs132.vapor.parser.VaporParser;
 
 import java.io.InputStreamReader;
-import java.net.ProtocolException;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import static java.lang.System.in;
 
 public class V2VM {
-    
+
+    public static void printVaporM(LinkedList<String> vaporm) {
+        for(String line : vaporm) {
+            System.out.println(line);
+        }
+    }
+
     public static void main (String [] args) throws Throwable {
         Op[] ops = {
                 Op.Add, Op.Sub, Op.MulS, Op.Eq, Op.Lt, Op.LtS, Op.PrintIntS,
@@ -23,9 +30,11 @@ public class V2VM {
         try {
             program = VaporParser.run(new InputStreamReader(in), 1, 1,
                     Arrays.asList(ops), allowLocals, registers, allowStack);
-        } catch (ProtocolException e) {
+        } catch (ProblemException e) {
             return;
         }
+        TranslatorVisitor translator = new TranslatorVisitor(program);
+        printVaporM(translator.vaporm);
     }
 
 }
