@@ -1,6 +1,5 @@
 import cs132.vapor.ast.*;
 
-import java.text.ParseException;
 import java.util.*;
 
 public class LSRA extends VInstr.Visitor<Throwable> {
@@ -20,64 +19,6 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         return regs;
     }
 
-    /**
-     * Represents a Vapor-M Variable, which is a variable with all
-     * the relevant information from Vapor code to be translated into
-     * registers in Vapor-M.
-     */
-    public static class VMVar {
-        public String id;
-        public Interval range;
-        public boolean inCall = false;
-        public boolean existsAfterCall = false;
-
-        public VMVar(String id, int start) {
-            this.id = id;
-            this.range = new Interval(start);
-        }
-
-        public void r(int line) {
-            range.end = line;
-            if(inCall)
-                existsAfterCall = true;
-        }
-
-        public void w(int line) {
-            range.end = line;
-        }
-    }
-
-    /**
-     * Represents a range object with a start and end position.
-     */
-    public static class Interval {
-        int start, end;
-        public Interval(int line) {
-            start = line;
-            end = line;
-        }
-    }
-
-    /**
-     * Sorts an interval in ascending order based on its start time.
-     */
-    public class StartComparator implements Comparator<VMVar> {
-        @Override
-        public int compare(VMVar var1, VMVar var2) {
-            return var1.range.start - var2.range.start;
-        }
-    }
-
-    /**
-     * Sorts an interval in ascending order based on its end time.
-     */
-    public class EndComparator implements Comparator<VMVar> {
-        @Override
-        public int compare(VMVar var1, VMVar var2) {
-            return var1.range.end - var2.range.end;
-        }
-    }
-
     private static LinkedList<String> calleeRegisters;
     private static LinkedList<String> callerRegisters;
     private static LinkedList<VMVar> activeVars;
@@ -87,7 +28,9 @@ public class LSRA extends VInstr.Visitor<Throwable> {
     private static LinkedHashMap<String, VMVar> varMap = new LinkedHashMap<>();
     private static final int TOTAL_REGISTERS = 17;
     private final VFunction currFunc;
-    private static int calleeRegisterCount = 0;
+    public int localCount = 0;
+    public int outCount = 0;
+    private static HashMap<String, String> allocatedMap = new HashMap<>();
 
 
     public LSRA(VFunction func) {
@@ -96,8 +39,23 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         callerRegisters = initRegisters("t", 8);
     }
 
+    public void run() throws Throwable {
+        runAnalysis();
+        allocate();
+        for(Map.Entry<VMVar, String> varToReg : registerMap.entrySet()) {
+            allocatedMap.put(varToReg.getKey().id, varToReg.getValue());
+        }
+        for(Map.Entry<VMVar, String> varToLocal : locations.entrySet()) {
+            allocatedMap.put(varToLocal.getKey().id, varToLocal.getValue());
+        }
+    }
+
+    public String getRegister(String var) {
+        return allocatedMap.get(var);
+    }
+
     private String newStackLocation() {
-        return "local[" + calleeRegisterCount++ + "]";
+        return "local[" + localCount++ + "]";
     }
 
     private boolean isCalleeRegister(String reg) {
@@ -105,6 +63,8 @@ public class LSRA extends VInstr.Visitor<Throwable> {
     }
 
     private boolean isVariable(Node node) {
+        if(node == null)
+            return false;
         if(node instanceof VOperand) {
             return node instanceof VVarRef.Local;
         } else if(node instanceof VMemRef) {
@@ -114,7 +74,7 @@ public class LSRA extends VInstr.Visitor<Throwable> {
     }
 
     private String getCalleeRegister() {
-        calleeRegisterCount++;
+        localCount++;
         return calleeRegisters.removeFirst();
     }
 
@@ -122,14 +82,14 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         return callerRegisters.removeFirst();
     }
 
-    public void readVariable(String varId, int pos) {
+    private void readVariable(String varId, int pos) {
         VMVar var = varMap.get(varId);
         if(var != null) {
             var.r(pos);
         }
     }
 
-    public void writeVariable(String varId, int pos) {
+    private void writeVariable(String varId, int pos) {
         VMVar var = varMap.get(varId);
         if(var != null) {
             var.w(pos);
@@ -138,66 +98,77 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         }
     }
 
+    private void updateLabels(String label, int pos) {
+        for(VMVar currVar : varMap.values()) {
+            if(currVar.afterLabels.contains(label)) {
+                currVar.range.end = pos;
+                if(currVar.beforeCall)
+                    currVar.afterCall = true;
+            }
+        }
+    }
+
     /**
      * The Linear Scan Register Allocation algorithm as given in
      * Section 4.1, Figure 1 in Linear Scan Register Allocation by
      * Massimiliano Poletto and Vivek Sarkar.
      */
-    public void allocate() {
+    private void allocate() {
         activeVars = new LinkedList<>();
         LinkedList<VMVar> live = new LinkedList<>(varMap.values());
-        live.sort(new StartComparator());
+        live.sort(new VMVar.StartComparator());
         for(VMVar var : live) {
             expireOldIntervals(var);
-            if(activeVars.size() >= TOTAL_REGISTERS || (var.existsAfterCall && calleeRegisters.isEmpty())) {
+            if(activeVars.size() >= TOTAL_REGISTERS || (var.afterCall && calleeRegisters.isEmpty())) {
                 spillAtInterval(var);
             } else {
-                registerMap.put(var, getFreeRegister(var.existsAfterCall));
+                registerMap.put(var, getFreeRegister(var.afterCall));
                 activeVars.add(var);
             }
         }
 
     }
 
-    public void expireOldIntervals(VMVar inVar) {
-        activeVars.sort(new EndComparator());
-        for(VMVar currVar: activeVars) {
-            if(currVar.range.end >= inVar.range.start)
-                return;
-            activeVars.remove(currVar);
-            freeRegisters.add(registerMap.get(currVar));
+    private void expireOldIntervals(VMVar inVar) {
+        activeVars.sort(new VMVar.EndComparator());
+        ListIterator<VMVar> iter = activeVars.listIterator();
+        while(iter.hasNext()) {
+            VMVar currVar = iter.next();
+            if(currVar.range.end < inVar.range.start) {
+               freeRegisters.add(registerMap.get(currVar));
+               iter.remove();
+            }
         }
     }
 
-    public void spillAtInterval(VMVar inVar) {
+    private void spillAtInterval(VMVar inVar) {
         VMVar spill = activeVars.getLast();
         if(spill.range.end >= inVar.range.end) {
             registerMap.put(inVar, registerMap.get(spill));
             locations.put(spill, newStackLocation());
             activeVars.remove(spill);
             activeVars.add(inVar);
-            activeVars.sort(new EndComparator());
+            activeVars.sort(new VMVar.EndComparator());
         } else {
             locations.put(inVar, newStackLocation());
         }
     }
 
-    public String getFreeRegister(boolean aliveAfterCall) {
+    private String getFreeRegister(boolean afterCall) {
         String free;
-        if(aliveAfterCall) {
-            for(String reg : freeRegisters) {
-                if(isCalleeRegister(reg)) {
-                    free = reg;
-                    freeRegisters.remove(reg);
+        if(afterCall) {
+            ListIterator<String> iter = freeRegisters.listIterator();
+            while(iter.hasNext()) {
+                free = iter.next();
+                if(isCalleeRegister(free)) {
+                    iter.remove();
                     return free;
                 }
             }
             return getCalleeRegister();
         }
-        for(String reg : freeRegisters) {
-            free = reg;
-            freeRegisters.remove(reg);
-            return free;
+        if(!freeRegisters.isEmpty()) {
+            return freeRegisters.removeFirst();
         }
         if(callerRegisters.isEmpty()) {
             return getCalleeRegister();
@@ -206,14 +177,20 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         }
     }
 
-    public void runAnalysis() throws Throwable {
+    private void runAnalysis() throws Throwable {
         // Look through the parameters of current function
         for(VVarRef param : currFunc.params) {
             String varId = param.toString();
             varMap.put(varId, new VMVar(varId, param.sourcePos.line));
         }
+        LinkedList<VCodeLabel> allLabels = new LinkedList<>(Arrays.asList(currFunc.labels));
         // Run through body of function
         for(VInstr instr : currFunc.body) {
+            while(!allLabels.isEmpty() && allLabels.peek().sourcePos.line < instr.sourcePos.line) {
+                String labelId = allLabels.pop().toString();
+                for(VMVar currVar : varMap.values())
+                    currVar.beforeLabels.add(labelId);
+            }
             instr.accept(this);
         }
     }
@@ -232,12 +209,40 @@ public class LSRA extends VInstr.Visitor<Throwable> {
 
     @Override
     public void visit(VCall vCall) throws Throwable {
+        int line = vCall.sourcePos.line;
+        // Go through arguments
+        for(VOperand arg : vCall.args) {
+            if(isVariable(arg)) {
+                readVariable(arg.toString(), line);
+            }
+        }
+        // Does the callee need to spill into out stack
+        if(vCall.args.length > 4) {
+            outCount = vCall.args.length - 4;
+        }
 
+        // All variables so far have been before the call
+        for(VMVar currVar : varMap.values())
+            currVar.beforeCall = true;
+
+        VOperand lhs = vCall.dest;
+        VAddr<VFunction> rhs = vCall.addr;
+        if(isVariable(lhs)) {
+            writeVariable(lhs.toString(), line);
+        }
+        readVariable(rhs.toString(), line);
     }
 
     @Override
     public void visit(VBuiltIn vBuiltIn) throws Throwable {
-
+        int line = vBuiltIn.sourcePos.line;
+        for(VOperand arg : vBuiltIn.args) {
+            if(isVariable(arg))
+                readVariable(arg.toString(), line);
+        }
+        VOperand lhs = vBuiltIn.dest;
+        if(isVariable(lhs))
+            writeVariable(lhs.toString(), line);
     }
 
     @Override
@@ -268,14 +273,27 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         }
     }
 
+    private String extractLabel(VBranch node) {
+        return node.target.getTarget().ident.replaceFirst(":","");
+    }
+    private String extractLabel(VAddr node) {
+        return node.toString().replaceFirst(":","");
+    }
+
     @Override
     public void visit(VBranch vBranch) throws Throwable {
-
+        int line = vBranch.sourcePos.line;
+        String label = extractLabel(vBranch);
+        updateLabels(label, line);
+        VOperand cond = vBranch.value;
+        readVariable(cond.toString(), line);
     }
 
     @Override
     public void visit(VGoto vGoto) throws Throwable {
-
+        int line = vGoto.sourcePos.line;
+        String label = extractLabel(vGoto.target);
+        updateLabels(label, line);
     }
 
     @Override
