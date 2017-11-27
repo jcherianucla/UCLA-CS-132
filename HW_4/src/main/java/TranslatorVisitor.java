@@ -50,21 +50,16 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
                 }
             }
             LinkedList<VCodeLabel> allLabels = new LinkedList<>(Arrays.asList(func.labels));
-            boolean shouldIndent = false;
             // Go through all instructions
             for(VInstr instr : func.body) {
                 // Add any labels before the current instruction
                 while(!allLabels.isEmpty() && allLabels.peek().sourcePos.line < instr.sourcePos.line) {
                     String labelId = allLabels.pop().ident;
-                    vaporm.add(indent() + labelId + ":");
-                    shouldIndent = true;
-                }
-                if (shouldIndent)
-                    indentLevel++;
-                //vaporm.addAll(instr.accept(this));
-                if (shouldIndent)
                     indentLevel--;
-                shouldIndent = false;
+                    vaporm.add(indent() + labelId + ":");
+                    indentLevel++;
+                }
+                vaporm.addAll(instr.accept(this));
             }
             indentLevel--;
         }
@@ -72,41 +67,105 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
 
     @Override
     public LinkedList<String> visit(VAssign vAssign) throws Throwable {
-        return null;
+        LinkedList<String> assign = new LinkedList<>();
+        String lhs = vAssign.dest.toString();
+        String src = vAssign.source.toString();
+        String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
+        assign.add(indent() + lsra.getRegister(lhs) + " = " + rhs);
+        return assign;
     }
 
     @Override
     public LinkedList<String> visit(VCall vCall) throws Throwable {
-        return null;
+        LinkedList<String> call = new LinkedList<>();
+        // Go through params
+        for(int i = 0; i < vCall.args.length; i++) {
+            String argument = vCall.args[i].toString();
+            String rhs = lsra.getRegister(argument) == null ?
+                    argument : lsra.getRegister(argument);
+            if(i < 4) {
+               call.add(indent() + "$a" + i + " = " + rhs);
+            } else {
+                call.add(indent() + "out[" + (i-4) + "] = " + rhs);
+            }
+        }
+        String resultReg = lsra.getRegister(vCall.dest.toString());
+        String funcReg = lsra.getRegister(vCall.addr.toString());
+        call.add(indent() + "call " + funcReg);
+        call.add(indent() + resultReg + " = $v0");
+        return call;
     }
 
     @Override
     public LinkedList<String> visit(VBuiltIn vBuiltIn) throws Throwable {
-        return null;
+        LinkedList<String> builtIn = new LinkedList<>();
+        String args = "";
+        int argSize = vBuiltIn.args.length;
+        for(int i = 0; i < argSize; i++) {
+            String curr = vBuiltIn.args[i].toString();
+            String arg = lsra.getRegister(curr) == null ? curr : lsra.getRegister(curr);
+            args += arg + ((i < argSize - 1) ? " " : "");
+        }
+        VVarRef dest = vBuiltIn.dest;
+        String lhs = "";
+        if(dest != null) {
+            lhs = lsra.getRegister(vBuiltIn.dest.toString()) + " = ";
+        }
+        builtIn.add(indent() + lhs + vBuiltIn.op.name + "(" + args + ")");
+        return builtIn;
     }
 
     @Override
     public LinkedList<String> visit(VMemWrite vMemWrite) throws Throwable {
-        return null;
+        LinkedList<String> memWrite = new LinkedList<>();
+        String lhs = lsra.getRegister(((VMemRef.Global)vMemWrite.dest).base.toString());
+        String src = vMemWrite.source.toString();
+        String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
+        memWrite.add(indent() + "[" + lhs + "] = " + rhs);
+        return memWrite;
     }
 
     @Override
     public LinkedList<String> visit(VMemRead vMemRead) throws Throwable {
-        return null;
+        LinkedList<String> memRead = new LinkedList<>();
+        String lhs = lsra.getRegister(vMemRead.dest.toString());
+        String src = ((VMemRef.Global)vMemRead.source).base.toString();
+        String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
+        memRead.add(indent() + lhs + " = [" + rhs + "]");
+        return memRead;
     }
 
     @Override
     public LinkedList<String> visit(VBranch vBranch) throws Throwable {
-        return null;
+        LinkedList<String> branch = new LinkedList<>();
+        String cond = lsra.getRegister(vBranch.value.toString());
+        if(vBranch.positive) {
+            branch.add(indent() + "if " + cond + " goto " + vBranch.target.toString());
+        } else {
+            branch.add(indent() + "if0 " + cond + " goto " + vBranch.target.toString());
+        }
+        return branch;
     }
 
     @Override
     public LinkedList<String> visit(VGoto vGoto) throws Throwable {
-        return null;
+        LinkedList<String> _goto = new LinkedList<>();
+        _goto.add(indent() + "goto " + vGoto.target.toString());
+        return _goto;
     }
 
     @Override
     public LinkedList<String> visit(VReturn vReturn) throws Throwable {
-        return null;
+        LinkedList<String> ret = new LinkedList<>();
+        if(vReturn.value != null) {
+            String retVal = vReturn.value.toString();
+            String val = lsra.getRegister(retVal) == null ? retVal : lsra.getRegister(retVal);
+            ret.add(indent() + "$v0 = " + val);
+        }
+        for (int i = 0; i < lsra.localCount; i++) {
+            ret.add(indent() + "$s" + i + " = local[" + i + "]");
+        }
+        ret.add(indent() + "ret");
+        return ret;
     }
 }
