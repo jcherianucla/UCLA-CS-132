@@ -37,7 +37,7 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
                     + lsra.outCount + ", local " + lsra.localCount + "]");
             indentLevel++;
             // Caller saved locals
-            for(int i = 0; i < lsra.localCount; i++) {
+            for(int i = 0; i < lsra.localCount && i < 8; i++) {
                 vaporm.add(indent() + "local[" + i + "] = $s" + i);
             }
             // Arguments
@@ -90,7 +90,8 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
             }
         }
         String resultReg = lsra.getRegister(vCall.dest.toString());
-        String funcReg = lsra.getRegister(vCall.addr.toString());
+        String addr = vCall.addr.toString();
+        String funcReg = lsra.getRegister(addr) == null ? addr : lsra.getRegister(addr);
         call.add(indent() + "call " + funcReg);
         call.add(indent() + resultReg + " = $v0");
         return call;
@@ -118,10 +119,12 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
     @Override
     public LinkedList<String> visit(VMemWrite vMemWrite) throws Throwable {
         LinkedList<String> memWrite = new LinkedList<>();
-        String lhs = lsra.getRegister(((VMemRef.Global)vMemWrite.dest).base.toString());
+        VMemRef.Global dest = (VMemRef.Global)vMemWrite.dest;
+        String lhs = lsra.getRegister(dest.base.toString());
         String src = vMemWrite.source.toString();
         String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
-        memWrite.add(indent() + "[" + lhs + "] = " + rhs);
+        String offset = dest.byteOffset == 0 ? "" : "+" + String.valueOf(dest.byteOffset);
+        memWrite.add(indent() + "[" + lhs + offset + "] = " + rhs);
         return memWrite;
     }
 
@@ -129,9 +132,11 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
     public LinkedList<String> visit(VMemRead vMemRead) throws Throwable {
         LinkedList<String> memRead = new LinkedList<>();
         String lhs = lsra.getRegister(vMemRead.dest.toString());
-        String src = ((VMemRef.Global)vMemRead.source).base.toString();
-        String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
-        memRead.add(indent() + lhs + " = [" + rhs + "]");
+        VMemRef.Global src = (VMemRef.Global)vMemRead.source;
+        String srcStr = src.base.toString();
+        String rhs = lsra.getRegister(srcStr) == null ? srcStr : lsra.getRegister(srcStr);
+        String offset = src.byteOffset == 0 ? "" : "+" + String.valueOf(src.byteOffset);
+        memRead.add(indent() + lhs + " = [" + rhs + offset + "]");
         return memRead;
     }
 
@@ -162,7 +167,7 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
             String val = lsra.getRegister(retVal) == null ? retVal : lsra.getRegister(retVal);
             ret.add(indent() + "$v0 = " + val);
         }
-        for (int i = 0; i < lsra.localCount; i++) {
+        for (int i = 0; i < lsra.localCount && i < 8; i++) {
             ret.add(indent() + "$s" + i + " = local[" + i + "]");
         }
         ret.add(indent() + "ret");
