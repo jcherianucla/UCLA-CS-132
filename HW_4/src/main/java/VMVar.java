@@ -1,6 +1,4 @@
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents a Vapor-M Variable, which is a variable with all
@@ -10,8 +8,8 @@ import java.util.List;
 public class VMVar {
     public String id;
     public Interval range;
-    public List<String> beforeLabels = new LinkedList<>();
-    public List<String> afterLabels = new LinkedList<>();
+    public Set<String> beforeLabels = new HashSet<>();
+    public Set<String> afterLabels = new HashSet<>();
     public boolean beforeCall = false;
     public boolean afterCall = false;
 
@@ -24,14 +22,20 @@ public class VMVar {
         this.range.end = line;
         afterLabels.addAll(beforeLabels);
         beforeLabels.clear();
-        if(beforeCall) {
-            afterCall = true;
-        }
+        afterCall = beforeCall;
     }
 
     public void w(int line) {
         this.range.end = line;
         beforeLabels.clear();
+    }
+
+    public void print() {
+        System.out.println("Var Name:" + id);
+        System.out.println("Range: Start: " + range.start + " End: " + range.end);
+        System.out.println(beforeLabels);
+        System.out.println(afterLabels);
+        System.out.println("Cross call: " + afterCall);
     }
 
     /**
