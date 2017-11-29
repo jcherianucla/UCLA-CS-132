@@ -2,7 +2,14 @@ import cs132.vapor.ast.*;
 
 import java.util.*;
 
-public class LSRA extends VInstr.Visitor<Throwable> {
+/**
+ * LSRA represents the Linear Scan Register Allocator, that uses a linear
+ * scan allocation scheme given liveness information, run per function.
+ * This utilizes caller saved registers to handle cross call variables,
+ * saving cross call variables onto the caller's stack and restoring them
+ * at the very end.
+ */
+public class LSRA {
 
     /**
      * Initializes a set of registers based on the type of register,
@@ -19,17 +26,26 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         return regs;
     }
 
+    // Caller and callee registers holding $s0,..., $s7,$t0,...,$t8
     private LinkedList<String> calleeRegisters;
     private LinkedList<String> callerRegisters;
+    // All variables currently active in the LSRA algorithm
     private LinkedList<VMVar> activeVars;
+    // Pool of free registers pulled from caller and callee registers
     private LinkedList<String> freeRegisters = new LinkedList<>();
+    // Mapping of variable to stack location
     private HashMap<VMVar, String> locations = new HashMap<>();
+    // Mapping of variable to allocated register
     private HashMap<VMVar, String> registerMap = new HashMap<>();
-    private LinkedHashMap<String, VMVar> varMap = new LinkedHashMap<>();
+    // Liveness analysis information
+    private LivenessAnalysis analysis;
     private static final int TOTAL_REGISTERS = 17;
     private final VFunction currFunc;
+    // Count of how many stack allocations we'll need - caller saved
     public int localCount = 0;
+    // Count of how many out stack variables we'll need
     public int outCount = 0;
+    // Final map of all variables to their registers/local stack locations
     private HashMap<String, String> allocatedMap = new HashMap<>();
 
 
@@ -49,7 +65,8 @@ public class LSRA extends VInstr.Visitor<Throwable> {
      * @throws Throwable
      */
     public void run() throws Throwable {
-        runAnalysis();
+        analysis = new LivenessAnalysis(this.currFunc);
+        outCount = analysis.getOutCount();
         allocate();
         for(Map.Entry<VMVar, String> varToReg : registerMap.entrySet()) {
             allocatedMap.put(varToReg.getKey().id, varToReg.getValue());
@@ -86,22 +103,6 @@ public class LSRA extends VInstr.Visitor<Throwable> {
     }
 
     /**
-     * Checks if a node is a valid variable, which is either a local or instance variable
-     * @param node The Vapor Node in question
-     * @return Whether the node is a local or global variable
-     */
-    private boolean isVariable(Node node) {
-        if(node == null)
-            return false;
-        if(node instanceof VOperand) {
-            return node instanceof VVarRef.Local;
-        } else if(node instanceof VMemRef) {
-            return node instanceof VMemRef.Global;
-        }
-        return false;
-    }
-
-    /**
      * Assigns callee register - Caller saved therefore increase in localcount
      * @return Callee register
      */
@@ -119,43 +120,15 @@ public class LSRA extends VInstr.Visitor<Throwable> {
     }
 
     /**
-     * Performs a read operation on the variable if it exists
-     * @param varId The variable name we are trying to search on
-     * @param pos The new line position for the end range of the variable
-     */
-    private void readVariable(String varId, int pos) {
-        VMVar var = varMap.get(varId);
-        if(var != null) {
-            var.r(pos);
-        }
-    }
-
-    private void writeVariable(String varId, int pos) {
-        VMVar var = varMap.get(varId);
-        if(var != null) {
-            var.w(pos);
-        } else {
-            varMap.put(varId, new VMVar(varId, pos));
-        }
-    }
-
-    private void updateLabels(String label, int pos) {
-        for(VMVar currVar : varMap.values()) {
-            if(currVar.afterLabels.contains(label)) {
-                currVar.range.end = pos;
-                currVar.afterCall = currVar.beforeCall;
-            }
-        }
-    }
-
-    /**
      * The Linear Scan Register Allocation algorithm as given in
      * Section 4.1, Figure 1 in Linear Scan Register Allocation by
-     * Massimiliano Poletto and Vivek Sarkar.
+     * Massimiliano Poletto and Vivek Sarkar. Calculates active variables
+     * and assigns them to available pool of registers, grabs a new free
+     * register or spills onto the stack in the case of running out of registers.
      */
     private void allocate() {
         activeVars = new LinkedList<>();
-        LinkedList<VMVar> live = new LinkedList<>(varMap.values());
+        LinkedList<VMVar> live = new LinkedList<>(analysis.getVarMap().values());
         live.sort(new VMVar.StartComparator());
         for(VMVar var : live) {
             expireOldIntervals(var);
@@ -167,9 +140,12 @@ public class LSRA extends VInstr.Visitor<Throwable> {
                 activeVars.sort(new VMVar.EndComparator());
             }
         }
-
     }
-
+    /**
+     * Go through old intervals and remove the register mappings
+     * for all variables that are no longer in the current range.
+     * @param inVar The variable to compare ranges to
+     */
     private void expireOldIntervals(VMVar inVar) {
         activeVars.sort(new VMVar.EndComparator());
         ListIterator<VMVar> iter = activeVars.listIterator();
@@ -183,6 +159,12 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         }
     }
 
+    /**
+     * Spill variables onto the local stack. Either spill the last
+     * variable or the variable currently being looked at based on the
+     * end range. The idea is that we spill the latest variable seen so far.
+     * @param inVar The variable to compare ranges to
+     */
     private void spillAtInterval(VMVar inVar) {
         VMVar spill = activeVars.getLast();
         if(spill.range.end > inVar.range.end) {
@@ -196,6 +178,14 @@ public class LSRA extends VInstr.Visitor<Throwable> {
         }
     }
 
+    /**
+     * Retrieves the next free register. We try to get caller registers first
+     * after which we default to callee registers. The special case is when
+     * we have a variable that is cross call (i.e. used after a call). This
+     * LSRA uses caller saved, in which case we save to callee registers.
+     * @param afterCall Whether the we are looking at a variable that is cross call or not
+     * @return String representing the register
+     */
     private String getFreeRegister(boolean afterCall) {
         if(afterCall) {
             ListIterator<String> iter = freeRegisters.listIterator();
@@ -215,134 +205,6 @@ public class LSRA extends VInstr.Visitor<Throwable> {
             return getCalleeRegister();
         } else {
             return getCallerRegister();
-        }
-    }
-
-    private void runAnalysis() throws Throwable {
-        // Look through the parameters of current function
-        for(VVarRef param : currFunc.params) {
-            String varId = param.toString();
-            varMap.put(varId, new VMVar(varId, param.sourcePos.line));
-        }
-        LinkedList<VCodeLabel> allLabels = new LinkedList<>(Arrays.asList(currFunc.labels));
-        // Run through body of function
-        for(VInstr instr : currFunc.body) {
-            while(!allLabels.isEmpty() &&
-                    allLabels.peek().sourcePos.line < instr.sourcePos.line) {
-                String labelId = allLabels.pop().ident;
-                for(VMVar currVar : varMap.values())
-                    currVar.beforeLabels.add(labelId);
-            }
-            instr.accept(this);
-        }
-    }
-
-    @Override
-    public void visit(VAssign vAssign) throws Throwable {
-        int line = vAssign.sourcePos.line;
-        VOperand lhs = vAssign.dest;
-        VOperand rhs = vAssign.source;
-        if(isVariable(rhs)) {
-            readVariable(rhs.toString(), line);
-        }
-        // Left hand side must be a variable, therefore update it
-        writeVariable(lhs.toString(), line);
-    }
-
-    @Override
-    public void visit(VCall vCall) throws Throwable {
-        int line = vCall.sourcePos.line;
-        // Go through arguments
-        for(VOperand arg : vCall.args) {
-            if(isVariable(arg)) {
-                readVariable(arg.toString(), line);
-            }
-        }
-        VOperand lhs = vCall.dest;
-        VAddr<VFunction> rhs = vCall.addr;
-        readVariable(rhs.toString(), line);
-        // Does the callee need to spill into out stack
-        if(vCall.args.length > 4) {
-            outCount = vCall.args.length - 4;
-        }
-
-        // All variables so far have been before the call
-        for(VMVar currVar : varMap.values())
-            currVar.beforeCall = true;
-
-        if(isVariable(lhs)) {
-            writeVariable(lhs.toString(), line);
-        }
-
-    }
-
-    @Override
-    public void visit(VBuiltIn vBuiltIn) throws Throwable {
-        int line = vBuiltIn.sourcePos.line;
-        for(VOperand arg : vBuiltIn.args) {
-            if(isVariable(arg))
-                readVariable(arg.toString(), line);
-        }
-        VOperand lhs = vBuiltIn.dest;
-        if(isVariable(lhs))
-            writeVariable(lhs.toString(), line);
-    }
-
-    @Override
-    public void visit(VMemWrite vMemWrite) throws Throwable {
-        int line = vMemWrite.sourcePos.line;
-        VMemRef lhs = vMemWrite.dest;
-        VOperand rhs = vMemWrite.source;
-        if(isVariable(rhs)) {
-            readVariable(rhs.toString(), line);
-        }
-        if(isVariable(lhs)) {
-            readVariable(((VMemRef.Global)lhs).base.toString(), line);
-        }
-    }
-
-    @Override
-    public void visit(VMemRead vMemRead) throws Throwable {
-        int line = vMemRead.sourcePos.line;
-        VVarRef lhs = vMemRead.dest;
-        VMemRef rhs = vMemRead.source;
-        if(isVariable(rhs)) {
-            readVariable(((VMemRef.Global)rhs).base.toString(), line);
-        }
-        if(isVariable(lhs)) {
-            writeVariable(lhs.toString(), line);
-        }
-    }
-
-    private String extractLabel(VBranch node) {
-        return node.target.getTarget().ident.replaceFirst(":","");
-    }
-    private String extractLabel(VAddr node) {
-        return node.toString().replaceFirst(":","");
-    }
-
-    @Override
-    public void visit(VBranch vBranch) throws Throwable {
-        int line = vBranch.sourcePos.line;
-        String label = extractLabel(vBranch);
-        updateLabels(label, line);
-        VOperand cond = vBranch.value;
-        readVariable(cond.toString(), line);
-    }
-
-    @Override
-    public void visit(VGoto vGoto) throws Throwable {
-        int line = vGoto.sourcePos.line;
-        String label = extractLabel(vGoto.target);
-        updateLabels(label, line);
-    }
-
-    @Override
-    public void visit(VReturn vReturn) throws Throwable {
-        int line = vReturn.sourcePos.line;
-        VOperand val = vReturn.value;
-        if(isVariable(val)) {
-            readVariable(val.toString(), line);
         }
     }
 }

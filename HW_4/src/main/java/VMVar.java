@@ -6,11 +6,17 @@ import java.util.*;
  * registers in Vapor-M.
  */
 public class VMVar {
+    // Name of the variable
     public String id;
+    // Live range of the variable
     public Interval range;
+    // All labels that the variable is under so far
     public Set<String> beforeLabels = new HashSet<>();
+    // All the labels where the variable has been used after
     public Set<String> afterLabels = new HashSet<>();
+    // Whether a call has occured after variable read
     public boolean beforeCall = false;
+    // Whether a variable has been read after a call
     public boolean afterCall = false;
 
     public VMVar(String id, int start) {
@@ -21,15 +27,21 @@ public class VMVar {
     public void r(int line) {
         this.range.end = line;
         afterLabels.addAll(beforeLabels);
+        // No need to keep prior labels
         beforeLabels.clear();
+        // Denotes whether the variable has been read after a call
         afterCall = beforeCall;
     }
 
     public void w(int line) {
         this.range.end = line;
+        // No need to keep prior labels
         beforeLabels.clear();
     }
 
+    /**
+     * Pretty printing for debugging purposes.
+     */
     public void print() {
         System.out.println("Var Name:" + id);
         System.out.println("Range: Start: " + range.start + " End: " + range.end);

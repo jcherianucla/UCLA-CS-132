@@ -3,12 +3,23 @@ import cs132.vapor.ast.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+/**
+ * TranslatorVisitor represents the visitor that generates vaporm code given,
+ * the corresponding vapor code. Utilizes the Register allocator for storing and
+ * loading from registers or stack space.
+ */
 public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throwable> {
 
+    // A list of vaporm code where each String element is a line of vaporm code
     public LinkedList<String> vaporm = new LinkedList<>();
+    // Used to denote the amount of indent needed
     private static int indentLevel = 0;
+    // Register allocator
     private static LSRA lsra;
 
+    /**
+     * @return String representing the relevant amount of indents.
+     */
     private String indent() {
         String indent = "";
         for(int i = 0; i < indentLevel; i++)
@@ -16,11 +27,16 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
         return indent;
     }
 
+    /**
+     * Runs the actual translator that kicks of the visitor.
+     */
     public TranslatorVisitor(VaporProgram program) throws Throwable {
         // Copy over data segments
         for(VDataSegment segment : program.dataSegments) {
+            // Start of VMT
             vaporm.add(indent() + "const " + segment.ident);
             indentLevel++;
+            // VMT methods
             for(VOperand func : segment.values) {
                 vaporm.add(indent() + func.toString());
             }
@@ -31,6 +47,7 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
             // Run LSRA on function
             lsra = new LSRA(func);
             lsra.run();
+            // In stack only needed to be used if more than 4 arguments
             int inCount = (func.params.length - 4) > 0 ? func.params.length - 4 : 0;
             // Add function declaration
             vaporm.add(indent() + "func " + func.ident + " [in " + inCount + ", out "
@@ -59,26 +76,29 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
                     vaporm.add(indent() + labelId + ":");
                     indentLevel++;
                 }
+                // Begin visitor
                 vaporm.addAll(instr.accept(this));
             }
             indentLevel--;
         }
     }
 
+    /*********** Visitors for each instruction ***********/
+
     @Override
     public LinkedList<String> visit(VAssign vAssign) throws Throwable {
         LinkedList<String> assign = new LinkedList<>();
-        String lhs = vAssign.dest.toString();
-        String src = vAssign.source.toString();
-        String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
-        assign.add(indent() + lsra.getRegister(lhs) + " = " + rhs);
+        String lhsStr = vAssign.dest.toString();
+        String rhsStr = vAssign.source.toString();
+        String rhsVal = lsra.getRegister(rhsStr) == null ? rhsStr : lsra.getRegister(rhsStr);
+        assign.add(indent() + lsra.getRegister(lhsStr) + " = " + rhsVal);
         return assign;
     }
 
     @Override
     public LinkedList<String> visit(VCall vCall) throws Throwable {
         LinkedList<String> call = new LinkedList<>();
-        // Go through params
+        // Go through arguments to assign to argument registers/out stack
         for(int i = 0; i < vCall.args.length; i++) {
             String argument = vCall.args[i].toString();
             String rhs = lsra.getRegister(argument) == null ?
@@ -91,8 +111,8 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
         }
         String resultReg = lsra.getRegister(vCall.dest.toString());
         String addr = vCall.addr.toString();
-        String funcReg = lsra.getRegister(addr) == null ? addr : lsra.getRegister(addr);
-        call.add(indent() + "call " + funcReg);
+        String funcVar = lsra.getRegister(addr) == null ? addr : lsra.getRegister(addr);
+        call.add(indent() + "call " + funcVar);
         call.add(indent() + resultReg + " = $v0");
         return call;
     }
@@ -102,6 +122,7 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
         LinkedList<String> builtIn = new LinkedList<>();
         String args = "";
         int argSize = vBuiltIn.args.length;
+        // Build up argument string
         for(int i = 0; i < argSize; i++) {
             String curr = vBuiltIn.args[i].toString();
             String arg = lsra.getRegister(curr) == null ? curr : lsra.getRegister(curr);
@@ -109,6 +130,7 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
         }
         VVarRef dest = vBuiltIn.dest;
         String lhs = "";
+        // Left hand side only needed if an assignment Op
         if(dest != null) {
             lhs = lsra.getRegister(vBuiltIn.dest.toString()) + " = ";
         }
@@ -120,23 +142,23 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
     public LinkedList<String> visit(VMemWrite vMemWrite) throws Throwable {
         LinkedList<String> memWrite = new LinkedList<>();
         VMemRef.Global dest = (VMemRef.Global)vMemWrite.dest;
-        String lhs = lsra.getRegister(dest.base.toString());
-        String src = vMemWrite.source.toString();
-        String rhs = lsra.getRegister(src) == null ? src : lsra.getRegister(src);
+        String lhsReg = lsra.getRegister(dest.base.toString());
+        String srcStr = vMemWrite.source.toString();
+        String rhsVal = lsra.getRegister(srcStr) == null ? srcStr : lsra.getRegister(srcStr);
         String offset = dest.byteOffset == 0 ? "" : "+" + String.valueOf(dest.byteOffset);
-        memWrite.add(indent() + "[" + lhs + offset + "] = " + rhs);
+        memWrite.add(indent() + "[" + lhsReg + offset + "] = " + rhsVal);
         return memWrite;
     }
 
     @Override
     public LinkedList<String> visit(VMemRead vMemRead) throws Throwable {
         LinkedList<String> memRead = new LinkedList<>();
-        String lhs = lsra.getRegister(vMemRead.dest.toString());
+        String lhsReg = lsra.getRegister(vMemRead.dest.toString());
         VMemRef.Global src = (VMemRef.Global)vMemRead.source;
         String srcStr = src.base.toString();
-        String rhs = lsra.getRegister(srcStr) == null ? srcStr : lsra.getRegister(srcStr);
+        String rhsVal = lsra.getRegister(srcStr) == null ? srcStr : lsra.getRegister(srcStr);
         String offset = src.byteOffset == 0 ? "" : "+" + String.valueOf(src.byteOffset);
-        memRead.add(indent() + lhs + " = [" + rhs + offset + "]");
+        memRead.add(indent() + lhsReg + " = [" + rhsVal + offset + "]");
         return memRead;
     }
 
@@ -144,11 +166,7 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
     public LinkedList<String> visit(VBranch vBranch) throws Throwable {
         LinkedList<String> branch = new LinkedList<>();
         String cond = lsra.getRegister(vBranch.value.toString());
-        if(vBranch.positive) {
-            branch.add(indent() + "if " + cond + " goto " + vBranch.target.toString());
-        } else {
-            branch.add(indent() + "if0 " + cond + " goto " + vBranch.target.toString());
-        }
+        branch.add(indent() + "if" + (vBranch.positive ? "" : "0") + cond + " goto " + vBranch.target.toString());
         return branch;
     }
 
@@ -162,11 +180,13 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
     @Override
     public LinkedList<String> visit(VReturn vReturn) throws Throwable {
         LinkedList<String> ret = new LinkedList<>();
+        // Assign value back to return register
         if(vReturn.value != null) {
             String retVal = vReturn.value.toString();
             String val = lsra.getRegister(retVal) == null ? retVal : lsra.getRegister(retVal);
             ret.add(indent() + "$v0 = " + val);
         }
+        // Reassign local stack values to callee saved registers
         for (int i = 0; i < lsra.localCount && i < 8; i++) {
             ret.add(indent() + "$s" + i + " = local[" + i + "]");
         }
