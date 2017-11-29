@@ -1,0 +1,130 @@
+
+const empty_LS
+
+
+func Main()
+  t.0 = HeapAllocZ(8)
+  if t.0 goto :null1
+    Error("null pointer")
+  null1:
+  t.1 = call :LS.Start(t.0 10)
+  PrintIntS(t.1)
+  ret
+
+func LS.Start(this sz)
+  aux01 = call :LS.Init(this sz)
+  aux02 = call :LS.Print(this)
+  PrintIntS(9999)
+  t.0 = call :LS.Search(this 8)
+  PrintIntS(t.0)
+  t.1 = call :LS.Search(this 12)
+  PrintIntS(t.1)
+  t.2 = call :LS.Search(this 17)
+  PrintIntS(t.2)
+  t.3 = call :LS.Search(this 50)
+  PrintIntS(t.3)
+  ret 55
+
+func LS.Print(this)
+  j = 1
+  while1_top:
+  t.0 = [this+4]
+  t.1 = LtS(j t.0)
+  if0 t.1 goto :while1_end
+    t.2 = [this+0]
+    if t.2 goto :null2
+      Error("null pointer")
+    null2:
+    t.3 = [t.2]
+    t.3 = Lt(j t.3)
+    if t.3 goto :bounds1
+      Error("array index out of bounds")
+    bounds1:
+    t.3 = MulS(j 4)
+    t.3 = Add(t.3 t.2)
+    t.4 = [t.3+4]
+    PrintIntS(t.4)
+    j = Add(j 1)
+    goto :while1_top
+  while1_end:
+  ret 0
+
+func LS.Search(this num)
+  j = 1
+  ls01 = 0
+  ifound = 0
+  while2_top:
+  t.0 = [this+4]
+  t.1 = LtS(j t.0)
+  if0 t.1 goto :while2_end
+    t.2 = [this+0]
+    if t.2 goto :null3
+      Error("null pointer")
+    null3:
+    t.3 = [t.2]
+    t.3 = Lt(j t.3)
+    if t.3 goto :bounds2
+      Error("array index out of bounds")
+    bounds2:
+    t.3 = MulS(j 4)
+    t.3 = Add(t.3 t.2)
+    aux01 = [t.3+4]
+    aux02 = Add(num 1)
+    t.4 = LtS(aux01 num)
+    if0 t.4 goto :if1_else
+      nt = 0
+      goto :if1_end
+    if1_else:
+      t.5 = LtS(aux01 aux02)
+      if t.5 goto :if2_else
+        nt = 0
+        goto :if2_end
+      if2_else:
+        ls01 = 1
+        ifound = 1
+        j = [this+4]
+      if2_end:
+    if1_end:
+    j = Add(j 1)
+    goto :while2_top
+  while2_end:
+  ret ifound
+
+func LS.Init(this sz)
+  [this+4] = sz
+  t.0 = call :AllocArray(sz)
+  [this+0] = t.0
+  j = 1
+  t.1 = [this+4]
+  k = Add(t.1 1)
+  while3_top:
+  t.2 = [this+4]
+  t.3 = LtS(j t.2)
+  if0 t.3 goto :while3_end
+    aux01 = MulS(2 j)
+    aux02 = Sub(k 3)
+    t.4 = [this+0]
+    if t.4 goto :null4
+      Error("null pointer")
+    null4:
+    t.5 = [t.4]
+    t.5 = Lt(j t.5)
+    if t.5 goto :bounds3
+      Error("array index out of bounds")
+    bounds3:
+    t.5 = MulS(j 4)
+    t.5 = Add(t.5 t.4)
+    t.6 = Add(aux01 aux02)
+    [t.5+4] = t.6
+    j = Add(j 1)
+    k = Sub(k 1)
+    goto :while3_top
+  while3_end:
+  ret 0
+
+func AllocArray(size)
+  bytes = MulS(size 4)
+  bytes = Add(bytes 4)
+  v = HeapAllocZ(bytes)
+  [v] = size
+  ret v

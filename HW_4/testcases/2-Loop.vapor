@@ -1,0 +1,10 @@
+func Main()
+	x = 1
+	goto :end
+	begin:
+		PrintIntS(x)
+		x = MulS(x 2)
+	end:
+		diff = LtS(x 100)
+		if diff goto :begin
+	ret

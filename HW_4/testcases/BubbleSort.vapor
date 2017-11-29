@@ -1,0 +1,292 @@
+
+const vmt_BBS
+  :BBS.Start
+  :BBS.Sort
+  :BBS.Print
+  :BBS.Init
+
+
+func Main()
+  t.0 = HeapAllocZ(12)
+  [t.0] = :vmt_BBS
+  if t.0 goto :null1
+    Error("null pointer")
+  null1:
+  t.1 = [t.0]
+  t.1 = [t.1+0]
+  t.2 = call t.1(t.0 10)
+  PrintIntS(t.2)
+  ret
+
+func BBS.Start(this sz)
+  t.0 = [this]
+  t.0 = [t.0+12]
+  aux01 = call t.0(this sz)
+  t.1 = [this]
+  t.1 = [t.1+8]
+  aux01 = call t.1(this)
+  PrintIntS(99999)
+  t.2 = [this]
+  t.2 = [t.2+4]
+  aux01 = call t.2(this)
+  t.3 = [this]
+  t.3 = [t.3+8]
+  aux01 = call t.3(this)
+  ret 0
+
+func BBS.Sort(this)
+  t.0 = [this+8]
+  i = Sub(t.0 1)
+  aux02 = Sub(0 1)
+  while1_top:
+  t.1 = LtS(aux02 i)
+  if0 t.1 goto :while1_end
+    j = 1
+    while2_top:
+    t.2 = Add(i 1)
+    t.3 = LtS(j t.2)
+    if0 t.3 goto :while2_end
+      aux07 = Sub(j 1)
+      t.4 = [this+4]
+      if t.4 goto :null2
+        Error("null pointer")
+      null2:
+      t.5 = [t.4]
+      t.5 = Lt(aux07 t.5)
+      if t.5 goto :bounds1
+        Error("array index out of bounds")
+      bounds1:
+      t.5 = MulS(aux07 4)
+      t.5 = Add(t.5 t.4)
+      aux04 = [t.5+4]
+      t.6 = [this+4]
+      if t.6 goto :null3
+        Error("null pointer")
+      null3:
+      t.7 = [t.6]
+      t.7 = Lt(j t.7)
+      if t.7 goto :bounds2
+        Error("array index out of bounds")
+      bounds2:
+      t.7 = MulS(j 4)
+      t.7 = Add(t.7 t.6)
+      aux05 = [t.7+4]
+      t.8 = LtS(aux05 aux04)
+      if0 t.8 goto :if1_else
+        aux06 = Sub(j 1)
+        t.9 = [this+4]
+        if t.9 goto :null4
+          Error("null pointer")
+        null4:
+        t.10 = [t.9]
+        t.10 = Lt(aux06 t.10)
+        if t.10 goto :bounds3
+          Error("array index out of bounds")
+        bounds3:
+        t.10 = MulS(aux06 4)
+        t.10 = Add(t.10 t.9)
+        t = [t.10+4]
+        t.11 = [this+4]
+        if t.11 goto :null5
+          Error("null pointer")
+        null5:
+        t.12 = [t.11]
+        t.12 = Lt(aux06 t.12)
+        if t.12 goto :bounds4
+          Error("array index out of bounds")
+        bounds4:
+        t.12 = MulS(aux06 4)
+        t.12 = Add(t.12 t.11)
+        t.13 = [this+4]
+        if t.13 goto :null6
+          Error("null pointer")
+        null6:
+        t.14 = [t.13]
+        t.14 = Lt(j t.14)
+        if t.14 goto :bounds5
+          Error("array index out of bounds")
+        bounds5:
+        t.14 = MulS(j 4)
+        t.14 = Add(t.14 t.13)
+        t.15 = [t.14+4]
+        [t.12+4] = t.15
+        t.16 = [this+4]
+        if t.16 goto :null7
+          Error("null pointer")
+        null7:
+        t.17 = [t.16]
+        t.17 = Lt(j t.17)
+        if t.17 goto :bounds6
+          Error("array index out of bounds")
+        bounds6:
+        t.17 = MulS(j 4)
+        t.17 = Add(t.17 t.16)
+        [t.17+4] = t
+        goto :if1_end
+      if1_else:
+        nt = 0
+      if1_end:
+      j = Add(j 1)
+      goto :while2_top
+    while2_end:
+    i = Sub(i 1)
+    goto :while1_top
+  while1_end:
+  ret 0
+
+func BBS.Print(this)
+  j = 0
+  while3_top:
+  t.0 = [this+8]
+  t.1 = LtS(j t.0)
+  if0 t.1 goto :while3_end
+    t.2 = [this+4]
+    if t.2 goto :null8
+      Error("null pointer")
+    null8:
+    t.3 = [t.2]
+    t.3 = Lt(j t.3)
+    if t.3 goto :bounds7
+      Error("array index out of bounds")
+    bounds7:
+    t.3 = MulS(j 4)
+    t.3 = Add(t.3 t.2)
+    t.4 = [t.3+4]
+    PrintIntS(t.4)
+    j = Add(j 1)
+    goto :while3_top
+  while3_end:
+  ret 0
+
+func BBS.Init(this sz)
+  [this+8] = sz
+  t.0 = call :AllocArray(sz)
+  [this+4] = t.0
+  t.1 = [this+4]
+  if t.1 goto :null9
+    Error("null pointer")
+  null9:
+  t.2 = [t.1]
+  t.2 = Lt(0 t.2)
+  if t.2 goto :bounds8
+    Error("array index out of bounds")
+  bounds8:
+  t.2 = MulS(0 4)
+  t.2 = Add(t.2 t.1)
+  [t.2+4] = 20
+  t.3 = [this+4]
+  if t.3 goto :null10
+    Error("null pointer")
+  null10:
+  t.4 = [t.3]
+  t.4 = Lt(1 t.4)
+  if t.4 goto :bounds9
+    Error("array index out of bounds")
+  bounds9:
+  t.4 = MulS(1 4)
+  t.4 = Add(t.4 t.3)
+  [t.4+4] = 7
+  t.5 = [this+4]
+  if t.5 goto :null11
+    Error("null pointer")
+  null11:
+  t.6 = [t.5]
+  t.6 = Lt(2 t.6)
+  if t.6 goto :bounds10
+    Error("array index out of bounds")
+  bounds10:
+  t.6 = MulS(2 4)
+  t.6 = Add(t.6 t.5)
+  [t.6+4] = 12
+  t.7 = [this+4]
+  if t.7 goto :null12
+    Error("null pointer")
+  null12:
+  t.8 = [t.7]
+  t.8 = Lt(3 t.8)
+  if t.8 goto :bounds11
+    Error("array index out of bounds")
+  bounds11:
+  t.8 = MulS(3 4)
+  t.8 = Add(t.8 t.7)
+  [t.8+4] = 18
+  t.9 = [this+4]
+  if t.9 goto :null13
+    Error("null pointer")
+  null13:
+  t.10 = [t.9]
+  t.10 = Lt(4 t.10)
+  if t.10 goto :bounds12
+    Error("array index out of bounds")
+  bounds12:
+  t.10 = MulS(4 4)
+  t.10 = Add(t.10 t.9)
+  [t.10+4] = 2
+  t.11 = [this+4]
+  if t.11 goto :null14
+    Error("null pointer")
+  null14:
+  t.12 = [t.11]
+  t.12 = Lt(5 t.12)
+  if t.12 goto :bounds13
+    Error("array index out of bounds")
+  bounds13:
+  t.12 = MulS(5 4)
+  t.12 = Add(t.12 t.11)
+  [t.12+4] = 11
+  t.13 = [this+4]
+  if t.13 goto :null15
+    Error("null pointer")
+  null15:
+  t.14 = [t.13]
+  t.14 = Lt(6 t.14)
+  if t.14 goto :bounds14
+    Error("array index out of bounds")
+  bounds14:
+  t.14 = MulS(6 4)
+  t.14 = Add(t.14 t.13)
+  [t.14+4] = 6
+  t.15 = [this+4]
+  if t.15 goto :null16
+    Error("null pointer")
+  null16:
+  t.16 = [t.15]
+  t.16 = Lt(7 t.16)
+  if t.16 goto :bounds15
+    Error("array index out of bounds")
+  bounds15:
+  t.16 = MulS(7 4)
+  t.16 = Add(t.16 t.15)
+  [t.16+4] = 9
+  t.17 = [this+4]
+  if t.17 goto :null17
+    Error("null pointer")
+  null17:
+  t.18 = [t.17]
+  t.18 = Lt(8 t.18)
+  if t.18 goto :bounds16
+    Error("array index out of bounds")
+  bounds16:
+  t.18 = MulS(8 4)
+  t.18 = Add(t.18 t.17)
+  [t.18+4] = 19
+  t.19 = [this+4]
+  if t.19 goto :null18
+    Error("null pointer")
+  null18:
+  t.20 = [t.19]
+  t.20 = Lt(9 t.20)
+  if t.20 goto :bounds17
+    Error("array index out of bounds")
+  bounds17:
+  t.20 = MulS(9 4)
+  t.20 = Add(t.20 t.19)
+  [t.20+4] = 5
+  ret 0
+
+func AllocArray(size)
+  bytes = MulS(size 4)
+  bytes = Add(bytes 4)
+  v = HeapAllocZ(bytes)
+  [v] = size
+  ret v

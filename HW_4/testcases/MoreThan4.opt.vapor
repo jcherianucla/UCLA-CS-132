@@ -1,0 +1,27 @@
+
+const empty_MT4
+
+
+func Main()
+  t.0 = call :MT4.Start(:empty_MT4 1 2 3 4 5 6)
+  PrintIntS(t.0)
+  ret
+
+func MT4.Start(this p1 p2 p3 p4 p5 p6)
+  PrintIntS(p1)
+  PrintIntS(p2)
+  PrintIntS(p3)
+  PrintIntS(p4)
+  PrintIntS(p5)
+  PrintIntS(p6)
+  aux = call :MT4.Change(this p6 p5 p4 p3 p2 p1)
+  ret aux
+
+func MT4.Change(this p1 p2 p3 p4 p5 p6)
+  PrintIntS(p1)
+  PrintIntS(p2)
+  PrintIntS(p3)
+  PrintIntS(p4)
+  PrintIntS(p5)
+  PrintIntS(p6)
+  ret 0

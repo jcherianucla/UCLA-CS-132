@@ -1,0 +1,5 @@
+func Main()
+	x = 4
+	y = Add(x 2)
+	PrintIntS(y)
+	ret

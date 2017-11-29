@@ -1,0 +1,20 @@
+
+const empty_Fac
+
+
+func Main()
+  t.0 = call :Fac.ComputeFac(:empty_Fac 10)
+  PrintIntS(t.0)
+  ret
+
+func Fac.ComputeFac(this num)
+  t.0 = LtS(num 1)
+  if0 t.0 goto :if1_else
+    num_aux = 1
+    goto :if1_end
+  if1_else:
+    t.1 = Sub(num 1)
+    t.2 = call :Fac.ComputeFac(this t.1)
+    num_aux = MulS(num t.2)
+  if1_end:
+  ret num_aux

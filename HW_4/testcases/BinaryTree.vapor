@@ -1,0 +1,719 @@
+
+const vmt_BT
+  :BT.Start
+
+const vmt_Tree
+  :Tree.Init
+  :Tree.SetRight
+  :Tree.SetLeft
+  :Tree.GetRight
+  :Tree.GetLeft
+  :Tree.GetKey
+  :Tree.SetKey
+  :Tree.GetHas_Right
+  :Tree.GetHas_Left
+  :Tree.SetHas_Left
+  :Tree.SetHas_Right
+  :Tree.Compare
+  :Tree.Insert
+  :Tree.Delete
+  :Tree.Remove
+  :Tree.RemoveRight
+  :Tree.RemoveLeft
+  :Tree.Search
+  :Tree.Print
+  :Tree.RecPrint
+
+
+func Main()
+  t.0 = HeapAllocZ(4)
+  [t.0] = :vmt_BT
+  if t.0 goto :null1
+    Error("null pointer")
+  null1:
+  t.1 = [t.0]
+  t.1 = [t.1+0]
+  t.2 = call t.1(t.0)
+  PrintIntS(t.2)
+  ret
+
+func BT.Start(this)
+  t.0 = HeapAllocZ(28)
+  [t.0] = :vmt_Tree
+  root = t.0
+  if root goto :null2
+    Error("null pointer")
+  null2:
+  t.1 = [root]
+  t.1 = [t.1+0]
+  ntb = call t.1(root 16)
+  if root goto :null3
+    Error("null pointer")
+  null3:
+  t.2 = [root]
+  t.2 = [t.2+72]
+  ntb = call t.2(root)
+  PrintIntS(100000000)
+  if root goto :null4
+    Error("null pointer")
+  null4:
+  t.3 = [root]
+  t.3 = [t.3+48]
+  ntb = call t.3(root 8)
+  if root goto :null5
+    Error("null pointer")
+  null5:
+  t.4 = [root]
+  t.4 = [t.4+72]
+  ntb = call t.4(root)
+  if root goto :null6
+    Error("null pointer")
+  null6:
+  t.5 = [root]
+  t.5 = [t.5+48]
+  ntb = call t.5(root 24)
+  if root goto :null7
+    Error("null pointer")
+  null7:
+  t.6 = [root]
+  t.6 = [t.6+48]
+  ntb = call t.6(root 4)
+  if root goto :null8
+    Error("null pointer")
+  null8:
+  t.7 = [root]
+  t.7 = [t.7+48]
+  ntb = call t.7(root 12)
+  if root goto :null9
+    Error("null pointer")
+  null9:
+  t.8 = [root]
+  t.8 = [t.8+48]
+  ntb = call t.8(root 20)
+  if root goto :null10
+    Error("null pointer")
+  null10:
+  t.9 = [root]
+  t.9 = [t.9+48]
+  ntb = call t.9(root 28)
+  if root goto :null11
+    Error("null pointer")
+  null11:
+  t.10 = [root]
+  t.10 = [t.10+48]
+  ntb = call t.10(root 14)
+  if root goto :null12
+    Error("null pointer")
+  null12:
+  t.11 = [root]
+  t.11 = [t.11+72]
+  ntb = call t.11(root)
+  if root goto :null13
+    Error("null pointer")
+  null13:
+  t.12 = [root]
+  t.12 = [t.12+68]
+  t.13 = call t.12(root 24)
+  PrintIntS(t.13)
+  if root goto :null14
+    Error("null pointer")
+  null14:
+  t.14 = [root]
+  t.14 = [t.14+68]
+  t.15 = call t.14(root 12)
+  PrintIntS(t.15)
+  if root goto :null15
+    Error("null pointer")
+  null15:
+  t.16 = [root]
+  t.16 = [t.16+68]
+  t.17 = call t.16(root 16)
+  PrintIntS(t.17)
+  if root goto :null16
+    Error("null pointer")
+  null16:
+  t.18 = [root]
+  t.18 = [t.18+68]
+  t.19 = call t.18(root 50)
+  PrintIntS(t.19)
+  if root goto :null17
+    Error("null pointer")
+  null17:
+  t.20 = [root]
+  t.20 = [t.20+68]
+  t.21 = call t.20(root 12)
+  PrintIntS(t.21)
+  if root goto :null18
+    Error("null pointer")
+  null18:
+  t.22 = [root]
+  t.22 = [t.22+52]
+  ntb = call t.22(root 12)
+  if root goto :null19
+    Error("null pointer")
+  null19:
+  t.23 = [root]
+  t.23 = [t.23+72]
+  ntb = call t.23(root)
+  if root goto :null20
+    Error("null pointer")
+  null20:
+  t.24 = [root]
+  t.24 = [t.24+68]
+  t.25 = call t.24(root 12)
+  PrintIntS(t.25)
+  ret 0
+
+func Tree.Init(this v_key)
+  [this+12] = v_key
+  [this+16] = 0
+  [this+20] = 0
+  ret 1
+
+func Tree.SetRight(this rn)
+  [this+8] = rn
+  ret 1
+
+func Tree.SetLeft(this ln)
+  [this+4] = ln
+  ret 1
+
+func Tree.GetRight(this)
+  t.0 = [this+8]
+  ret t.0
+
+func Tree.GetLeft(this)
+  t.0 = [this+4]
+  ret t.0
+
+func Tree.GetKey(this)
+  t.0 = [this+12]
+  ret t.0
+
+func Tree.SetKey(this v_key)
+  [this+12] = v_key
+  ret 1
+
+func Tree.GetHas_Right(this)
+  t.0 = [this+20]
+  ret t.0
+
+func Tree.GetHas_Left(this)
+  t.0 = [this+16]
+  ret t.0
+
+func Tree.SetHas_Left(this val)
+  [this+16] = val
+  ret 1
+
+func Tree.SetHas_Right(this val)
+  [this+20] = val
+  ret 1
+
+func Tree.Compare(this num1 num2)
+  ntb = 0
+  nti = Add(num2 1)
+  t.0 = LtS(num1 num2)
+  if0 t.0 goto :if1_else
+    ntb = 0
+    goto :if1_end
+  if1_else:
+    t.1 = LtS(num1 nti)
+    t.2 = Sub(1 t.1)
+    if0 t.2 goto :if2_else
+      ntb = 0
+      goto :if2_end
+    if2_else:
+      ntb = 1
+    if2_end:
+  if1_end:
+  ret ntb
+
+func Tree.Insert(this v_key)
+  t.0 = HeapAllocZ(28)
+  [t.0] = :vmt_Tree
+  new_node = t.0
+  if new_node goto :null21
+    Error("null pointer")
+  null21:
+  t.1 = [new_node]
+  t.1 = [t.1+0]
+  ntb = call t.1(new_node v_key)
+  current_node = this
+  cont = 1
+  while1_top:
+  if0 cont goto :while1_end
+    if current_node goto :null22
+      Error("null pointer")
+    null22:
+    t.2 = [current_node]
+    t.2 = [t.2+20]
+    key_aux = call t.2(current_node)
+    t.3 = LtS(v_key key_aux)
+    if0 t.3 goto :if3_else
+      if current_node goto :null23
+        Error("null pointer")
+      null23:
+      t.4 = [current_node]
+      t.4 = [t.4+32]
+      t.5 = call t.4(current_node)
+      if0 t.5 goto :if4_else
+        if current_node goto :null24
+          Error("null pointer")
+        null24:
+        t.6 = [current_node]
+        t.6 = [t.6+16]
+        current_node = call t.6(current_node)
+        goto :if4_end
+      if4_else:
+        cont = 0
+        if current_node goto :null25
+          Error("null pointer")
+        null25:
+        t.7 = [current_node]
+        t.7 = [t.7+36]
+        ntb = call t.7(current_node 1)
+        if current_node goto :null26
+          Error("null pointer")
+        null26:
+        t.8 = [current_node]
+        t.8 = [t.8+8]
+        ntb = call t.8(current_node new_node)
+      if4_end:
+      goto :if3_end
+    if3_else:
+      if current_node goto :null27
+        Error("null pointer")
+      null27:
+      t.9 = [current_node]
+      t.9 = [t.9+28]
+      t.10 = call t.9(current_node)
+      if0 t.10 goto :if5_else
+        if current_node goto :null28
+          Error("null pointer")
+        null28:
+        t.11 = [current_node]
+        t.11 = [t.11+12]
+        current_node = call t.11(current_node)
+        goto :if5_end
+      if5_else:
+        cont = 0
+        if current_node goto :null29
+          Error("null pointer")
+        null29:
+        t.12 = [current_node]
+        t.12 = [t.12+40]
+        ntb = call t.12(current_node 1)
+        if current_node goto :null30
+          Error("null pointer")
+        null30:
+        t.13 = [current_node]
+        t.13 = [t.13+4]
+        ntb = call t.13(current_node new_node)
+      if5_end:
+    if3_end:
+    goto :while1_top
+  while1_end:
+  ret 1
+
+func Tree.Delete(this v_key)
+  current_node = this
+  parent_node = this
+  cont = 1
+  found = 0
+  is_root = 1
+  while2_top:
+  if0 cont goto :while2_end
+    if current_node goto :null31
+      Error("null pointer")
+    null31:
+    t.0 = [current_node]
+    t.0 = [t.0+20]
+    key_aux = call t.0(current_node)
+    t.1 = LtS(v_key key_aux)
+    if0 t.1 goto :if6_else
+      if current_node goto :null32
+        Error("null pointer")
+      null32:
+      t.2 = [current_node]
+      t.2 = [t.2+32]
+      t.3 = call t.2(current_node)
+      if0 t.3 goto :if7_else
+        parent_node = current_node
+        if current_node goto :null33
+          Error("null pointer")
+        null33:
+        t.4 = [current_node]
+        t.4 = [t.4+16]
+        current_node = call t.4(current_node)
+        goto :if7_end
+      if7_else:
+        cont = 0
+      if7_end:
+      goto :if6_end
+    if6_else:
+      t.5 = LtS(key_aux v_key)
+      if0 t.5 goto :if8_else
+        if current_node goto :null34
+          Error("null pointer")
+        null34:
+        t.6 = [current_node]
+        t.6 = [t.6+28]
+        t.7 = call t.6(current_node)
+        if0 t.7 goto :if9_else
+          parent_node = current_node
+          if current_node goto :null35
+            Error("null pointer")
+          null35:
+          t.8 = [current_node]
+          t.8 = [t.8+12]
+          current_node = call t.8(current_node)
+          goto :if9_end
+        if9_else:
+          cont = 0
+        if9_end:
+        goto :if8_end
+      if8_else:
+        if0 is_root goto :if10_else
+          if current_node goto :null36
+            Error("null pointer")
+          null36:
+          t.10 = [current_node]
+          t.10 = [t.10+28]
+          t.11 = call t.10(current_node)
+          t.12 = Sub(1 t.11)
+          if0 t.12 goto :ss1_else
+            if current_node goto :null37
+              Error("null pointer")
+            null37:
+            t.13 = [current_node]
+            t.13 = [t.13+32]
+            t.14 = call t.13(current_node)
+            t.9 = Sub(1 t.14)
+            goto :ss1_end
+          ss1_else:
+            t.9 = 0
+          ss1_end:
+          if0 t.9 goto :if11_else
+            ntb = 1
+            goto :if11_end
+          if11_else:
+            t.15 = [this]
+            t.15 = [t.15+56]
+            ntb = call t.15(this parent_node current_node)
+          if11_end:
+          goto :if10_end
+        if10_else:
+          t.16 = [this]
+          t.16 = [t.16+56]
+          ntb = call t.16(this parent_node current_node)
+        if10_end:
+        found = 1
+        cont = 0
+      if8_end:
+    if6_end:
+    is_root = 0
+    goto :while2_top
+  while2_end:
+  ret found
+
+func Tree.Remove(this p_node c_node)
+  if c_node goto :null38
+    Error("null pointer")
+  null38:
+  t.0 = [c_node]
+  t.0 = [t.0+32]
+  t.1 = call t.0(c_node)
+  if0 t.1 goto :if12_else
+    t.2 = [this]
+    t.2 = [t.2+64]
+    ntb = call t.2(this p_node c_node)
+    goto :if12_end
+  if12_else:
+    if c_node goto :null39
+      Error("null pointer")
+    null39:
+    t.3 = [c_node]
+    t.3 = [t.3+28]
+    t.4 = call t.3(c_node)
+    if0 t.4 goto :if13_else
+      t.5 = [this]
+      t.5 = [t.5+60]
+      ntb = call t.5(this p_node c_node)
+      goto :if13_end
+    if13_else:
+      if c_node goto :null40
+        Error("null pointer")
+      null40:
+      t.6 = [c_node]
+      t.6 = [t.6+20]
+      auxkey1 = call t.6(c_node)
+      if p_node goto :null41
+        Error("null pointer")
+      null41:
+      t.7 = [p_node]
+      t.7 = [t.7+16]
+      t.8 = call t.7(p_node)
+      if t.8 goto :null42
+        Error("null pointer")
+      null42:
+      t.9 = [t.8]
+      t.9 = [t.9+20]
+      auxkey2 = call t.9(t.8)
+      t.10 = [this]
+      t.10 = [t.10+44]
+      t.11 = call t.10(this auxkey1 auxkey2)
+      if0 t.11 goto :if14_else
+        if p_node goto :null43
+          Error("null pointer")
+        null43:
+        t.12 = [p_node]
+        t.12 = [t.12+8]
+        t.13 = [this+24]
+        ntb = call t.12(p_node t.13)
+        if p_node goto :null44
+          Error("null pointer")
+        null44:
+        t.14 = [p_node]
+        t.14 = [t.14+36]
+        ntb = call t.14(p_node 0)
+        goto :if14_end
+      if14_else:
+        if p_node goto :null45
+          Error("null pointer")
+        null45:
+        t.15 = [p_node]
+        t.15 = [t.15+4]
+        t.16 = [this+24]
+        ntb = call t.15(p_node t.16)
+        if p_node goto :null46
+          Error("null pointer")
+        null46:
+        t.17 = [p_node]
+        t.17 = [t.17+40]
+        ntb = call t.17(p_node 0)
+      if14_end:
+    if13_end:
+  if12_end:
+  ret 1
+
+func Tree.RemoveRight(this p_node c_node)
+  while3_top:
+  if c_node goto :null47
+    Error("null pointer")
+  null47:
+  t.0 = [c_node]
+  t.0 = [t.0+28]
+  t.1 = call t.0(c_node)
+  if0 t.1 goto :while3_end
+    if c_node goto :null48
+      Error("null pointer")
+    null48:
+    t.2 = [c_node]
+    t.2 = [t.2+24]
+    if c_node goto :null49
+      Error("null pointer")
+    null49:
+    t.3 = [c_node]
+    t.3 = [t.3+12]
+    t.4 = call t.3(c_node)
+    if t.4 goto :null50
+      Error("null pointer")
+    null50:
+    t.5 = [t.4]
+    t.5 = [t.5+20]
+    t.6 = call t.5(t.4)
+    ntb = call t.2(c_node t.6)
+    p_node = c_node
+    if c_node goto :null51
+      Error("null pointer")
+    null51:
+    t.7 = [c_node]
+    t.7 = [t.7+12]
+    c_node = call t.7(c_node)
+    goto :while3_top
+  while3_end:
+  if p_node goto :null52
+    Error("null pointer")
+  null52:
+  t.8 = [p_node]
+  t.8 = [t.8+4]
+  t.9 = [this+24]
+  ntb = call t.8(p_node t.9)
+  if p_node goto :null53
+    Error("null pointer")
+  null53:
+  t.10 = [p_node]
+  t.10 = [t.10+40]
+  ntb = call t.10(p_node 0)
+  ret 1
+
+func Tree.RemoveLeft(this p_node c_node)
+  while4_top:
+  if c_node goto :null54
+    Error("null pointer")
+  null54:
+  t.0 = [c_node]
+  t.0 = [t.0+32]
+  t.1 = call t.0(c_node)
+  if0 t.1 goto :while4_end
+    if c_node goto :null55
+      Error("null pointer")
+    null55:
+    t.2 = [c_node]
+    t.2 = [t.2+24]
+    if c_node goto :null56
+      Error("null pointer")
+    null56:
+    t.3 = [c_node]
+    t.3 = [t.3+16]
+    t.4 = call t.3(c_node)
+    if t.4 goto :null57
+      Error("null pointer")
+    null57:
+    t.5 = [t.4]
+    t.5 = [t.5+20]
+    t.6 = call t.5(t.4)
+    ntb = call t.2(c_node t.6)
+    p_node = c_node
+    if c_node goto :null58
+      Error("null pointer")
+    null58:
+    t.7 = [c_node]
+    t.7 = [t.7+16]
+    c_node = call t.7(c_node)
+    goto :while4_top
+  while4_end:
+  if p_node goto :null59
+    Error("null pointer")
+  null59:
+  t.8 = [p_node]
+  t.8 = [t.8+8]
+  t.9 = [this+24]
+  ntb = call t.8(p_node t.9)
+  if p_node goto :null60
+    Error("null pointer")
+  null60:
+  t.10 = [p_node]
+  t.10 = [t.10+36]
+  ntb = call t.10(p_node 0)
+  ret 1
+
+func Tree.Search(this v_key)
+  current_node = this
+  cont = 1
+  ifound = 0
+  while5_top:
+  if0 cont goto :while5_end
+    if current_node goto :null61
+      Error("null pointer")
+    null61:
+    t.0 = [current_node]
+    t.0 = [t.0+20]
+    key_aux = call t.0(current_node)
+    t.1 = LtS(v_key key_aux)
+    if0 t.1 goto :if15_else
+      if current_node goto :null62
+        Error("null pointer")
+      null62:
+      t.2 = [current_node]
+      t.2 = [t.2+32]
+      t.3 = call t.2(current_node)
+      if0 t.3 goto :if16_else
+        if current_node goto :null63
+          Error("null pointer")
+        null63:
+        t.4 = [current_node]
+        t.4 = [t.4+16]
+        current_node = call t.4(current_node)
+        goto :if16_end
+      if16_else:
+        cont = 0
+      if16_end:
+      goto :if15_end
+    if15_else:
+      t.5 = LtS(key_aux v_key)
+      if0 t.5 goto :if17_else
+        if current_node goto :null64
+          Error("null pointer")
+        null64:
+        t.6 = [current_node]
+        t.6 = [t.6+28]
+        t.7 = call t.6(current_node)
+        if0 t.7 goto :if18_else
+          if current_node goto :null65
+            Error("null pointer")
+          null65:
+          t.8 = [current_node]
+          t.8 = [t.8+12]
+          current_node = call t.8(current_node)
+          goto :if18_end
+        if18_else:
+          cont = 0
+        if18_end:
+        goto :if17_end
+      if17_else:
+        ifound = 1
+        cont = 0
+      if17_end:
+    if15_end:
+    goto :while5_top
+  while5_end:
+  ret ifound
+
+func Tree.Print(this)
+  current_node = this
+  t.0 = [this]
+  t.0 = [t.0+76]
+  ntb = call t.0(this current_node)
+  ret 1
+
+func Tree.RecPrint(this node)
+  if node goto :null66
+    Error("null pointer")
+  null66:
+  t.0 = [node]
+  t.0 = [t.0+32]
+  t.1 = call t.0(node)
+  if0 t.1 goto :if19_else
+    t.2 = [this]
+    t.2 = [t.2+76]
+    if node goto :null67
+      Error("null pointer")
+    null67:
+    t.3 = [node]
+    t.3 = [t.3+16]
+    t.4 = call t.3(node)
+    ntb = call t.2(this t.4)
+    goto :if19_end
+  if19_else:
+    ntb = 1
+  if19_end:
+  if node goto :null68
+    Error("null pointer")
+  null68:
+  t.5 = [node]
+  t.5 = [t.5+20]
+  t.6 = call t.5(node)
+  PrintIntS(t.6)
+  if node goto :null69
+    Error("null pointer")
+  null69:
+  t.7 = [node]
+  t.7 = [t.7+28]
+  t.8 = call t.7(node)
+  if0 t.8 goto :if20_else
+    t.9 = [this]
+    t.9 = [t.9+76]
+    if node goto :null70
+      Error("null pointer")
+    null70:
+    t.10 = [node]
+    t.10 = [t.10+12]
+    t.11 = call t.10(node)
+    ntb = call t.9(this t.11)
+    goto :if20_end
+  if20_else:
+    ntb = 1
+  if20_end:
+  ret 1
