@@ -28,8 +28,16 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
 		return indent;
 	}
 
-	private LinkedList<String> instr(String in, String src, String dest, String comment) {
+	private LinkedList<String> instr(String in, String dest, String src, String comment) {
 		return new LinkedList<String>(Arrays.asList(String.format(indent() + "%s %s %s %s", in, dest, src, comment)));
+	}
+
+	private LinkedList<String> instr(String in, String dest, String src) {
+		return instr(in, src, dest, "");
+	}
+
+	private LinkedList<String> arithmetic(String type, String dest, String src, int amt) {
+		return new LinkedList<String>(Arrays.asList(String.format(indent() + "%s %s %s %d", type, dest, src, amt)));
 	}
 
 	private LinkedList<String> jump(String type, String to) {
@@ -50,10 +58,10 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
 		LinkedList<String> print = new LinkedList<>();
 		print.add("_print:");
 		indentLevel++;
-		print.addAll(instr("li", "1", "$v0", "\t # syscall: print integer"));
+		print.addAll(instr("li", "$v0", "1", "\t # syscall: print integer"));
 		print.add(indent() + SYSCALL);
-		print.addAll(instr("la", "_newline", "$a0",""));
-		print.addAll(instr("li", "4", "$v0", "\t # syscall: print string"));
+		print.addAll(instr("la", "$a0", "_newline"));
+		print.addAll(instr("li", "$v0", "4", "\t # syscall: print string"));
 		print.add(indent() + SYSCALL);
 		print.addAll(jump("jr", "$ra"));
 		indentLevel--;
@@ -64,9 +72,9 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
 		LinkedList<String> error = new LinkedList<>();
 		error.add("_error:");
 		indentLevel++;
-		error.addAll(instr("li", "4", "$v0", "\t # syscall: print string"));
+		error.addAll(instr("li", "$v0", "4", "\t # syscall: print string"));
 		error.add(indent() + SYSCALL);
-		error.addAll(instr("li", "10", "$v0", "\t # syscall: exit"));
+		error.addAll(instr("li", "$v0", "10", "\t # syscall: exit"));
 		error.add(indent() + SYSCALL);
 		indentLevel--;
 		return error;
@@ -76,11 +84,20 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
 		LinkedList<String> heap = new LinkedList<>();
 		heap.add("_heapAlloc:");
 		indentLevel++;
-		heap.addAll(instr("l1", "9", "$v0", "\t # syscall: sbrk"));
+		heap.addAll(instr("l1", "$v0", "9", "\t # syscall: sbrk"));
 		heap.add(indent() + SYSCALL);
 		heap.addAll(jump("jr", "$ra"));
 		indentLevel--;
 		return heap;
+	}
+
+	private LinkedList<String> startFrame(int offset) {
+		LinkedList<String> frame = new LinkedList<>();
+		frame.addAll(instr("sw", "$fp", "-8($sp)"));
+		frame.addAll(instr("move", "$fp", "$sp"));
+		frame.addAll(arithmetic("subu", "$sp", "$sp", offset));
+		frame.addAll(instr("sw", "$ra", "-4($fp)"));
+		return frame;
 	}
 
 	/**
@@ -106,6 +123,19 @@ public class TranslatorVisitor extends VInstr.VisitorR<LinkedList<String>, Throw
 		// Run through each function
 		for(VFunction func : program.functions) {
 			mips.add(indent() + func.ident + ":");
+			indentLevel++;
+			mips.addAll(startFrame(8 + 4*(func.stack.local + func.stack.out)));
+			LinkedList<VCodeLabel> allLabels = new LinkedList<>(Arrays.asList(func.labels));
+			for(VInstr _instr : func.body) {
+				while(!allLabels.isEmpty() && allLabels.peek().sourcePos.line < _instr.sourcePos.line) {
+					String labelId = allLabels.pop().ident + ":";
+					indentLevel--;
+					mips.add(indent() + labelId);
+					indentLevel++;
+				}
+				//mips.addAll(_instr.accept(this));
+			}
+			indentLevel--;
 		}
 		if(shouldPrint)
 			mips.addAll(print());
