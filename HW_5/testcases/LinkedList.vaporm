@@ -1,0 +1,698 @@
+const vmt_Element
+  :Element.Init
+  :Element.GetAge
+  :Element.GetSalary
+  :Element.GetMarried
+  :Element.Equal
+  :Element.Compare
+
+const vmt_List
+  :List.Init
+  :List.InitNew
+  :List.Insert
+  :List.SetNext
+  :List.Delete
+  :List.Search
+  :List.GetEnd
+  :List.GetElem
+  :List.GetNext
+  :List.Print
+
+const vmt_LL
+  :LL.Start
+
+func Main [in 0, out 0, local 0]
+  $t0 = HeapAllocZ(4)
+  [$t0] = :vmt_LL
+  if $t0 goto :null1
+  Error("null pointer")
+null1:
+  $t1 = [$t0]
+  $t1 = [$t1]
+  $a0 = $t0
+  call $t1
+  $t1 = $v0
+  PrintIntS($t1)
+  ret
+
+func Element.Init [in 0, out 0, local 0]
+  $t0 = $a0
+  $t1 = $a1
+  $t2 = $a2
+  $t3 = $a3
+  [$t0+4] = $t1
+  [$t0+8] = $t2
+  [$t0+12] = $t3
+  $v0 = 1
+  ret
+
+func Element.GetAge [in 0, out 0, local 0]
+  $t0 = $a0
+  $t0 = [$t0+4]
+  $v0 = $t0
+  ret
+
+func Element.GetSalary [in 0, out 0, local 0]
+  $t0 = $a0
+  $t0 = [$t0+8]
+  $v0 = $t0
+  ret
+
+func Element.GetMarried [in 0, out 0, local 0]
+  $t0 = $a0
+  $t0 = [$t0+12]
+  $v0 = $t0
+  ret
+
+func Element.Equal [in 0, out 0, local 3]
+  local[0] = $s0
+  local[1] = $s1
+  local[2] = $s2
+  $s0 = $a0
+  $s1 = $a1
+  $s2 = 1
+  if $s1 goto :null2
+  Error("null pointer")
+null2:
+  $t0 = [$s1]
+  $t0 = [$t0+4]
+  $a0 = $s1
+  call $t0
+  $t0 = $v0
+  $t1 = [$s0]
+  $t1 = [$t1+20]
+  $t2 = [$s0+4]
+  $a0 = $s0
+  $a1 = $t0
+  $a2 = $t2
+  call $t1
+  $t2 = $v0
+  $t2 = Sub(1 $t2)
+  if0 $t2 goto :if1_else
+  $s2 = 0
+  goto :if1_end
+if1_else:
+  if $s1 goto :null3
+  Error("null pointer")
+null3:
+  $t2 = [$s1]
+  $t2 = [$t2+8]
+  $a0 = $s1
+  call $t2
+  $t2 = $v0
+  $t1 = [$s0]
+  $t1 = [$t1+20]
+  $t0 = [$s0+8]
+  $a0 = $s0
+  $a1 = $t2
+  $a2 = $t0
+  call $t1
+  $t0 = $v0
+  $t0 = Sub(1 $t0)
+  if0 $t0 goto :if2_else
+  $s2 = 0
+  goto :if2_end
+if2_else:
+  $t0 = [$s0+12]
+  if0 $t0 goto :if3_else
+  if $s1 goto :null4
+  Error("null pointer")
+null4:
+  $t0 = [$s1]
+  $t0 = [$t0+12]
+  $a0 = $s1
+  call $t0
+  $t0 = $v0
+  $t0 = Sub(1 $t0)
+  if0 $t0 goto :if4_else
+  $s2 = 0
+  goto :if4_end
+if4_else:
+if4_end:
+  goto :if3_end
+if3_else:
+  if $s1 goto :null5
+  Error("null pointer")
+null5:
+  $t0 = [$s1]
+  $t0 = [$t0+12]
+  $a0 = $s1
+  call $t0
+  $t0 = $v0
+  if0 $t0 goto :if5_else
+  $s2 = 0
+  goto :if5_end
+if5_else:
+if5_end:
+if3_end:
+if2_end:
+if1_end:
+  $v0 = $s2
+  $s0 = local[0]
+  $s1 = local[1]
+  $s2 = local[2]
+  ret
+
+func Element.Compare [in 0, out 0, local 0]
+  $t0 = $a1
+  $t1 = $a2
+  $t2 = Add($t1 1)
+  $t1 = LtS($t0 $t1)
+  if0 $t1 goto :if6_else
+  $t1 = 0
+  goto :if6_end
+if6_else:
+  $t2 = LtS($t0 $t2)
+  $t2 = Sub(1 $t2)
+  if0 $t2 goto :if7_else
+  $t1 = 0
+  goto :if7_end
+if7_else:
+  $t1 = 1
+if7_end:
+if6_end:
+  $v0 = $t1
+  ret
+
+func List.Init [in 0, out 0, local 0]
+  $t0 = $a0
+  [$t0+12] = 1
+  $v0 = 1
+  ret
+
+func List.InitNew [in 0, out 0, local 0]
+  $t0 = $a0
+  $t1 = $a1
+  $t2 = $a2
+  $t3 = $a3
+  [$t0+12] = $t3
+  [$t0+4] = $t1
+  [$t0+8] = $t2
+  $v0 = 1
+  ret
+
+func List.Insert [in 0, out 0, local 1]
+  local[0] = $s0
+  $t0 = $a0
+  $t1 = $a1
+  $t0 = $t0
+  $t2 = HeapAllocZ(16)
+  [$t2] = :vmt_List
+  $s0 = $t2
+  if $s0 goto :null6
+  Error("null pointer")
+null6:
+  $t2 = [$s0]
+  $t2 = [$t2+4]
+  $a0 = $s0
+  $a1 = $t1
+  $a2 = $t0
+  $a3 = 0
+  call $t2
+  $v0 = $s0
+  $s0 = local[0]
+  ret
+
+func List.SetNext [in 0, out 0, local 0]
+  $t0 = $a0
+  $t1 = $a1
+  [$t0+8] = $t1
+  $v0 = 1
+  ret
+
+func List.Delete [in 0, out 0, local 9]
+  local[1] = $s0
+  local[2] = $s1
+  local[3] = $s2
+  local[4] = $s3
+  local[5] = $s4
+  local[6] = $s5
+  local[7] = $s6
+  local[8] = $s7
+  $t0 = $a0
+  $s0 = $a1
+  $s1 = $t0
+  $s2 = 0
+  $s3 = Sub(0 1)
+  $s4 = $t0
+  $s5 = $t0
+  $s6 = [$t0+12]
+  $s7 = [$t0+4]
+while1_top:
+  $t0 = Sub(1 $s6)
+  if0 $t0 goto :ss1_else
+  $t0 = Sub(1 $s2)
+  goto :ss1_end
+ss1_else:
+  $t0 = 0
+ss1_end:
+  if0 $t0 goto :while1_end
+  if $s0 goto :null7
+  Error("null pointer")
+null7:
+  $t0 = [$s0]
+  $t0 = [$t0+16]
+  $a0 = $s0
+  $a1 = $s7
+  call $t0
+  $t0 = $v0
+  if0 $t0 goto :if8_else
+  $s2 = 1
+  $t0 = LtS($s3 0)
+  if0 $t0 goto :if9_else
+  if $s4 goto :null8
+  Error("null pointer")
+null8:
+  $t0 = [$s4]
+  $t0 = [$t0+32]
+  $a0 = $s4
+  call $t0
+  $s1 = $v0
+  goto :if9_end
+if9_else:
+  $t0 = Sub(0 555)
+  PrintIntS($t0)
+  if $s5 goto :null9
+  Error("null pointer")
+null9:
+  $v0 = [$s5]
+  local[0] = $v0
+  $v0 = local[0]
+  $v0 = [$v0+12]
+  local[0] = $v0
+  if $s4 goto :null10
+  Error("null pointer")
+null10:
+  $t0 = [$s4]
+  $t0 = [$t0+32]
+  $a0 = $s4
+  call $t0
+  $t0 = $v0
+  $a0 = $s5
+  $a1 = $t0
+  $v0 = local[0]
+  call $v0
+  $t0 = Sub(0 555)
+  PrintIntS($t0)
+if9_end:
+  goto :if8_end
+if8_else:
+if8_end:
+  $t0 = Sub(1 $s2)
+  if0 $t0 goto :if10_else
+  $s5 = $s4
+  if $s4 goto :null11
+  Error("null pointer")
+null11:
+  $t0 = [$s4]
+  $t0 = [$t0+32]
+  $a0 = $s4
+  call $t0
+  $s4 = $v0
+  if $s4 goto :null12
+  Error("null pointer")
+null12:
+  $t0 = [$s4]
+  $t0 = [$t0+24]
+  $a0 = $s4
+  call $t0
+  $s6 = $v0
+  if $s4 goto :null13
+  Error("null pointer")
+null13:
+  $t0 = [$s4]
+  $t0 = [$t0+28]
+  $a0 = $s4
+  call $t0
+  $s7 = $v0
+  $s3 = 1
+  goto :if10_end
+if10_else:
+if10_end:
+  goto :while1_top
+while1_end:
+  $v0 = $s1
+  $s0 = local[1]
+  $s1 = local[2]
+  $s2 = local[3]
+  $s3 = local[4]
+  $s4 = local[5]
+  $s5 = local[6]
+  $s6 = local[7]
+  $s7 = local[8]
+  ret
+
+func List.Search [in 0, out 0, local 4]
+  local[0] = $s0
+  local[1] = $s1
+  local[2] = $s2
+  local[3] = $s3
+  $t0 = $a0
+  $s0 = $a1
+  $s1 = 0
+  $s2 = $t0
+  $s3 = [$t0+12]
+  $t0 = [$t0+4]
+while2_top:
+  $t1 = Sub(1 $s3)
+  if0 $t1 goto :while2_end
+  if $s0 goto :null14
+  Error("null pointer")
+null14:
+  $t1 = [$s0]
+  $t1 = [$t1+16]
+  $a0 = $s0
+  $a1 = $t0
+  call $t1
+  $t1 = $v0
+  if0 $t1 goto :if11_else
+  $s1 = 1
+  goto :if11_end
+if11_else:
+if11_end:
+  if $s2 goto :null15
+  Error("null pointer")
+null15:
+  $t1 = [$s2]
+  $t1 = [$t1+32]
+  $a0 = $s2
+  call $t1
+  $s2 = $v0
+  if $s2 goto :null16
+  Error("null pointer")
+null16:
+  $t1 = [$s2]
+  $t1 = [$t1+24]
+  $a0 = $s2
+  call $t1
+  $s3 = $v0
+  if $s2 goto :null17
+  Error("null pointer")
+null17:
+  $t1 = [$s2]
+  $t1 = [$t1+28]
+  $a0 = $s2
+  call $t1
+  $t0 = $v0
+  goto :while2_top
+while2_end:
+  $v0 = $s1
+  $s0 = local[0]
+  $s1 = local[1]
+  $s2 = local[2]
+  $s3 = local[3]
+  ret
+
+func List.GetEnd [in 0, out 0, local 0]
+  $t0 = $a0
+  $t0 = [$t0+12]
+  $v0 = $t0
+  ret
+
+func List.GetElem [in 0, out 0, local 0]
+  $t0 = $a0
+  $t0 = [$t0+4]
+  $v0 = $t0
+  ret
+
+func List.GetNext [in 0, out 0, local 0]
+  $t0 = $a0
+  $t0 = [$t0+8]
+  $v0 = $t0
+  ret
+
+func List.Print [in 0, out 0, local 2]
+  local[0] = $s0
+  local[1] = $s1
+  $t0 = $a0
+  $s0 = $t0
+  $s1 = [$t0+12]
+  $t0 = [$t0+4]
+while3_top:
+  $t1 = Sub(1 $s1)
+  if0 $t1 goto :while3_end
+  if $t0 goto :null18
+  Error("null pointer")
+null18:
+  $t1 = [$t0]
+  $t1 = [$t1+4]
+  $a0 = $t0
+  call $t1
+  $t1 = $v0
+  PrintIntS($t1)
+  if $s0 goto :null19
+  Error("null pointer")
+null19:
+  $t1 = [$s0]
+  $t1 = [$t1+32]
+  $a0 = $s0
+  call $t1
+  $s0 = $v0
+  if $s0 goto :null20
+  Error("null pointer")
+null20:
+  $t1 = [$s0]
+  $t1 = [$t1+24]
+  $a0 = $s0
+  call $t1
+  $s1 = $v0
+  if $s0 goto :null21
+  Error("null pointer")
+null21:
+  $t1 = [$s0]
+  $t1 = [$t1+28]
+  $a0 = $s0
+  call $t1
+  $t0 = $v0
+  goto :while3_top
+while3_end:
+  $v0 = 1
+  $s0 = local[0]
+  $s1 = local[1]
+  ret
+
+func LL.Start [in 0, out 0, local 4]
+  local[0] = $s0
+  local[1] = $s1
+  local[2] = $s2
+  local[3] = $s3
+  $t0 = HeapAllocZ(16)
+  [$t0] = :vmt_List
+  $s0 = $t0
+  if $s0 goto :null22
+  Error("null pointer")
+null22:
+  $t0 = [$s0]
+  $t0 = [$t0]
+  $a0 = $s0
+  call $t0
+  $s0 = $s0
+  if $s0 goto :null23
+  Error("null pointer")
+null23:
+  $t0 = [$s0]
+  $t0 = [$t0]
+  $a0 = $s0
+  call $t0
+  if $s0 goto :null24
+  Error("null pointer")
+null24:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  $t0 = HeapAllocZ(16)
+  [$t0] = :vmt_Element
+  $s1 = $t0
+  if $s1 goto :null25
+  Error("null pointer")
+null25:
+  $t0 = [$s1]
+  $t0 = [$t0]
+  $a0 = $s1
+  $a1 = 25
+  $a2 = 37000
+  $a3 = 0
+  call $t0
+  if $s0 goto :null26
+  Error("null pointer")
+null26:
+  $t0 = [$s0]
+  $t0 = [$t0+8]
+  $a0 = $s0
+  $a1 = $s1
+  call $t0
+  $s0 = $v0
+  if $s0 goto :null27
+  Error("null pointer")
+null27:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  PrintIntS(10000000)
+  $t0 = HeapAllocZ(16)
+  [$t0] = :vmt_Element
+  $s1 = $t0
+  if $s1 goto :null28
+  Error("null pointer")
+null28:
+  $t0 = [$s1]
+  $t0 = [$t0]
+  $a0 = $s1
+  $a1 = 39
+  $a2 = 42000
+  $a3 = 1
+  call $t0
+  $s2 = $s1
+  if $s0 goto :null29
+  Error("null pointer")
+null29:
+  $t0 = [$s0]
+  $t0 = [$t0+8]
+  $a0 = $s0
+  $a1 = $s1
+  call $t0
+  $s0 = $v0
+  if $s0 goto :null30
+  Error("null pointer")
+null30:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  PrintIntS(10000000)
+  $t0 = HeapAllocZ(16)
+  [$t0] = :vmt_Element
+  $s1 = $t0
+  if $s1 goto :null31
+  Error("null pointer")
+null31:
+  $t0 = [$s1]
+  $t0 = [$t0]
+  $a0 = $s1
+  $a1 = 22
+  $a2 = 34000
+  $a3 = 0
+  call $t0
+  if $s0 goto :null32
+  Error("null pointer")
+null32:
+  $t0 = [$s0]
+  $t0 = [$t0+8]
+  $a0 = $s0
+  $a1 = $s1
+  call $t0
+  $s0 = $v0
+  if $s0 goto :null33
+  Error("null pointer")
+null33:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  $t0 = HeapAllocZ(16)
+  [$t0] = :vmt_Element
+  $s3 = $t0
+  if $s3 goto :null34
+  Error("null pointer")
+null34:
+  $t0 = [$s3]
+  $t0 = [$t0]
+  $a0 = $s3
+  $a1 = 27
+  $a2 = 34000
+  $a3 = 0
+  call $t0
+  if $s0 goto :null35
+  Error("null pointer")
+null35:
+  $t0 = [$s0]
+  $t0 = [$t0+20]
+  $a0 = $s0
+  $a1 = $s2
+  call $t0
+  $t0 = $v0
+  PrintIntS($t0)
+  if $s0 goto :null36
+  Error("null pointer")
+null36:
+  $t0 = [$s0]
+  $t0 = [$t0+20]
+  $a0 = $s0
+  $a1 = $s3
+  call $t0
+  $t0 = $v0
+  PrintIntS($t0)
+  PrintIntS(10000000)
+  $t0 = HeapAllocZ(16)
+  [$t0] = :vmt_Element
+  $s1 = $t0
+  if $s1 goto :null37
+  Error("null pointer")
+null37:
+  $t0 = [$s1]
+  $t0 = [$t0]
+  $a0 = $s1
+  $a1 = 28
+  $a2 = 35000
+  $a3 = 0
+  call $t0
+  if $s0 goto :null38
+  Error("null pointer")
+null38:
+  $t0 = [$s0]
+  $t0 = [$t0+8]
+  $a0 = $s0
+  $a1 = $s1
+  call $t0
+  $s0 = $v0
+  if $s0 goto :null39
+  Error("null pointer")
+null39:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  PrintIntS(2220000)
+  if $s0 goto :null40
+  Error("null pointer")
+null40:
+  $t0 = [$s0]
+  $t0 = [$t0+16]
+  $a0 = $s0
+  $a1 = $s2
+  call $t0
+  $s0 = $v0
+  if $s0 goto :null41
+  Error("null pointer")
+null41:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  PrintIntS(33300000)
+  if $s0 goto :null42
+  Error("null pointer")
+null42:
+  $t0 = [$s0]
+  $t0 = [$t0+16]
+  $a0 = $s0
+  $a1 = $s1
+  call $t0
+  $s0 = $v0
+  if $s0 goto :null43
+  Error("null pointer")
+null43:
+  $t0 = [$s0]
+  $t0 = [$t0+36]
+  $a0 = $s0
+  call $t0
+  PrintIntS(44440000)
+  $v0 = 0
+  $s0 = local[0]
+  $s1 = local[1]
+  $s2 = local[2]
+  $s3 = local[3]
+  ret
+
