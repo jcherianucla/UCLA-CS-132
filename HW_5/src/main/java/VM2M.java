@@ -16,7 +16,12 @@ public class VM2M {
 	 */
 	public static void printMIPS(LinkedList<String> mips) {
 		for(String line : mips) {
-			System.out.println(line);
+			// Prevent double prints
+			if(line.equals("\n")) {
+				System.out.print(line);
+			} else {
+				System.out.println(line);
+			}
 		}
 	}
 
