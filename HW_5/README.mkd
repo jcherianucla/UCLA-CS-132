@@ -1,4 +1,4 @@
-# VaporM To MIPS
+# Vapor-M To MIPS
 
 This project contains source code for a Translator for the Vapor-M intermediate representation into MIPS, using an imported parser for vapor from the cs132 vapor ast.
 * ```src/main/java/*```- Contains all the source files for the Translator.
